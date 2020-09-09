@@ -8,11 +8,16 @@ const NavBar = styled.nav`
   width: 100%;
   display: flex;
   justify-content: space-center;
+  .centerIt{
+      margin-left: auto;
+      margin-right: auto;
+  }
   p {
     color: white;
   }
 `;
 const Ul = styled.ul`
+padding-left:0;
   list-style: none;
   display: flex;
   width: 100%;
@@ -105,7 +110,8 @@ export default function Nav() {
   return (
     <NavBar>
       <Ul location={location.pathname}>
-        <div id="sides">
+          <div className="centerIt">
+ <div id="sides">
           <Link className="linku" to="/" style={{ textDecoration: "none" }}>
             <li id="L1">Home</li>
           </Link>
@@ -132,6 +138,8 @@ export default function Nav() {
             <li id="L6">Merchandise</li>
           </Link>
         </div>
+          </div>
+       
       </Ul>
     </NavBar>
   );
