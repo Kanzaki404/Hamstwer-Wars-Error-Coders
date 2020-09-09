@@ -3,7 +3,7 @@ import styled from "styled-components";
 import blood from "../assets/blood/transparent-blood.png";
 
 const LandingPageStyle = styled.div`
-    width: 100%;
+    width: auto;
     height: 100vh;
     background-color: #790000;
     text-align: center;
@@ -34,7 +34,7 @@ const LandingPageStyle = styled.div`
         margin-right: auto;
         cursor: pointer;
         background: black;
-        border-radius: 7px;
+        border-radius: 10px;
         color: white;
         border: none;
         outline: none;
