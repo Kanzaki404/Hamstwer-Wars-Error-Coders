@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import ListingEl from '../components/StatsComp/ListingMenu'
 import ContentEl from '../components/StatsComp/Content'
 import styled from "styled-components";
@@ -13,11 +13,15 @@ background-color: #790000;
 
 
 export default function Stats() {
+    const [searchtype, setSearchType] = useState(true)
+    function searchTypeChange(e){
+        setSearchType(e)
+    }
     return (
         <StatsWrapper>
-           <ListingEl></ListingEl>
+           <ListingEl dataCallback = {h=>searchTypeChange(h)}></ListingEl>
           
-           <ContentEl></ContentEl>
+           <ContentEl mode={searchtype}></ContentEl>
            
            
         </StatsWrapper>
