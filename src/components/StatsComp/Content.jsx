@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import testImage from "../../assets/testPhotoGallery/hamster-26.jpg";
+import ContentItem from './ContentItem'
 const ContentWraper = styled.div`
   width: 800px;
   border-radius: 3px;
@@ -39,53 +40,53 @@ const ContentWraper = styled.div`
     width: 100%;
   }
 `;
-const ListItem = styled.div`
-  width: 100%;
-  min-height: 75px;
-  box-sizing: border-box;
-  background-color: white;
-  border-radius: 5px;
-  padding-top: 1px;
+// const ListItem = styled.div`
+//   width: 100%;
+//   min-height: 75px;
+//   box-sizing: border-box;
+//   background-color: white;
+//   border-radius: 5px;
+//   padding-top: 1px;
 
-  /* justify-content: space-around;
-  align-items: center; */
-  margin-bottom: 5px;
-  margin-top: 5px;
-  :nth-child(even) {
-    background: #1c1c1c;
-    color: white;
-  }
-  .profile {
-    height: 50px;
-    width: 50px;
-    background-image: url(${testImage});
-    background-position: 50% 50%;
-    background-repeat: no-repeat;
-    background-size: cover;
-    border-radius: 50px;
-  }
-  .mainInfo {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin-bottom: 5px;
-    margin-top: 5px;
-  }
-  .detailInfo {
-    display: block;
-    width: 50%;
-    height: 103px;
-    text-align: center;
-    margin: 10px auto 0px auto;
-    box-sizing: border-box;
-  }
-`;
+//   /* justify-content: space-around;
+//   align-items: center; */
+//   margin-bottom: 5px;
+//   margin-top: 5px;
+//   :nth-child(even) {
+//     background: #1c1c1c;
+//     color: white;
+//   }
+//   .profile {
+//     height: 50px;
+//     width: 50px;
+//     background-image: url(${testImage});
+//     background-position: 50% 50%;
+//     background-repeat: no-repeat;
+//     background-size: cover;
+//     border-radius: 50px;
+//   }
+//   .mainInfo {
+//     display: flex;
+//     justify-content: space-around;
+//     align-items: center;
+//     margin-bottom: 5px;
+//     margin-top: 5px;
+//   }
+//   .detailInfo {
+//     display: block;
+//     width: 50%;
+//     height: 103px;
+//     text-align: center;
+//     margin: 10px auto 0px auto;
+//     box-sizing: border-box;
+//   }
+// `;
 
 export default function Content() {
-  const [cardState1, setCardState1] = useState(false);
-  const [cardState2, setCardState2] = useState(false);
-  const [cardState3, setCardState3] = useState(false);
-  const [cardState4, setCardState4] = useState(false);
+  // const [cardState1, setCardState1] = useState(false);
+  // const [cardState2, setCardState2] = useState(false);
+  // const [cardState3, setCardState3] = useState(false);
+  // const [cardState4, setCardState4] = useState(false);
 
   return (
     <ContentWraper>
@@ -94,91 +95,19 @@ export default function Content() {
       </div>
 
       <div className="second">
-        <ListItem onClick={() => setCardState1(!cardState1)}>
-          <div className="mainInfo">
-            <div className="profile"></div>
-            <h3>Bulldozer</h3>
-            <h5>Win/Lose Rate: 56/44</h5>
-            <h5>Games: 16</h5>
-            <h5>Special Ability: ChesseBalls</h5>
-          </div>
-
-          {cardState1 ? (
-            <p className="detailInfo">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas
-              fugit eaque quae praesentium, quo tempore blanditiis error nostrum
-              atque at sapiente quisquam corporis nihil laudantium dolor
-              eveniet, rem, illo quidem.
-            </p>
-          ) : (
-            <div></div>
-          )}
-        </ListItem>
-        <ListItem onClick={() => setCardState2(!cardState2)}>
-          <div className="mainInfo">
-            <div className="profile"></div>
-            <h3>Bulldozer</h3>
-            <h5>Win/Lose Rate: 56/44</h5>
-            <h5>Games: 16</h5>
-            <h5>Special Ability: ChesseBalls</h5>
-          </div>
-
-          {cardState2 ? (
-            <p className="detailInfo">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas
-              fugit eaque quae praesentium, quo tempore blanditiis error nostrum
-              atque at sapiente quisquam corporis nihil laudantium dolor
-              eveniet, rem, illo quidem.
-            </p>
-          ) : (
-            <div></div>
-          )}
-        </ListItem>
-        <ListItem onClick={() => setCardState3(!cardState3)}>
-          <div className="mainInfo">
-            <div className="profile"></div>
-            <h3>Bulldozer</h3>
-            <h5>Win/Lose Rate: 56/44</h5>
-            <h5>Games: 16</h5>
-            <h5>Special Ability: ChesseBalls</h5>
-          </div>
-
-          {cardState3 ? (
-            <p className="detailInfo">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas
-              fugit eaque quae praesentium, quo tempore blanditiis error nostrum
-              atque at sapiente quisquam corporis nihil laudantium dolor
-              eveniet, rem, illo quidem.
-            </p>
-          ) : (
-            <div></div>
-          )}
-        </ListItem>
+        <ContentItem></ContentItem>
+        <ContentItem></ContentItem>
+        <ContentItem></ContentItem>
+        <ContentItem></ContentItem>
+        
       </div>
       <div className="first">
         <h1>Bottom 5</h1>
       </div>
       <div className="second">
-        <ListItem onClick={() => setCardState4(!cardState4)}>
-          <div className="mainInfo">
-            <div className="profile"></div>
-            <h3>Bulldozer</h3>
-            <h5>Win/Lose Rate: 56/44</h5>
-            <h5>Games: 16</h5>
-            <h5>Special Ability: ChesseBalls</h5>
-          </div>
-
-          {cardState4 ? (
-            <p className="detailInfo">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas
-              fugit eaque quae praesentium, quo tempore blanditiis error nostrum
-              atque at sapiente quisquam corporis nihil laudantium dolor
-              eveniet, rem, illo quidem.
-            </p>
-          ) : (
-            <div></div>
-          )}
-        </ListItem>
+      <ContentItem></ContentItem>
+      <ContentItem></ContentItem>
+      <ContentItem></ContentItem>
       </div>
       <div className="first">
         <h1>Total Matches</h1>
