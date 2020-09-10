@@ -5,10 +5,10 @@ const MenuWrapper = styled.div`
   width: 800px;
   border-radius: 3px;
   margin: 0px auto 50px auto;
-  height:auto; 
+  height: auto;
   /**min height 150px */
- 
-  background-color: #1c1c1c; 
+
+  background-color: #1c1c1c;
 `;
 const ButtonWrapper = styled.div`
   height: 150px;
@@ -38,10 +38,10 @@ const MenuButtons = styled.button`
 `;
 
 const SearchFields = styled.div`
-  height: 150px;
+  height: 250px;
   box-sizing: border-box;
   padding-left: 5px;
-  
+
   .InputField1 {
     padding-left: 45px;
     margin-bottom: 15px;
@@ -66,9 +66,20 @@ const SearchFields = styled.div`
       margin-right: 260px;
     }
   }
+
+  .actionButtons {
+    margin: 40px auto 0px auto;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-around;
+    .rem {
+      background-color: #790000;
+      color: white;
+    }
+  }
 `;
 
-export default function ListingMenu({dataCallback}) {
+export default function ListingMenu({ dataCallback }) {
   const [searchType, setSearchtype] = useState(true);
   function switchSearchType(type) {
     if (type !== "manual") {
@@ -139,6 +150,10 @@ export default function ListingMenu({dataCallback}) {
               ></input>
               <label htmlFor="LowestWinRate">Least Matches</label>
             </div>
+          </div>
+          <div className="actionButtons">
+            <MenuButtons>Search</MenuButtons>
+            <MenuButtons className="rem">Remove Filter</MenuButtons>
           </div>
         </SearchFields>
       )}

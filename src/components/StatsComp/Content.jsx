@@ -42,7 +42,7 @@ const ContentWraper = styled.div`
 `;
 
 const Tags = styled.div`
-  border: solid 2px black;
+border-radius: 5px 5px 0px 0px;
   background-color: #1c1c1c;
   color: white;
 
