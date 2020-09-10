@@ -9,10 +9,13 @@ const UploadPageStyle = styled.div `
     text-align: left;
     color: white;
 
-    .content {
+
+
+    .input-field {
         display: flex;
         justify-content: center;
-
+        flex-direction:column
+        ;
     }
     h2 {
         font-family: 'Quicksand', sans-serif;
@@ -35,10 +38,6 @@ const UploadPageStyle = styled.div `
         color: white;
         border: none;
         outline: none;
-    }
-
-    .content {
-
     }
 
 `;
@@ -69,6 +68,7 @@ export default function Upload() {
         <div className ="Content">
                 <h2>Create a Gladiator</h2>
 
+            <div className ="input-field">
                 <div className ="name-input">
                   <UploadInput id="name" type ="text" placeholder ="Name"></UploadInput>
                   <label htmlFor="name"></label>
@@ -93,6 +93,7 @@ export default function Upload() {
                   <label htmlFor="love"></label>
                 </div>
 
+            </div>
         </div>
         <button className ="summon-button">SUMMON GLADIATOR</button>
 
