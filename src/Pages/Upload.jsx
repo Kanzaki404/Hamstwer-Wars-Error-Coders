@@ -6,16 +6,19 @@ const UploadPageStyle = styled.div `
     width: auto;
     height: 100vh;
     background-color: #790000;
-    text-align: left;
+    text-align: center;
     color: white;
 
+    .content {
+        display: block;
 
+    }
 
     .input-field {
         display: flex;
         justify-content: center;
-        flex-direction:column
-        ;
+        flex-direction: column;
+
     }
     h2 {
         font-family: 'Quicksand', sans-serif;
@@ -38,6 +41,7 @@ const UploadPageStyle = styled.div `
         color: white;
         border: none;
         outline: none;
+        margin: 60px;
     }
 
 `;
@@ -65,7 +69,7 @@ export default function Upload() {
 
         <UploadPageStyle>
 
-        <div className ="Content">
+        <div className ="content">
                 <h2>Create a Gladiator</h2>
 
             <div className ="input-field">
@@ -89,7 +93,7 @@ export default function Upload() {
                 <br></br>
 
                 <div className ="love-input">
-                  <UploadInput id="love" type ="text" placeholder ="Weapon"></UploadInput>
+                  <UploadInput id="love" type ="text" placeholder ="Loves"></UploadInput>
                   <label htmlFor="love"></label>
                 </div>
 
