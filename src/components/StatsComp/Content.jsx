@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import testImage from "../../assets/testPhotoGallery/hamster-26.jpg";
-import ContentItem from './ContentItem'
+import ContentItem from "./ContentItem";
 const ContentWraper = styled.div`
   width: 800px;
   border-radius: 3px;
@@ -40,79 +40,102 @@ const ContentWraper = styled.div`
     width: 100%;
   }
 `;
-// const ListItem = styled.div`
-//   width: 100%;
-//   min-height: 75px;
-//   box-sizing: border-box;
-//   background-color: white;
-//   border-radius: 5px;
-//   padding-top: 1px;
 
-//   /* justify-content: space-around;
-//   align-items: center; */
-//   margin-bottom: 5px;
-//   margin-top: 5px;
-//   :nth-child(even) {
-//     background: #1c1c1c;
-//     color: white;
-//   }
-//   .profile {
-//     height: 50px;
-//     width: 50px;
-//     background-image: url(${testImage});
-//     background-position: 50% 50%;
-//     background-repeat: no-repeat;
-//     background-size: cover;
-//     border-radius: 50px;
-//   }
-//   .mainInfo {
-//     display: flex;
-//     justify-content: space-around;
-//     align-items: center;
-//     margin-bottom: 5px;
-//     margin-top: 5px;
-//   }
-//   .detailInfo {
-//     display: block;
-//     width: 50%;
-//     height: 103px;
-//     text-align: center;
-//     margin: 10px auto 0px auto;
-//     box-sizing: border-box;
-//   }
-// `;
+const Tags = styled.div`
+  border: solid 2px black;
+  background-color: #1c1c1c;
+  color: white;
 
-export default function Content() {
-  // const [cardState1, setCardState1] = useState(false);
-  // const [cardState2, setCardState2] = useState(false);
-  // const [cardState3, setCardState3] = useState(false);
-  // const [cardState4, setCardState4] = useState(false);
+  .headerInfo {
+    display: flex;
+    margin-left: 140px;
 
+    #winMar {
+      margin-left: 95px;
+    }
+    #gMar {
+      margin-left: 81px;
+    }
+    #sMar {
+      margin-left: 75px;
+    }
+  }
+`;
+const ContentScroll = styled.div`
+  max-height: 750px;
+  overflow-y: scroll;
+  ::-webkit-scrollbar {
+    width: 3px;
+  }
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: white;
+  }
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    /* background: #888;  */
+    background: #1c1c1c;
+  }
+`;
+const TableRow = styled.tr``;
+export default function Content({ mode }) {
   return (
     <ContentWraper>
-      <div className="first">
-        <h1>Top 5</h1>
-      </div>
+      {mode ? (
+        <div>
+          <div className="first">
+            <h1>Top 5</h1>
+          </div>
 
-      <div className="second">
-        <ContentItem></ContentItem>
-        <ContentItem></ContentItem>
-        <ContentItem></ContentItem>
-        <ContentItem></ContentItem>
-        
-      </div>
-      <div className="first">
-        <h1>Bottom 5</h1>
-      </div>
-      <div className="second">
-      <ContentItem></ContentItem>
-      <ContentItem></ContentItem>
-      <ContentItem></ContentItem>
-      </div>
-      <div className="first">
-        <h1>Total Matches</h1>
-        <p className="totalMatchNum">3426</p>
-      </div>
+          <div className="second">
+            <ContentItem></ContentItem>
+            <ContentItem></ContentItem>
+            <ContentItem></ContentItem>
+            <ContentItem></ContentItem>
+          </div>
+          <div className="first">
+            <h1>Bottom 5</h1>
+          </div>
+          <div className="second">
+            <ContentItem></ContentItem>
+            <ContentItem></ContentItem>
+            <ContentItem></ContentItem>
+          </div>
+          <div className="first">
+            <h1>Total Matches</h1>
+            <p className="totalMatchNum">3426</p>
+          </div>
+        </div>
+      ) : (
+        <div>
+          <Tags>
+            <div className="headerInfo">
+              <h4>Name:</h4>
+              <h4 id="winMar">Win/Lose rate:</h4>
+              <h4 id="gMar">Games:</h4>
+              <h4 id="sMar">Special ability:</h4>
+            </div>
+          </Tags>
+          <ContentScroll>
+            <ContentItem></ContentItem>
+            <ContentItem></ContentItem>
+            <ContentItem></ContentItem>
+            <ContentItem></ContentItem>
+            <ContentItem></ContentItem>
+            <ContentItem></ContentItem>
+            <ContentItem></ContentItem>
+            <ContentItem></ContentItem>
+            <ContentItem></ContentItem>
+            <ContentItem></ContentItem>
+            <ContentItem></ContentItem>
+            <ContentItem></ContentItem>
+            <ContentItem></ContentItem>
+            <ContentItem></ContentItem>
+            <ContentItem></ContentItem>
+            <ContentItem></ContentItem>
+          </ContentScroll>
+        </div>
+      )}
     </ContentWraper>
   );
 }

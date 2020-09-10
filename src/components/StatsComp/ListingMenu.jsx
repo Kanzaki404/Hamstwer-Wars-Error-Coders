@@ -68,13 +68,15 @@ const SearchFields = styled.div`
   }
 `;
 
-export default function ListingMenu() {
+export default function ListingMenu({dataCallback}) {
   const [searchType, setSearchtype] = useState(true);
   function switchSearchType(type) {
     if (type !== "manual") {
       setSearchtype(true);
+      dataCallback(true);
     } else {
       setSearchtype(false);
+      dataCallback(false);
     }
   }
   return (

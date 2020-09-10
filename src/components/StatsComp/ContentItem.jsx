@@ -36,7 +36,7 @@ const ListItem = styled.div`
   }
   .detailInfo {
     display: block;
-    width: 50%;
+    width: 60%;
     height: 103px;
     text-align: center;
     margin: 10px auto 0px auto;
