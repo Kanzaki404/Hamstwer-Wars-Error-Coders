@@ -14,9 +14,12 @@ const UploadPageStyle = styled.div `
         justify-content: center;
 
     }
-    h3 {
+    h2 {
         font-family: 'Quicksand', sans-serif;
-        margin: auto
+        margin: auto;
+        text-align: center;
+        padding: 63px;
+
 
     }
     .summon-button {
@@ -34,6 +37,10 @@ const UploadPageStyle = styled.div `
         outline: none;
     }
 
+    .content {
+
+    }
+
 `;
 
 const UploadInput = styled.input`
@@ -47,8 +54,8 @@ const UploadInput = styled.input`
 
     UploadInput[type="text"]:focus,
     :focus {
-      box-shadow: 0 0 5px rgba(81, 203, 238, 1);
-      border: 1px solid rgba(81, 203, 238, 1);
+      box-shadow: 0 0 5px rgba(189, 54 , 54, 1);
+      border: 1px solid rgba(189, 54 , 54, 1);
     }
 
 `;
@@ -56,18 +63,37 @@ const UploadInput = styled.input`
 
 export default function Upload() {
     return (
+
         <UploadPageStyle>
 
-        <div className ="content">
+        <div className ="Content">
+                <h2>Create a Gladiator</h2>
 
-            <h3>Name</h3>
+                <div className ="name-input">
+                  <UploadInput id="name" type ="text" placeholder ="Name"></UploadInput>
+                  <label htmlFor="name"></label>
+                </div>
+                <br></br>
+
+                <div className="age-input">
+                  <UploadInput id="mani" type ="text" placeholder ="Age"></UploadInput>
+                  <label htmlFor="mani"></label>
+                </div>
+                <br></br>
+
+
+                <div className ="weapon-input">
+                  <UploadInput id="weapon" type ="text" placeholder ="Weapon"></UploadInput>
+                  <label htmlFor="weapon"></label>
+                </div>
+                <br></br>
+
+                <div className ="love-input">
+                  <UploadInput id="love" type ="text" placeholder ="Weapon"></UploadInput>
+                  <label htmlFor="love"></label>
+                </div>
+
         </div>
-
-        <div className =""></div>
-
-                <UploadInput></UploadInput>
-
-
         <button className ="summon-button">SUMMON GLADIATOR</button>
 
         </UploadPageStyle>
