@@ -82,6 +82,13 @@ const UploadPageStyle = styled.div `
         margin-left: auto;
         margin-right: auto;
         border-radius: 5px;
+
+    p {
+        font-family: 'Quicksand', sans-serif;
+        text-align:left;
+        padding-left: 20px;
+        font-size: 13px;
+        }
     }
 
     .summon-button {
@@ -159,7 +166,9 @@ export default function Upload() {
                     </div>
                 </div>
 
-                <div className ="image-display"></div>
+                <div className ="image-display">
+                <p>Image is shown here...</p>
+                </div>
 
             </div>
         </div>
