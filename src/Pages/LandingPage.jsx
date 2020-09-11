@@ -27,13 +27,13 @@ const LandingPageStyle = styled.div`
 
     .to-battle {
         font-family: 'Permanent Marker',cursive;
-        font-size: 2.0rem;
-        width: 313px;
+        font-size: 28px;
+        width: 307px;
         height: 87px;
         margin-left: auto;
         margin-right: auto;
         cursor: pointer;
-        background: black;
+        background: #1c1c1c;
         border-radius: 10px;
         color: white;
         border: none;
