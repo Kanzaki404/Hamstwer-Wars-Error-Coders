@@ -33,7 +33,7 @@ const LandingPageStyle = styled.div`
         margin-left: auto;
         margin-right: auto;
         cursor: pointer;
-        background: black;
+        background: #1c1c1c;
         border-radius: 10px;
         color: white;
         border: none;

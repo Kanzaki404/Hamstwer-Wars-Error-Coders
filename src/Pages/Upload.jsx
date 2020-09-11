@@ -34,13 +34,15 @@ const UploadPageStyle = styled.div `
         overflow: hidden;
         position: absolute;
         z-index: -1;
+        font-family: 'Quicksand', sans-serif;
     }
 
     .inputfile + label {
-        font-size: 1.25em;
-        font-weight: 700;
+        font-size: 18px;
+        font-weight: 500;
         color: white;
         display: inline-block;
+        font-family: 'Quicksand', sans-serif;
     }
 
     .inputfile:focus + label,
@@ -56,6 +58,7 @@ const UploadPageStyle = styled.div `
         margin-top: 30px;
         height: 40px;
         text-align: left;
+        font-family: 'Quicksand', sans-serif;
 
       .file-styling {
 
@@ -64,10 +67,21 @@ const UploadPageStyle = styled.div `
         background-color: #1c1c1c;
         width: 50%;
         border-radius: 5px;
-        padding-top: 4px;
+        padding-top: 6px;
         padding-left: 21px;
       }
 
+    }
+
+    .image-display {
+        background-color: #1c1c1c;
+        height: 261px;
+        width: 455px;
+        display: block;
+        margin-top: 14px;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 5px;
     }
 
     .summon-button {
@@ -105,9 +119,6 @@ const UploadInput = styled.input`
 
 `;
 
-
-
-
 export default function Upload() {
     return (
 
@@ -143,12 +154,17 @@ export default function Upload() {
 
                 <div className ="select-image">
                     <div className ="file-styling">
-                    <input type="file" name="file" id="file" className="inputfile" />
-                    <label htmlFor="file">Select Image</label></div>
+                        <input type="file" name="file" id="file" className="inputfile" />
+                        <label htmlFor="file">Select Image</label>
+                    </div>
                 </div>
+
+                <div className ="image-display"></div>
 
             </div>
         </div>
+
+
         <button className ="summon-button">SUMMON GLADIATOR</button>
 
         </UploadPageStyle>
