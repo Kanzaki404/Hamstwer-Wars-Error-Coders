@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import testImage from "../../assets/testPhotoGallery/hamster-26.jpg";
 import ContentItem from "./ContentItem";
 const ContentWraper = styled.div`
   width: 800px;
@@ -77,7 +76,7 @@ const ContentScroll = styled.div`
     background: #1c1c1c;
   }
 `;
-const TableRow = styled.tr``;
+
 export default function Content({ mode }) {
   return (
     <ContentWraper>
