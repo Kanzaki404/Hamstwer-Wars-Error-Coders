@@ -20,23 +20,56 @@ const UploadPageStyle = styled.div `
         flex-direction: column;
 
     }
+
     h2 {
         font-family: 'Quicksand', sans-serif;
         margin: auto;
         text-align: center;
         padding: 63px;
+    }
 
+    .inputfile {
+        width: 500px;
+        height: 500px;
+        overflow: hidden;
+        position: absolute;
+        z-index: -1;
+    }
+
+    .inputfile + label {
+        font-size: 1.25em;
+        font-weight: 700;
+        color: white;
+        display: inline-block;
+    }
+
+    .inputfile:focus + label,
+    .inputfile + label:hover {
+        cursor: pointer;
+    }
+
+
+    .select-image {
+        width: 28vw;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 30px;
+        height: 40px;
+        text-align: left;
+
+      .file-styling {
+
+        height: 100%;
+        box-sizing: border-box;
+        background-color: #1c1c1c;
+        width: 50%;
+        border-radius: 5px;
+        padding-top: 4px;
+        padding-left: 21px;
+      }
 
     }
 
-    .imageUrl {
-
-        text-align: initial;
-        margin-bottom: 25px;
-        #urlInput{
-            width:100%;
-        }
-    }
     .summon-button {
         font-family: 'Permanent Marker',cursive;
         font-size: 28px;
@@ -45,12 +78,12 @@ const UploadPageStyle = styled.div `
         margin-left: auto;
         margin-right: auto;
         cursor: pointer;
-        background: black;
+        background: #1c1c1c;
         border-radius: 10px;
         color: white;
         border: none;
         outline: none;
-        margin: 60px;
+        margin: 53px;
     }
 
 `;
@@ -108,8 +141,10 @@ export default function Upload() {
                   <label htmlFor="love"></label>
                 </div>
 
-                <div className="imageUrl">
-                <UploadInput id="urlInput" type="File"></UploadInput>
+                <div className ="select-image">
+                    <div className ="file-styling">
+                    <input type="file" name="file" id="file" className="inputfile" />
+                    <label htmlFor="file">Select Image</label></div>
                 </div>
 
             </div>
