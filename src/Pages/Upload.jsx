@@ -28,6 +28,15 @@ const UploadPageStyle = styled.div `
 
 
     }
+
+    .imageUrl {
+
+        text-align: initial;
+        margin-bottom: 25px;
+        #urlInput{
+            width:100%;
+        }
+    }
     .summon-button {
         font-family: 'Permanent Marker',cursive;
         font-size: 28px;
@@ -64,6 +73,8 @@ const UploadInput = styled.input`
 `;
 
 
+
+
 export default function Upload() {
     return (
 
@@ -95,6 +106,10 @@ export default function Upload() {
                 <div className ="love-input">
                   <UploadInput id="love" type ="text" placeholder ="Loves"></UploadInput>
                   <label htmlFor="love"></label>
+                </div>
+
+                <div className="imageUrl">
+                <UploadInput id="urlInput" type="File"></UploadInput>
                 </div>
 
             </div>
