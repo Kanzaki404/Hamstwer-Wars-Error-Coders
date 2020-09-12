@@ -13,7 +13,6 @@ const LandingPageStyle = styled.div`
         justify-content: center;
 
     }
-
     .text {
         display: block;
         text-align: center;
