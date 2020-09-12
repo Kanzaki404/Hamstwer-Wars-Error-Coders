@@ -8,7 +8,6 @@ const LandingPageStyle = styled.div`
   background-color: #790000;
   text-align: center;
 
-<<<<<<< HEAD
   .info-text {
     display: flex;
     justify-content: center;
@@ -24,19 +23,6 @@ const LandingPageStyle = styled.div`
     line-height: 36px;
     width: 700px;
   }
-=======
-    }
-    .text {
-        display: block;
-        text-align: center;
-        font-family: 'Quicksand', sans-serif;
-        color: white;
-        margin: 84px;
-        letter-spacing: 1px;
-        line-height: 36px;
-        width: 700px;
-    }
->>>>>>> 484eaab1ac177f94f4c771041dbdd0784128ec41
 
   .to-battle {
     font-family: "Permanent Marker", cursive;
