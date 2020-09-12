@@ -89,12 +89,7 @@ const ContentScroll = styled.div`
   }
  
   }
-  /* .elementsByColor,div:nth-child(2){
-    background: #1c1c1c;
-    color:red;
-   
-   
-  } */
+  
 `;
 
 const baseUrl = "http://localhost:5000/";
