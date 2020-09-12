@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from "styled-components";
 
 
@@ -83,6 +83,7 @@ const UploadPageStyle = styled.div `
         margin-right: auto;
         border-radius: 5px;
 
+
     p {
         font-family: 'Quicksand', sans-serif;
         text-align:left;
@@ -127,9 +128,20 @@ const UploadInput = styled.input`
 `;
 
 export default function Upload() {
+    const [file, setFile] = useState('');
+    const [fileName, setFileName] = useState('')
+    const [prevFile, setPrevFile] = useState('')
+
+    const onChange = e =>{
+        setFile(e.target.files[0]);
+        setFileName(e.target.files[0].name);
+        setPrevFile(URL.createObjectURL(e.target.files[0]))
+    }
+
+
     return (
 
-        <UploadPageStyle>
+        <UploadPageStyle filo={file}>
 
         <div className ="content">
                 <h2>Create a Gladiator</h2>
@@ -161,13 +173,17 @@ export default function Upload() {
 
                 <div className ="select-image">
                     <div className ="file-styling">
-                        <input type="file" name="file" id="file" className="inputfile" />
-                        <label htmlFor="file">Select Image</label>
+                        <input type="file" name="file" id="file" className="inputfile"  onChange={onChange}/>
+                        <label htmlFor="file">{fileName ?
+                        fileName : <p>chooseFile</p>
+                    }
+
+                        </label>
                     </div>
                 </div>
 
-                <div className ="image-display">
-                <p>Image is shown here...</p>
+                <div className ="image-display" id="preview">
+                    <img src={prevFile} alt='no'></img>
                 </div>
 
             </div>
