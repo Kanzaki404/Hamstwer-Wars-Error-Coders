@@ -69,7 +69,7 @@ export default function LandingPage() {
         </p>
       </div>
 
-      <Link to="/arena" style={{ textDecoration: "none" }}>
+      <Link to="/arena">
         <button className="to-battle">
           <img src={blood} alt="blood"></img>TO BATTLE!
         </button>
