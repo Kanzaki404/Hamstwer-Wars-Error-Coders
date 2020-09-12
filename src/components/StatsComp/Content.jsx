@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, {useState, useEffect}from "react";
 import styled from "styled-components";
-import testImage from "../../assets/testPhotoGallery/hamster-26.jpg";
 import ContentItem from "./ContentItem";
+import axios from "axios";
 const ContentWraper = styled.div`
   width: 800px;
   border-radius: 3px;
@@ -76,9 +76,43 @@ const ContentScroll = styled.div`
     /* background: #888;  */
     background: #1c1c1c;
   }
+  .elementsByColor,div ~div{
+    
+    background: white;
+    color:black;
+   
+    :nth-child(even){
+   
+    background: #1c1c1c;
+    color:white;
+   
+  }
+ 
+  }
+  
 `;
-const TableRow = styled.tr``;
+
+const baseUrl = "http://localhost:5000/";
+function getHamsta(setHamsters) {
+  axios
+    .get(`${baseUrl}hamsters`)
+    .then((res) => {
+      setHamsters(res.data);
+    })
+    .catch((err) => console.log("ERROR ---> " + err));
+}
 export default function Content({ mode }) {
+  const [hamsters, setHamsters] = useState([]);
+
+  useEffect(() => {
+    getHamsta(setHamsters);
+  }, []);
+
+  const HamsterElements = hamsters.map((e) => (
+
+      <ContentItem  className="elementsByColor" key={e._id} data={e}></ContentItem>
+    
+  ));
   return (
     <ContentWraper>
       {mode ? (
@@ -88,18 +122,13 @@ export default function Content({ mode }) {
           </div>
 
           <div className="second">
-            <ContentItem></ContentItem>
-            <ContentItem></ContentItem>
-            <ContentItem></ContentItem>
-            <ContentItem></ContentItem>
+           
           </div>
           <div className="first">
             <h1>Bottom 5</h1>
           </div>
           <div className="second">
-            <ContentItem></ContentItem>
-            <ContentItem></ContentItem>
-            <ContentItem></ContentItem>
+            
           </div>
           <div className="first">
             <h1>Total Matches</h1>
@@ -117,22 +146,7 @@ export default function Content({ mode }) {
             </div>
           </Tags>
           <ContentScroll>
-            <ContentItem></ContentItem>
-            <ContentItem></ContentItem>
-            <ContentItem></ContentItem>
-            <ContentItem></ContentItem>
-            <ContentItem></ContentItem>
-            <ContentItem></ContentItem>
-            <ContentItem></ContentItem>
-            <ContentItem></ContentItem>
-            <ContentItem></ContentItem>
-            <ContentItem></ContentItem>
-            <ContentItem></ContentItem>
-            <ContentItem></ContentItem>
-            <ContentItem></ContentItem>
-            <ContentItem></ContentItem>
-            <ContentItem></ContentItem>
-            <ContentItem></ContentItem>
+           {HamsterElements}
           </ContentScroll>
         </div>
       )}

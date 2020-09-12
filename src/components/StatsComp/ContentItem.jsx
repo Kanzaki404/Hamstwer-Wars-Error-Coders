@@ -14,10 +14,11 @@ const ListItem = styled.div`
   align-items: center; */
   margin-bottom: 5px;
   margin-top: 5px;
-  :nth-child(even) {
+  
+  /* :nth-child(even) {
     background: #1c1c1c;
     color: white;
-  }
+  } */
   .profile {
     height: 50px;
     width: 50px;
@@ -28,11 +29,13 @@ const ListItem = styled.div`
     border-radius: 50px;
   }
   .mainInfo {
+    
     display: flex;
     justify-content: space-around;
     align-items: center;
     margin-bottom: 5px;
     margin-top: 5px;
+    
   }
   .detailInfo {
     display: block;
@@ -43,16 +46,16 @@ const ListItem = styled.div`
     box-sizing: border-box;
   }
 `;
-export default function ContentItem() {
+export default function ContentItem({data}) {
     const [cardState1, setCardState1] = useState(false);
     return (
-        <ListItem onClick={() => setCardState1(!cardState1)}>
+        <ListItem className="bakcC" onClick={() => setCardState1(!cardState1)}>
           <div className="mainInfo">
             <div className="profile"></div>
-            <h3>Bulldozer</h3>
-            <h5>Win/Lose Rate: 56/44</h5>
-            <h5>Games: 16</h5>
-            <h5>Special Ability: ChesseBalls</h5>
+            <h3>{data.name}</h3>
+            <h5>Win/Lose Rate: {data.wins}/{data.defeats}</h5>
+            <h5>Games: {data.games}</h5>
+            <h5>Special Ability: {data.favFood}</h5>
           </div>
 
           {cardState1 ? (
