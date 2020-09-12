@@ -14,14 +14,18 @@ background-color: #790000;
 
 export default function Stats() {
     const [searchtype, setSearchType] = useState(true)
-    function searchTypeChange(e){
+    const [searchRes, setSearchRes] = useState(true)
+    function searchTypeChange(e,t){
         setSearchType(e)
+        
+        setSearchRes(t)
+       
     }
     return (
         <StatsWrapper>
-           <ListingEl dataCallback = {h=>searchTypeChange(h)}></ListingEl>
+           <ListingEl dataCallback = {(h,t)=>searchTypeChange(h,t)}></ListingEl>
           
-           <ContentEl mode={searchtype}></ContentEl>
+           <ContentEl mode={searchtype} newList={searchRes}></ContentEl>
            
            
         </StatsWrapper>

@@ -93,20 +93,33 @@ const ContentScroll = styled.div`
 `;
 
 const baseUrl = "http://localhost:5000/";
-function getHamsta(setHamsters) {
+function getHamsta(setHamsters,mountedRef) {
   axios
     .get(`${baseUrl}hamsters`)
     .then((res) => {
+     
       setHamsters(res.data);
     })
     .catch((err) => console.log("ERROR ---> " + err));
 }
-export default function Content({ mode }) {
+export default function Content({ mode,newList }) {
   const [hamsters, setHamsters] = useState([]);
-
+  
   useEffect(() => {
+   
     getHamsta(setHamsters);
+    
   }, []);
+  useEffect(() => {
+   
+    if(newList !== 'remove' && newList.length <= 1){
+      setHamsters(newList)
+  
+    }else{
+      getHamsta(setHamsters);
+    }
+  }, [newList]);
+  
 
   const HamsterElements = hamsters.map((e) => (
 

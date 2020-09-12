@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-
+import axios from "axios";
 const MenuWrapper = styled.div`
   width: 800px;
   border-radius: 3px;
@@ -78,18 +78,61 @@ const SearchFields = styled.div`
     }
   }
 `;
+const baseUrl = "http://localhost:5000/";
+function sendFileterToServer(filter, setFilterResult,clearInputs) {
+  axios
+    .get(`${baseUrl}search`, { params: filter })
+    .then((res) => {
+      setFilterResult(res.data);
+      clearInputs()
+    })
+    .catch((err) => console.log("ERROR AT FILTER SEARCH ---> " + err));
+}
 
 export default function ListingMenu({ dataCallback }) {
   const [searchType, setSearchtype] = useState(true);
+  const [inputName, setInputName] = useState("");
+  const [matchCount, setMatchCount] = useState("");
+  const [winRate, setWinRate] = useState("");
+  const [filterResult, setFilterResult] = useState([]);
   function switchSearchType(type) {
     if (type !== "manual") {
       setSearchtype(true);
-      dataCallback(true);
+     
     } else {
       setSearchtype(false);
-      dataCallback(false);
+     
     }
   }
+  useEffect(() => {
+    dataCallback(searchType, filterResult);
+    // eslint-disable-next-line
+  }, [searchType, filterResult]);
+  function clearInputs(){
+    setInputName("")
+    setMatchCount("")
+    setWinRate("")
+   
+   }
+  const filter = {};
+  function setSearchObj() {
+    if (inputName) {
+      filter.name = inputName;
+    }
+    if (matchCount === "MM") {
+      filter.gamesMM = matchCount;
+    } else {
+      filter.gamesLM = matchCount;
+    }
+    if (winRate === "HWR") {
+      filter.winsHWR = winRate;
+    } else {
+      filter.winsLWR = winRate;
+    }
+    sendFileterToServer(filter, setFilterResult,clearInputs);
+  }
+
+  
   return (
     <MenuWrapper>
       <ButtonWrapper>
@@ -112,16 +155,23 @@ export default function ListingMenu({ dataCallback }) {
         <SearchFields>
           <div className="InputField1">
             <label htmlFor="nameInput">Name:</label>
-            <input type="text" id="nameINput"></input>
+            <input
+              type="text"
+              id="nameINput"
+              value={inputName}
+              onChange={(e) => setInputName(e.target.value)}
+            ></input>
           </div>
-
           <div className="InputField2">
-            <div className="firstRadio">
+            <div
+              className="firstRadio"
+              onChange={(e) => setMatchCount(e.target.value)}
+            >
               <input
                 type="radio"
                 id="MostMatches"
                 name="choice1"
-                value="mostM"
+                value="MM"
               ></input>
               <label htmlFor="MostMatches">Most Matches</label>
               <br />
@@ -129,18 +179,18 @@ export default function ListingMenu({ dataCallback }) {
                 type="radio"
                 id="LeastMatches"
                 name="choice1"
-                value="LeastM"
+                value="LM"
               ></input>
               <label htmlFor="LeastMatches">Least Matches</label>
             </div>
-            <div>
+            <div onChange={(e) => setWinRate(e.target.value)}>
               <input
                 type="radio"
                 id="HighestWinRate"
                 name="choice2"
                 value="HWR"
               ></input>
-              <label htmlFor="HighestWinRate">Most Matches</label>
+              <label htmlFor="HighestWinRate">Most Matches Won</label>
               <br />
               <input
                 type="radio"
@@ -148,12 +198,12 @@ export default function ListingMenu({ dataCallback }) {
                 name="choice2"
                 value="LWR"
               ></input>
-              <label htmlFor="LowestWinRate">Least Matches</label>
+              <label htmlFor="LowestWinRate">Least Matches Won</label>
             </div>
           </div>
           <div className="actionButtons">
-            <MenuButtons>Search</MenuButtons>
-            <MenuButtons className="rem">Remove Filter</MenuButtons>
+            <MenuButtons onClick={() => setSearchObj()}>Search</MenuButtons>
+            <MenuButtons className="rem" onClick={()=> dataCallback(searchType,'remove')}>Remove Filter</MenuButtons>
           </div>
         </SearchFields>
       )}
