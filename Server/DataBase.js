@@ -76,59 +76,59 @@ function get(filter, callback){
 // 	)
 // }
 
-// function search(query, callback) {
-// 	console.log(query)
-// 	const filter = {};
-// 	if( query.modellname) {
-// 		filter.modellname = { "$regex":query.modellname, $options: '-i'};
-// 	}
-// 	// if( query.order) {
-// 	// 	filter.order = { $query: {}, $orderby: { price : 1 } }
-// 	// }
-// 	if( query.maxprice) {
-// 		filter.price = {$lt: query.maxprice };
-// 	}
-// 	if(query.motorized === 'yes'){
-// 		filter.motorized = { $eq: query.motorized }
-// 	}
-// 	if(query.sail === 'yes'){
-// 		filter.sail = { $eq: query.sail }
-// 	}
-// 	if(query.madeafter){
+function search(query, callback) {
+	console.log(query)
+	const filter = {};
+	if( query.name) {
+		filter.name = { "$regex":query.name, $options: '-i'};
+	}
+	// if( query.order) {
+	// 	filter.order = { $query: {}, $orderby: { price : 1 } }
+	// }
+	// if( query.maxprice) {
+	// 	filter.price = {$lt: query.maxprice };
+	// }
+	// if(query.motorized === 'yes'){
+	// 	filter.motorized = { $eq: query.motorized }
+	// }
+	// if(query.sail === 'yes'){
+	// 	filter.sail = { $eq: query.sail }
+	// }
+	// if(query.madeafter){
 		
-// 		filter.manifacturedYear  = { $gt: Number(query.madeafter) }
-// 	}
-// 	if(query.madebefore){
-// 		filter.manifacturedYear  = { $lt: Number(query.madebefore) }
-// 	}
+	// 	filter.manifacturedYear  = { $gt: Number(query.madeafter) }
+	// }
+	// if(query.madebefore){
+	// 	filter.manifacturedYear  = { $lt: Number(query.madebefore) }
+	// }
 	
 
-// 	MongoClient.connect(
-// 		url,
-// 		{ useUnifiedTopology: true },
-// 		async (error, client) => {
-// 			if( error ) {
-// 				callback('"ERROR!! Could not connect"');
-// 				return;  // exit the callback function
-// 			}
-// 			const col = client.db(dbName).collection(collectionName);
-// 			try {
-// 				console.log('what is the filter', filter)
-// 				const cursor = await col.find(filter);
-// 				const array = await cursor.toArray();
-// 				console.log('array',array)
-// 				callback(array);
+	MongoClient.connect(
+		url,
+		{ useUnifiedTopology: true },
+		async (error, client) => {
+			if( error ) {
+				callback('"ERROR!! Could not connect"');
+				return;  // exit the callback function
+			}
+			const col = client.db(dbName).collection(collectionName);
+			try {
+				console.log('what is the filter', filter)
+				const cursor = await col.find(filter);
+				const array = await cursor.toArray();
+				
+				callback(array);
 
-// 			} catch(error) {
-// 				console.log('Query error: ' + error.message);
-// 				callback('"ERROR!! Query error"');
+			} catch(error) {
+				console.log('Query error: ' + error.message);
+				callback('"ERROR!! Query error"');
 
-// 			} finally {
-// 				client.close();
-// 			}
-// 		}// connect callback - async
-// 	)//connect - async
-// }
+			} finally {
+				client.close();
+			}
+		}// connect callback - async
+	)//connect - async
+}
 
 // function addShip(reqestsBody, callback) {
 // 	const doc = reqestsBody;
@@ -161,5 +161,5 @@ function get(filter, callback){
 
 
 module.exports = {
-	getAllHamsters
+	getAllHamsters, search
 }
