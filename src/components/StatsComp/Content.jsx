@@ -112,8 +112,6 @@ export default function Content({ mode,newList }) {
   }, []);
   useEffect(() => {
    
-   
-    console.log(newList)
     if(newList !== 'remove' && newList.length <= 1){
       setHamsters(newList)
   

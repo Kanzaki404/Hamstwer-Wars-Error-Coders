@@ -79,11 +79,12 @@ const SearchFields = styled.div`
   }
 `;
 const baseUrl = "http://localhost:5000/";
-function sendFileterToServer(filter, setFilterResult) {
+function sendFileterToServer(filter, setFilterResult,clearInputs) {
   axios
     .get(`${baseUrl}search`, { params: filter })
     .then((res) => {
       setFilterResult(res.data);
+      clearInputs()
     })
     .catch((err) => console.log("ERROR AT FILTER SEARCH ---> " + err));
 }
@@ -107,7 +108,12 @@ export default function ListingMenu({ dataCallback }) {
     dataCallback(searchType, filterResult);
     // eslint-disable-next-line
   }, [searchType, filterResult]);
-
+  function clearInputs(){
+    setInputName("")
+    setMatchCount("")
+    setWinRate("")
+   
+   }
   const filter = {};
   function setSearchObj() {
     if (inputName) {
@@ -123,8 +129,10 @@ export default function ListingMenu({ dataCallback }) {
     } else {
       filter.winsLWR = winRate;
     }
-    sendFileterToServer(filter, setFilterResult);
+    sendFileterToServer(filter, setFilterResult,clearInputs);
   }
+
+  
   return (
     <MenuWrapper>
       <ButtonWrapper>
