@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import styled from "styled-components";
+import axios from 'axios';
 
 const UploadPageStyle = styled.div`
   width: auto;
@@ -129,13 +130,79 @@ const UploadInput = styled.input`
   }
 `;
 
+function summonHamster(Hamster, resetInput) {
+
+    axios.post(`${pageUrl}upload`, {params: Hamster})
+  .then((res) =>{
+      console.log(res.data);
+      resetInput();
+  })
+  .catch((error) => console.log(error));
+
+
+}
+
+const pageUrl ="http://localhost:5000/";
+function GetAllHamsta(setHamsters) {
+    axios
+      .get(`${pageUrl}hamsters`)
+      .then((res) => {
+        setHamsters(res.data);
+      })
+      .catch((err) => console.log("ERROR ---> " + err));
+  }
+
+
+
 export default function Upload() {
   const [file, setFile] = useState("");
   const [fileName, setFileName] = useState("");
   const [prevFile, setPrevFile] = useState("");
+  const [name, setName] = useState('');
+  const [age, setAge] = useState('');
+  const [weapon, setWeapon] = useState('');
+  const [love, setLove] = useState('');
+  const [Image, setImage] = useState('default');
+  const [hamsters, setHamsters] =  useState([]);
+  const Hamster = {};
+
+  useEffect(() => {
+
+    GetAllHamsta(setHamsters)
+
+
+  }, [])
+
+  function uploadHamster() {
+
+    Hamster.id = hamsters.length + 1;
+    Hamster.name = name;
+    Hamster.age = parseInt(age);
+    Hamster.favFood = weapon;
+    Hamster.loves = love;
+    Hamster.ImgName = Image;
+    Hamster.wins = 0;
+    Hamster.defeats = 0;
+    Hamster.games = 0;
+
+    summonHamster(Hamster, resetInput);
+
+  }
+
+  function resetInput() {
+
+    setName('');
+    setAge('');
+    setWeapon('');
+    setLove('');
+    setImage('');
+
+  }
+
 
   const onChange = (e) => {
     if (e.target.files.length !== 0) {
+      setImage(e.target.files[0].name)
       setFile(e.target.files[0]);
 
       if (e.target.files[0].name.length > 10) {
@@ -152,13 +219,13 @@ export default function Upload() {
 
         <div className="input-field">
           <div className="name-input">
-            <UploadInput id="name" type="text" placeholder="Name"></UploadInput>
+            <UploadInput id="name" type="text" placeholder="Name" value = {name} onChange = {(e) => setName(e.target.value)}></UploadInput>
             <label htmlFor="name"></label>
           </div>
           <br></br>
 
           <div className="age-input">
-            <UploadInput id="mani" type="text" placeholder="Age"></UploadInput>
+            <UploadInput id="mani" type="text" placeholder="Age" value ={age} onChange = {(e) => setAge(e.target.value)}></UploadInput>
             <label htmlFor="mani"></label>
           </div>
           <br></br>
@@ -166,8 +233,9 @@ export default function Upload() {
           <div className="weapon-input">
             <UploadInput
               id="weapon"
+              value = {weapon} onChange = {(e) => setWeapon(e.target.value)}
               type="text"
-              placeholder="Weapon"
+              placeholder="Weapon/FavFood"
             ></UploadInput>
             <label htmlFor="weapon"></label>
           </div>
@@ -176,6 +244,7 @@ export default function Upload() {
           <div className="love-input">
             <UploadInput
               id="love"
+              value = {love} onChange = {(e) => setLove(e.target.value)}
               type="text"
               placeholder="Loves"
             ></UploadInput>
@@ -210,7 +279,7 @@ export default function Upload() {
         </div>
       </div>
 
-      <button className="summon-button">SUMMON GLADIATOR</button>
+      <button className="summon-button" onClick={uploadHamster}>SUMMON GLADIATOR</button>
     </UploadPageStyle>
   );
 }
