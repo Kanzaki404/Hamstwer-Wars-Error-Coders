@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 5000;
 
-const {getAllHamsters, search} = require('./database.js');
+const {getAllHamsters, search, addHamster} = require('./database.js');
 
 // Middleware
 app.use(express.static(__dirname + "/../build"));
@@ -19,7 +19,7 @@ app.use(express.json());
 // Routes
 
 app.get("/hamsters", (req, res) => {
-  
+
     getAllHamsters(dataOrError => {
   	res.send(dataOrError)
   });
@@ -50,14 +50,13 @@ app.get("/stats", (req, res) => {
 });
 
 app.post("/upload", (req, res) => {
-  //   console.log(req.body.params)
-  // 	addBoat(req.body.params, dataOrError => {
-  // 		res.send(dataOrError)
-  // 	})
+  	addHamster(req.body.params, dataOrError => {
+  		res.send(dataOrError)
+  	})
 });
 
 app.get("/search", (req, res) => {
- 
+
   search(req.query, dataOrError => {
   	res.send(dataOrError)
   })
