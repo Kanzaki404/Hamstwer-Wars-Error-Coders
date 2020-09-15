@@ -1,6 +1,6 @@
-import React from "react";
-import styled from "styled-components";
-import testImage from "../../assets/testPhotoGallery/hamster-26.jpg";
+import React from 'react';
+import styled from 'styled-components';
+import testImage from '../../assets/testPhotoGallery/hamster-26.jpg';
 
 const BannerWrapper = styled.div`
   background-color: #790000;
@@ -30,7 +30,7 @@ const BannerWrapper = styled.div`
       color: white;
     }
     .statsInfo {
-        height: 130px;
+      height: 130px;
       width: 150px;
       color: white;
       background-color: #5f5f5f;
