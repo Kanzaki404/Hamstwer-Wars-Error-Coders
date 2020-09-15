@@ -1,11 +1,12 @@
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 5000;
-
+const fileUpload = require('express-fileupload')
 const {getAllHamsters, search, addHamster} = require('./database.js');
 
 // Middleware
 app.use(express.static(__dirname + "/../build"));
+app.use(fileUpload())
 app.use((req, res, next) => {
   console.log(`${req.method} ${req.url}`);
   next();
@@ -50,9 +51,18 @@ app.get("/stats", (req, res) => {
 });
 
 app.post("/upload", (req, res) => {
-  	addHamster(req.body.params, dataOrError => {
-  		res.send(dataOrError)
-  	})
+  console.log(req)
+
+  // file.mv(`${__dirname}/assests${file.name}`, err =>{
+  //   if(err){
+  //     console.error(err)
+  //     return res.status(500).send(err)
+  //   }
+  //   res.json({fileName: file.name, filePath: `/assets/${file.name}`});
+  // });
+  	// addHamster(req.body.params, dataOrError => {
+  	// 	res.send(dataOrError)
+  	// })
 });
 
 app.get("/search", (req, res) => {

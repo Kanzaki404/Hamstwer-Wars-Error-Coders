@@ -129,7 +129,9 @@ const UploadInput = styled.input`
     border: 1px solid rgba(189, 54, 54, 1);
   }
 `;
-
+const config = {
+  headers: { 'content-type': 'multipart/form-data' }
+}
 function summonHamster(Hamster, resetInput) {
 
     axios.post(`${pageUrl}upload`, {params: Hamster})
@@ -138,7 +140,6 @@ function summonHamster(Hamster, resetInput) {
       resetInput();
   })
   .catch((error) => console.log(error));
-
 
 }
 
@@ -175,6 +176,9 @@ export default function Upload() {
 
   function uploadHamster() {
 
+    const formData = new FormData();
+    formData.append('file', file[0])
+
     Hamster.id = hamsters.length + 1;
     Hamster.name = name;
     Hamster.age = parseInt(age);
@@ -184,7 +188,9 @@ export default function Upload() {
     Hamster.wins = 0;
     Hamster.defeats = 0;
     Hamster.games = 0;
+    Hamster.photo = formData;
 
+    console.log('in front', formData)
     summonHamster(Hamster, resetInput);
 
   }
