@@ -40,7 +40,7 @@ const ListItem = styled.div`
 const ChartContainer = styled.div`
   width: 400px;
   height: 300px;
-  color: pink;
+  
  
    
  
