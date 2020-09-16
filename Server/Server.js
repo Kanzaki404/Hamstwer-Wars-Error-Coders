@@ -51,20 +51,25 @@ app.get("/stats", (req, res) => {
 });
 
 app.post("/upload", (req, res) => {
-  console.log(req)
 
-  // file.mv(`${__dirname}/assests${file.name}`, err =>{
-  //   if(err){
-  //     console.error(err)
-  //     return res.status(500).send(err)
-  //   }
-  //   res.json({fileName: file.name, filePath: `/assets/${file.name}`});
-  // });
-  	// addHamster(req.body.params, dataOrError => {
-  	// 	res.send(dataOrError)
-  	// })
+  	addHamster(req.body.params, dataOrError => {
+  		res.send(dataOrError)
+  	})
 });
 
+app.post("/upload/photo", (req, res) => {
+
+
+    const file = req.files.file;
+    file.mv(`${__dirname}/assets/${file.name}`, err =>{
+      if(err){
+        console.error(err)
+        return res.status(500).send(err)
+      }
+      res.json({fileName: file.name, filePath: `/assets/${file.name}`});
+    });
+
+  });
 app.get("/search", (req, res) => {
 
   search(req.query, dataOrError => {

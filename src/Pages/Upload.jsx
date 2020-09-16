@@ -129,12 +129,12 @@ const UploadInput = styled.input`
     border: 1px solid rgba(189, 54, 54, 1);
   }
 `;
-const config = {
-  headers: { 'content-type': 'multipart/form-data' }
-}
-function summonHamster(Hamster, resetInput) {
+// const config = {
+//   headers: { 'content-type': 'multipart/form-data' }
+// }
+function summonHamster(Hamster, resetInput,formData) {
 
-    axios.post(`${pageUrl}upload`, {params: Hamster})
+    axios.post(`${pageUrl}upload`, {params: Hamster,formData})
   .then((res) =>{
       console.log(res.data);
       resetInput();
@@ -144,6 +144,7 @@ function summonHamster(Hamster, resetInput) {
 }
 
 const pageUrl ="http://localhost:5000/";
+
 function GetAllHamsta(setHamsters) {
     axios
       .get(`${pageUrl}hamsters`)
@@ -152,7 +153,20 @@ function GetAllHamsta(setHamsters) {
       })
       .catch((err) => console.log("ERROR ---> " + err));
   }
+  function savePhoto(formData) {
 
+    axios.post(`${pageUrl}upload/photo`, formData,{
+      headers: {
+        'Content-type' : 'multipart/formData'
+      }
+    })
+  .then((res) =>{
+      console.log(res.data);
+
+  })
+  .catch((error) => console.log(error));
+
+}
 
 
 export default function Upload() {
@@ -174,26 +188,7 @@ export default function Upload() {
 
   }, [])
 
-  function uploadHamster() {
 
-    const formData = new FormData();
-    formData.append('file', file[0])
-
-    Hamster.id = hamsters.length + 1;
-    Hamster.name = name;
-    Hamster.age = parseInt(age);
-    Hamster.favFood = weapon;
-    Hamster.loves = love;
-    Hamster.ImgName = Image;
-    Hamster.wins = 0;
-    Hamster.defeats = 0;
-    Hamster.games = 0;
-    Hamster.photo = formData;
-
-    console.log('in front', formData)
-    summonHamster(Hamster, resetInput);
-
-  }
 
   function resetInput() {
 
@@ -218,6 +213,21 @@ export default function Upload() {
     }
   };
 
+  function uploadHamster() {
+    const formData = new FormData();
+    formData.append('file', file)
+    Hamster.id = hamsters.length + 1;
+    Hamster.name = name;
+    Hamster.age = parseInt(age);
+    Hamster.favFood = weapon;
+    Hamster.loves = love;
+    Hamster.ImgName = Image;
+    Hamster.wins = 0;
+    Hamster.defeats = 0;
+    Hamster.games = 0;
+    summonHamster(Hamster, resetInput, );
+    savePhoto(formData)
+  }
   return (
     <UploadPageStyle filo={file}>
       <div className="content">
