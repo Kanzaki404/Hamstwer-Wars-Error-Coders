@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import testImage from "../../assets/testPhotoGallery/hamster-26.jpg";
 import ContentItem from "./ContentItem";
+import axios from "axios";
 const ContentWraper = styled.div`
   width: 800px;
   border-radius: 3px;
@@ -42,7 +42,7 @@ const ContentWraper = styled.div`
 `;
 
 const Tags = styled.div`
-border-radius: 5px 5px 0px 0px;
+  border-radius: 5px 5px 0px 0px;
   background-color: #1c1c1c;
   color: white;
 
@@ -76,9 +76,64 @@ const ContentScroll = styled.div`
     /* background: #888;  */
     background: #1c1c1c;
   }
+  /* .elementsByColor,div ~div{
+    
+    background: white;
+    color:black;
+   
+    :nth-child(even){
+   
+    background: #1c1c1c;
+    color:white;
+   
+  }
+ 
+  } */
+
+  .elementsByColor,
+  div ~ div {
+    /* :first-child {
+      background: #1c1c1c;
+      color: white;
+    } */
+
+    :nth-child(odd) {
+      background: white;
+      color: black;
+    }
+    :nth-child(odd) {
+      background: #1c1c1c;
+      color: white;
+    }
+  }
 `;
-const TableRow = styled.tr``;
-export default function Content({ mode }) {
+
+const baseUrl = "http://localhost:5000/";
+function getHamsta(setHamsters, mountedRef) {
+  axios
+    .get(`${baseUrl}hamsters`)
+    .then((res) => {
+      setHamsters(res.data);
+    })
+    .catch((err) => console.log("ERROR ---> " + err));
+}
+export default function Content({ mode, newList }) {
+  const [hamsters, setHamsters] = useState([]);
+
+  useEffect(() => {
+    getHamsta(setHamsters);
+  }, []);
+  useEffect(() => {
+    if (newList !== "remove" && newList.length <= 1) {
+      setHamsters(newList);
+    } else {
+      getHamsta(setHamsters);
+    }
+  }, [newList]);
+
+  const HamsterElements = hamsters.map((e) => (
+    <ContentItem className="elementsByColor" key={e._id} data={e}></ContentItem>
+  ));
   return (
     <ContentWraper>
       {mode ? (
@@ -87,20 +142,11 @@ export default function Content({ mode }) {
             <h1>Top 5</h1>
           </div>
 
-          <div className="second">
-            <ContentItem></ContentItem>
-            <ContentItem></ContentItem>
-            <ContentItem></ContentItem>
-            <ContentItem></ContentItem>
-          </div>
+          <div className="second"></div>
           <div className="first">
             <h1>Bottom 5</h1>
           </div>
-          <div className="second">
-            <ContentItem></ContentItem>
-            <ContentItem></ContentItem>
-            <ContentItem></ContentItem>
-          </div>
+          <div className="second"></div>
           <div className="first">
             <h1>Total Matches</h1>
             <p className="totalMatchNum">3426</p>
@@ -116,24 +162,7 @@ export default function Content({ mode }) {
               <h4 id="sMar">Special ability:</h4>
             </div>
           </Tags>
-          <ContentScroll>
-            <ContentItem></ContentItem>
-            <ContentItem></ContentItem>
-            <ContentItem></ContentItem>
-            <ContentItem></ContentItem>
-            <ContentItem></ContentItem>
-            <ContentItem></ContentItem>
-            <ContentItem></ContentItem>
-            <ContentItem></ContentItem>
-            <ContentItem></ContentItem>
-            <ContentItem></ContentItem>
-            <ContentItem></ContentItem>
-            <ContentItem></ContentItem>
-            <ContentItem></ContentItem>
-            <ContentItem></ContentItem>
-            <ContentItem></ContentItem>
-            <ContentItem></ContentItem>
-          </ContentScroll>
+          <ContentScroll>{HamsterElements}</ContentScroll>
         </div>
       )}
     </ContentWraper>

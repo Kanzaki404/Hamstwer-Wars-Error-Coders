@@ -1,7 +1,7 @@
-import React, {useState} from 'react'
+import React, { useState } from "react";
 import styled from "styled-components";
 import testImage from "../../assets/testPhotoGallery/hamster-26.jpg";
-
+import { Doughnut  } from "react-chartjs-2";
 const ListItem = styled.div`
   width: 100%;
   min-height: 75px;
@@ -9,12 +9,13 @@ const ListItem = styled.div`
   background-color: white;
   border-radius: 5px;
   padding-top: 1px;
-
+  
   /* justify-content: space-around;
   align-items: center; */
   margin-bottom: 5px;
   margin-top: 5px;
-  :nth-child(even) {
+
+  :nth-child(odd) {
     background: #1c1c1c;
     color: white;
   }
@@ -34,37 +35,60 @@ const ListItem = styled.div`
     margin-bottom: 5px;
     margin-top: 5px;
   }
-  .detailInfo {
-    display: block;
-    width: 60%;
-    height: 103px;
-    text-align: center;
-    margin: 10px auto 0px auto;
-    box-sizing: border-box;
-  }
+  
 `;
-export default function ContentItem() {
-    const [cardState1, setCardState1] = useState(false);
-    return (
-        <ListItem onClick={() => setCardState1(!cardState1)}>
-          <div className="mainInfo">
-            <div className="profile"></div>
-            <h3>Bulldozer</h3>
-            <h5>Win/Lose Rate: 56/44</h5>
-            <h5>Games: 16</h5>
-            <h5>Special Ability: ChesseBalls</h5>
-          </div>
+const ChartContainer = styled.div`
+  width: 400px;
+  height: 300px;
+  color: pink;
+ 
+   
+ 
+      
+      
+  
+`;
+export default function ContentItem({ data }) {
+  const [cardState1, setCardState1] = useState(false);
+  const chartData = {
+    labels: ['Win','Loss'],
+    datasets: [
+      {
+        label: "Nr of Wins",
+        data: [47, 32],
+        backgroundColor: [
+          'rgba(45, 255, 251, 0.7)',
+          'rgba(163, 163, 163, 0.7)',
+          
+        ],
+        borderColor: [
+          'rgba(45, 255, 251, 0.7)',
+          'rgba(163, 163, 163, 0.7)',
+          
+        ],
+        borderAlign: 'inner',
+      },
+    ],
+  };
+  return (
+    <ListItem className="bakcC" onClick={() => setCardState1(!cardState1)}>
+      <div className="mainInfo">
+        <div className="profile"></div>
+        <h3>{data.name}</h3>
+        <h5>
+          {data.wins}/{data.defeats}
+        </h5>
+        <h5>{data.games}</h5>
+        <h5>{data.favFood}</h5>
+      </div>
 
-          {cardState1 ? (
-            <p className="detailInfo">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas
-              fugit eaque quae praesentium, quo tempore blanditiis error nostrum
-              atque at sapiente quisquam corporis nihil laudantium dolor
-              eveniet, rem, illo quidem.
-            </p>
-          ) : (
-            <div></div>
-          )}
-        </ListItem>
-    )
+      {cardState1 ? (
+        <ChartContainer className="testo">
+          <Doughnut   data={chartData}></Doughnut>
+        </ChartContainer>
+      ) : (
+        <div></div>
+      )}
+    </ListItem>
+  );
 }

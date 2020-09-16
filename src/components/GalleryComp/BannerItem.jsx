@@ -52,20 +52,21 @@ const BannerWrapper = styled.div`
   }
 `;
 
-export default function BannerItem() {
+export default function BannerItem({ data }) {
+  
   return (
     <BannerWrapper>
       <div className="rectangle">
-        <h2>Sven</h2>
+        <h2>{data.name}</h2>
         <div className="profileImage"></div>
         <div className="weakInfo">
           <p>Weakness:</p>
-          <p>Morot</p>
+          <p>{data.favFood}</p>
         </div>
         <div className="statsInfo">
-          <p>Wins: 0</p>
-          <p>Defeats: 0</p>
-          <p>Games: 0</p>
+          <p>Wins: {data.wins}</p>
+          <p>Defeats: {data.defeats}</p>
+          <p>Games: {data.games}</p>
         </div>
       </div>
       <div className="triangle"></div>
