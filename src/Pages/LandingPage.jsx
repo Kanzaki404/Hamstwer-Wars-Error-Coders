@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import blood from "../assets/blood/transparent-blood.png";
+import blood from "../assets/blood/blood-pic.jpg";
 import { Link } from "react-router-dom";
 const LandingPageStyle = styled.div`
   width: auto;
@@ -18,7 +18,7 @@ const LandingPageStyle = styled.div`
     font-size: 40px;
     font-family: "Quicksand", sans-serif;
     font-weight: 900;
-    margin-bottom: 75px;
+    margin-bottom: 64px;
   }
 
   .text {
@@ -39,13 +39,11 @@ const LandingPageStyle = styled.div`
 
 
     .goham-text {
-        text-align:left;
+        text-align: center;
         margin-bottom: -6px;
-
         span {
           font-weight: bold;
         }
-
     }
   }
 
@@ -62,15 +60,14 @@ const LandingPageStyle = styled.div`
     color: white;
     border: none;
     outline: none;
+    z-index: 1;
+    background-image:url(${blood});
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
   }
 
-  .to-battle img {
-    position: absolute;
-    width: 130px;
-    margin: top;
-    margin-left: 139px;
-    margin-top: -3px;
-  }
 
 `;
 
@@ -88,8 +85,7 @@ export default function LandingPage() {
           <span>GoHam</span> originated in the early dawn of year 2020, for its purpose for bringing All hamster lovers together to witness the glory of their cuteness.
           <br></br>
           <br></br>
-          The arena summons the hamsters into the arena and the crowd are allowed to vote on their favorite hamster.
-          <br></br>
+
           The most loved Warrior takes their <span>VICTORY</span>!
 
           <br></br>
@@ -99,7 +95,7 @@ export default function LandingPage() {
 
       <Link to="/arena">
         <button className="to-battle">
-          <img src={blood} alt="blood"></img>TO BATTLE!
+         TO BATTLE!
         </button>
       </Link>
     </LandingPageStyle>
