@@ -19,6 +19,9 @@ const LandingPageStyle = styled.div`
     font-family: "Quicksand", sans-serif;
     font-weight: 900;
     margin-bottom: 64px;
+    animation: vibrate-3;
+    animation-duration: 0.7s;
+    animation-iteration-count: infinite;
   }
 
   .text {
@@ -65,8 +68,76 @@ const LandingPageStyle = styled.div`
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    animation: vibrate-3;
+    animation-duration: 0.7s;
+    animation-iteration-count: infinite;
 
   }
+  @keyframes vibrate-3 {
+  0% {
+    -webkit-transform: translate(0);
+            transform: translate(0);
+  }
+  10% {
+    -webkit-transform: translate(-2px, -2px);
+            transform: translate(-2px, -2px);
+  }
+  20% {
+    -webkit-transform: translate(2px, -2px);
+            transform: translate(2px, -2px);
+  }
+  30% {
+    -webkit-transform: translate(-2px, 2px);
+            transform: translate(-2px, 2px);
+  }
+  40% {
+    -webkit-transform: translate(2px, 2px);
+            transform: translate(2px, 2px);
+  }
+  50% {
+    -webkit-transform: translate(-2px, -2px);
+            transform: translate(-2px, -2px);
+  }
+  60% {
+    -webkit-transform: translate(2px, -2px);
+            transform: translate(2px, -2px);
+  }
+  70% {
+    -webkit-transform: translate(-2px, 2px);
+            transform: translate(-2px, 2px);
+  }
+  80% {
+    -webkit-transform: translate(-2px, -2px);
+            transform: translate(-2px, -2px);
+  }
+  90% {
+    -webkit-transform: translate(2px, -2px);
+            transform: translate(2px, -2px);
+  }
+  100% {
+    -webkit-transform: translate(0);
+            transform: translate(0);
+  }
+
+}
+
+  @-webkit-keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
 
 
 `;
@@ -79,7 +150,7 @@ export default function LandingPage() {
           <p className="welcome">Welcome To <span className="darker">GoHam</span></p>
 
         <p className="goham-text">
-          Our <span>GoHam</span> Arena hosts the <spanGoHam>bloodiest</spanGoHam>, most <span>intense</span> and <span>adorable</span> voting <span>Battles</span> in the cosmos of the most powerful Hamster Warriors.
+          Our <span>GoHam</span> Arena hosts the <spanGoHam>bloodiest</spanGoHam>, most <span>intense</span> and <span>adorable</span> voting <span>Battles</span> in the cosmos of the most powerful Hamster Warriors!
 
           <br></br>
           <span>GoHam</span> originated in the early dawn of year 2020, for its purpose for bringing All hamster lovers together to witness the glory of their cuteness.
