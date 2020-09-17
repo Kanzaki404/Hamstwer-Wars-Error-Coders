@@ -1,6 +1,6 @@
-import React from "react";
-import styled from "styled-components";
-import testImage from "../../assets/testPhotoGallery/hamster-26.jpg";
+import React from 'react';
+import styled from 'styled-components';
+import testImage from '../../assets/testPhotoGallery/hamster-26.jpg';
 
 const BannerWrapper = styled.div`
   background-color: #790000;
