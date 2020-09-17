@@ -189,7 +189,6 @@ export default function Upload() {
   }, [])
 
 
-
   function resetInput() {
 
     setName('');

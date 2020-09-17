@@ -13,15 +13,40 @@ const LandingPageStyle = styled.div`
     justify-content: center;
   }
 
+  .welcome {
+
+    font-size: 40px;
+    font-family: "Quicksand", sans-serif;
+    font-weight: 900;
+    margin-bottom: 75px;
+  }
+
   .text {
     display: block;
     text-align: center;
     font-family: "Quicksand", sans-serif;
     color: white;
-    margin: 84px;
+    margin: 70px;
     letter-spacing: 1px;
-    line-height: 36px;
+    line-height: 38px;
     width: 700px;
+
+    .darker {
+      font-size: 43px;
+      font-weight: lighter;
+      font-family: "Permanent Marker",cursive;
+    }
+
+
+    .goham-text {
+        text-align:left;
+        margin-bottom: -6px;
+
+        span {
+          font-weight: bold;
+        }
+
+    }
   }
 
   .to-battle {
@@ -46,6 +71,7 @@ const LandingPageStyle = styled.div`
     margin-left: 139px;
     margin-top: -3px;
   }
+
 `;
 
 export default function LandingPage() {
@@ -53,19 +79,21 @@ export default function LandingPage() {
     <LandingPageStyle>
       <div className="info-text">
         <p className="text">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
+          <p className="welcome">Welcome To <span className="darker">GoHam</span></p>
+
+        <p className="goham-text">
+          Our <span>GoHam</span> Arena hosts the <spanGoHam>bloodiest</spanGoHam>, most <span>intense</span> and <span>adorable</span> voting <span>Battles</span> in the cosmos of the most powerful Hamster Warriors.
+
           <br></br>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat.
+          <span>GoHam</span> originated in the early dawn of year 2020, for its purpose for bringing All hamster lovers together to witness the glory of their cuteness.
           <br></br>
+          <br></br>
+          The arena summons the hamsters into the arena and the crowd are allowed to vote on their favorite hamster.
+          <br></br>
+          The most loved Warrior takes their <span>VICTORY</span>!
+
+          <br></br>
+         </p>
         </p>
       </div>
 
