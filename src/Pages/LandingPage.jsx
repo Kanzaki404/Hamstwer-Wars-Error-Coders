@@ -187,14 +187,14 @@ export default function LandingPage() {
           <p className="welcome">Welcome To <span className="darker">GoHam!</span></p>
 
         <p className="goham-text">
-          <span> GoHam</span> Arena hosts the <spanGoHam>bloodiest</spanGoHam>, most <span>intense</span> and <span>adorable</span> voting <span>Battles</span> in the cosmos of the most powerful Hamster Warriors!
+          <span> GoHam</span> Arena hosts the <span>bloodiest</span>, most <span>intense</span> and <span>adorable</span> voting <span>Battles</span> in the cosmos
 
           <br></br>
-          <span>GoHam</span> originated in the early dawn of year 2020, for its purpose for bringing All hamster lovers together to witness the glory of their cuteness.
+          <span>GoHam</span> originated in the early dawn of year 2020, for its purpose for bringing All hamster lovers together to witness the glory of the most powerful Hamster Warriors!
           <br></br>
           <br></br>
 
-          The most loved Warrior takes their <span>VICTORY</span>!
+          The most loved Warrior takes their <span>VICTORY</span>
 
           <br></br>
          </p>
