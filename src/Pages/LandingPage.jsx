@@ -65,14 +65,18 @@ const LandingPageStyle = styled.div`
     color: white;
     border: none;
     outline: none;
-    z-index: 1;
     background-image:url(${blood});
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    animation: vibrate-3;
-    animation-duration: 0.7s;
-    animation-iteration-count: infinite;
+    .battle {
+      font-family: "Permanent Marker", cursive;
+      font-size: 28px;
+      animation: vibrate-3;
+      animation-duration: 0.7s;
+      animation-iteration-count: infinite;
+      margin-top: 24px;
+    }
 
   }
   @keyframes vibrate-3 {
@@ -180,10 +184,10 @@ export default function LandingPage() {
     <LandingPageStyle>
       <div className="info-text">
         <p className="text">
-          <p className="welcome">Welcome To <span className="darker">GoHam</span></p>
+          <p className="welcome">Welcome To <span className="darker">GoHam!</span></p>
 
         <p className="goham-text">
-          Our <span>GoHam</span> Arena hosts the <spanGoHam>bloodiest</spanGoHam>, most <span>intense</span> and <span>adorable</span> voting <span>Battles</span> in the cosmos of the most powerful Hamster Warriors!
+          <span> GoHam</span> Arena hosts the <spanGoHam>bloodiest</spanGoHam>, most <span>intense</span> and <span>adorable</span> voting <span>Battles</span> in the cosmos of the most powerful Hamster Warriors!
 
           <br></br>
           <span>GoHam</span> originated in the early dawn of year 2020, for its purpose for bringing All hamster lovers together to witness the glory of their cuteness.
@@ -199,7 +203,7 @@ export default function LandingPage() {
 
       <Link to="/arena">
         <button className="to-battle">
-         TO BATTLE!
+         <p className ="battle">TO BATTLE!</p>
         </button>
       </Link>
     </LandingPageStyle>
