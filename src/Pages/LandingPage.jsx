@@ -16,18 +16,15 @@ const LandingPageStyle = styled.div`
   .welcome {
 
     font-size: 40px;
-    font-family: "Quicksand", sans-serif;
-    font-weight: 900;
+    font-family: "Permanent Marker", cursive;
     margin-bottom: 64px;
     animation: fade-in;
     animation-duration: 1.8s;
 
     .small {
-
       font-size: 28px;
       font-weight: bold;
     }
-
   }
 
   .text {
@@ -196,7 +193,7 @@ export default function LandingPage() {
           <span> GoHam</span> Arena hosts the <span>bloodiest</span>, most <span>intense</span> and <span>adorable</span> voting <span>Battles</span> in the cosmos
 
           <br></br>
-          <span>GoHam</span> originated in the early dawn of year 2020, for its purpose for bringing All hamster lovers together to witness the glory of the most powerful Hamster Warriors!
+          GoHam originated in the early dawn of year 2020, for its purpose for bringing All hamster lovers together to witness the glory of the most powerful Hamster Warriors!
           <br></br>
           <br></br>
 
@@ -209,7 +206,7 @@ export default function LandingPage() {
 
       <Link to="/arena">
         <button className="to-battle">
-         <p className ="battle">TO BATTLE!</p>
+         <p className="battle">TO BATTLE!</p>
         </button>
       </Link>
     </LandingPageStyle>
