@@ -179,6 +179,40 @@ const LandingPageStyle = styled.div`
     opacity: 1;
   }
 }
+@media(max-width: 581px) {
+
+    .welcome {
+
+      font-size: 28px;
+
+      .small {
+        font-size: 34px;
+        font-weight: bold;
+      }
+
+    }
+    .text {
+      font-size: 13px;
+    }
+}
+
+@media(max-width: 360px) {
+
+.welcome {
+
+  font-size: 23px;
+
+  .small {
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+}
+.text {
+  font-size: 10px;
+  line-height: 25px;
+}
+}
 
 `;
 
