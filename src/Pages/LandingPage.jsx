@@ -22,6 +22,12 @@ const LandingPageStyle = styled.div`
     animation: fade-in;
     animation-duration: 1.8s;
 
+    .small {
+
+      font-size: 28px;
+      font-weight: bold;
+    }
+
   }
 
   .text {
@@ -184,7 +190,7 @@ export default function LandingPage() {
     <LandingPageStyle>
       <div className="info-text">
         <p className="text">
-          <p className="welcome">Welcome To <span className="darker">GoHam!</span></p>
+          <p className="welcome">Welcome <span className="small">to</span> <span className="darker">GoHam!</span></p>
 
         <p className="goham-text">
           <span> GoHam</span> Arena hosts the <span>bloodiest</span>, most <span>intense</span> and <span>adorable</span> voting <span>Battles</span> in the cosmos
