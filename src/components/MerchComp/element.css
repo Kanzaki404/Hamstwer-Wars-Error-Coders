@@ -1,0 +1,150 @@
+
+.itemSearchContainer{
+  
+    border:10px solid #EFEFEF;
+    background-color: #EFEFEF;
+    /* margin-left: 40px;
+    margin-right: 40px; */
+    height: auto;
+  }
+  .products {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+  }
+  
+   
+  .grid-item > a{
+    font-weight: bold;
+  }
+  .grid-item{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    max-width: 220px;
+    max-height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #790000;
+    border-radius: 4px;
+  }
+  
+  .bigPictureWrapper {
+    position: relative;
+    text-align: right;
+    color: rgb(145, 13, 13);
+   
+    /* margin-right: 40px;
+    margin-left: 40px;
+    margin-bottom: 15px; */
+  }
+  .bottom-right {
+    position: absolute;
+    
+  }
+  
+  
+  label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+    font-size: 1em;
+  }
+  
+
+  
+  
+  .col-25 {
+  
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+  }
+  
+  .col-75 {
+  
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+  }
+  .row {
+    margin-top: 2em;
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  .photo {
+  margin-left: 10px;
+  margin-bottom: 10px;
+  margin-top:10px;
+  height: 300px;
+  width: 250px;
+  border-radius: 2px;
+  }
+
+
+  .heading {
+    text-align: center;
+   
+  }
+
+  a,p{
+    
+    margin-left: 110px;
+    
+  }
+
+  
+
+ 
+
+ 
+  
+  /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+  
+  /* Bigger than Phones(tablet) */
+  
+  /* Bigger than Phones(laptop / desktop) */
+  @media only screen and (min-width: 970px) {
+    .products {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .bottom-right{
+      bottom: 8px;
+      right: 50px;
+    }
+    .col-25, .col-75, input[type=submit] {
+      width: 100%;
+      margin-top: 0;
+    }
+   
+  }
+  @media (min-width: 480px) and (max-width: 970px) {
+    .products {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .bottom-right{
+      bottom: 8px;
+      right: 50px;
+    }
+  }
+  @media (max-width: 480px) {
+    .products{
+      grid-template-columns: 1fr;
+      
+    }
+    .bottom-right {
+      position: relative;
+      margin-right: 10px;
+      
+    }
+    .bigPictureWrapper{
+      background-color: #3d3d3d;
+      font-size: 0.75em;
+    }
+  }
