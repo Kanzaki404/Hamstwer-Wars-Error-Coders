@@ -82,6 +82,22 @@ const LandingPageStyle = styled.div`
     }
 
   }
+
+  .red-dot {
+    position: absolute;
+    display: flex;
+    border: none;
+    outline: none;
+    width: 70px;
+    height: 70px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 50px;
+    background-color: #1c1c1c;
+    animation: fade-in;
+    animation-duration: 1.3s;
+    /* animation-iteration-count: infinite; */
+  }
   @keyframes vibrate-3 {
   0% {
     -webkit-transform: translate(0);
@@ -224,15 +240,14 @@ export default function LandingPage() {
           <p className="welcome">Welcome <span className="small">to</span> <span className="darker">GoHam!</span></p>
 
         <p className="goham-text">
-          <span> GoHam</span> Arena hosts the <span>bloodiest</span>, most <span>intense</span> and <span>adorable</span> voting <span>Battles</span> in the cosmos
+          <span> GoHam</span> Arena hosts the <span>bloodiest</span>, most <span>intense</span> and <span>adorable</span> voting <span>Battles</span> in the Cosmos
 
           <br></br>
-          GoHam originated in the early dawn of year 2020, for its purpose for bringing All hamster lovers together to witness the glory of the most powerful Hamster Warriors!
+          In the early dawn of year 2020, GoHam was created for its purpose for bringing All hamster lovers together to witness the glory of you and other powerful Hamster Warriors in action!
           <br></br>
           <br></br>
 
           The most loved Warrior takes their <span>VICTORY</span>
-
           <br></br>
          </p>
         </p>
@@ -243,6 +258,7 @@ export default function LandingPage() {
          <p className="battle">TO BATTLE!</p>
         </button>
       </Link>
+      <button className ="red-dot"></button>
     </LandingPageStyle>
   );
 }
