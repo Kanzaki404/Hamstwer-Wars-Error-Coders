@@ -34,7 +34,7 @@ app.get("/hamsters", (req, res) => {
 app.get("/hamstersPhotos", (req, res) => {
   const obj = req.query 
   const imageName = obj[Object.keys(obj)[0]]
-  console.log('what is the req????????' , obj)
+  
    const pathToImage = path.join(__dirname, '../Server/assets', `${imageName}`)
     // res.sendFile();
     fs.readFile( 
