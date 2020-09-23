@@ -1,7 +1,9 @@
 import React,{useState} from 'react';
+import {useForm} from 'react-hook-form'
 //import image from './logo512.png';
 // import imageBackward from '../assets/logo/logo-backward.png'
-import ElementS from './Elements'
+import Elements from './Elements'
+import Cart from './cart'
 import imageBackward from '../../assets/logo/logo-backward.png'
 import imageSample from '../../assets/logo/logo512.png'
 
@@ -9,10 +11,12 @@ import './elementDetails.css'
 
 //import './App.css';
 
-function Detail() {
-
-  const [backward, setBackward]=useState(true)
-
+function Detail({onBack}) {
+  const [isOpen, setIsOpen] = useState(false)
+  const {register, handleSubmit}=useForm()
+  const onSubmit=(event) => {
+    console.log(event)
+  }
 
 
   return (
@@ -26,7 +30,7 @@ function Detail() {
         <div className="mains">
           
             <div className="firstPart">
-            <img className="image" src={imageSample}></img>
+            <img className="image" src={imageSample} alt="noImage"></img>
             </div>
               
              
@@ -40,9 +44,10 @@ function Detail() {
                   <br/>
                   <br/>
 
-                  <form action="">
-                      <label for="product">Size:</label><span></span>
+                  <form onSubmit={handleSubmit(onSubmit)}>
+                      <label htmlFor="product">Size:</label><span></span>
                         <select name="itemSelector" id="item">
+                          <option value="xSmall">Small</option>
                           <option value="small">Small</option>
                           <option value="medium">Medium</option>
                           <option value="large">Large</option>
@@ -50,38 +55,41 @@ function Detail() {
                         </select>
                       <br/>
                       <br/>
-                
-                      <input  class=" submit" type="submit" value="Add To Cart"/>  
+                      <input  ref={register} className="submit" type="submit" onClick={()=>setIsOpen(true)} value="Add To Cart" name="sub"/>  
                   </form>
+                  
+                  
+                  
            
             </div>
            
         </div>
 
+           
+        <Cart open={isOpen} onClose={()=>setIsOpen(false)}/>
+                 
+
+  
+ 
+
         <br/>
 
         <div className="footer">
-        <div onClick={()=>setBackward( <ElementS />)}>
-        <a href="">
-          <div className="abc"><img className="img" src={imageBackward}/><h2 className="text">Shop More/Go Back</h2></div>
-          
-        </a>
-        </div>
+          <div onClick={onBack}>
+            
+              <div className="abc"><img className="img" src={imageBackward} alt="noImg"/><h2 className="text">Shop More/Go Back</h2></div>  
+            
           </div>
-           
-      
+        </div>   
      
     </div>
+
+     
         
   );
 
 
-  // {backward ? (
-  //   {Detail}
-  
-  // ) : (
-  // <ElementS />
-  // )}
+ 
 
 }
 

@@ -129,7 +129,12 @@ const Product = () => {
 
   // Prints out the objects that are searched for.
   const [sort, setSort] = useState("");
-  const [Otherpage, setOtherpage] = useState(true);
+  const [elementPage, setelementPage] = useState(true);
+  const [basketNumber, setBasketNumber]=useState(0)
+
+  const addToBasket=()=>{
+    setBasketNumber(basketNumber +1)
+  }
   const data = productList.map((item) => {
     //const handleClick = () => dispatch(actions.addToCart(item))
     if (sort.length !== 0) {
@@ -139,10 +144,11 @@ const Product = () => {
       ) {
         return (
           <div  key={item.name}>
-            <GridItem onClick={()=>setOtherpage(false)}>
+            <GridItem onClick={()=>setelementPage(false)}>
               <div >
-                <img className="photo"   src={process.env.PUBLIC_URL + item.im} alt="sortedItem"/>
+                <img   onClick={addToBasket} className="photo"   src={process.env.PUBLIC_URL + item.im} alt="sortedItem"/>
                 {/* <button className="but" onClick={handleClick}>Add to Shopping</button>   */}
+               
               </div>
             </GridItem>
             <div>
@@ -163,10 +169,11 @@ const Product = () => {
     //prints out all the available objects
     return (
       <div key={item.name}>
-        <GridItem onClick={()=>setOtherpage(false)}>
+        <GridItem onClick={()=>setelementPage(false)}>
           <div>
             <img
               className="photo"
+              onClick={addToBasket}
               src={process.env.PUBLIC_URL + item.im}
               alt="cc"
             />
@@ -185,7 +192,7 @@ const Product = () => {
   });
   return (
     <div className="wrapper">
-      <h1 className="heading">Wellcome To Our Webshop</h1>
+      <h1 className="headLine">Wellcome To Our Webshop</h1>
       <NabBar>
         <div className="container">
           <input
@@ -203,7 +210,7 @@ const Product = () => {
               <li>Hoddies</li>
               <li>Cup</li>
               <li className="right">
-                <img src={shoppingLogo} height="30" width="30" alt="logo" />
+                <img  src={shoppingLogo} height="30" width="30" alt="logo" />{basketNumber}
               </li>
             </ul>
           </nav>
@@ -212,12 +219,12 @@ const Product = () => {
 
       <hr />
 
-      {Otherpage ? (
+      {elementPage ? (
         <div className="itemSearchContainer">
           <div className="products">{data}</div>
         </div>
       ) : (
-        <Detail />
+        <Detail onBack={()=>setelementPage(true)}/>
       )}
 
       {/* <div className="footer"></div> */}
