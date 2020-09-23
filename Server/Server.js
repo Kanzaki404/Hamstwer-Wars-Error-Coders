@@ -31,11 +31,10 @@ app.get('/hamsters', (req, res) => {
   });
 });
 
-<<<<<<< HEAD
 app.get('/hamstersPhotos', (req, res) => {
   const obj = req.query;
   const imageName = obj[Object.keys(obj)[0]];
-  console.log('what is the req????????', obj);
+
   const pathToImage = path.join(__dirname, '../Server/assets', `${imageName}`);
   // res.sendFile();
   fs.readFile(`${pathToImage}`, 'base64', (err, base64Image) => {
@@ -43,23 +42,6 @@ app.get('/hamstersPhotos', (req, res) => {
     const dataUrl = `data:image/jpeg;base64, ${base64Image}`;
     return res.send(`${dataUrl}`);
   });
-=======
-app.get("/hamstersPhotos", (req, res) => {
-  const obj = req.query 
-  const imageName = obj[Object.keys(obj)[0]]
-  
-   const pathToImage = path.join(__dirname, '../Server/assets', `${imageName}`)
-    // res.sendFile();
-    fs.readFile( 
-      `${pathToImage}`, 'base64', 
-      (err, base64Image) => { 
-        // 2. Create a data URL 
-        const dataUrl = `data:image/jpeg;base64, ${base64Image}` 
-        return res.send(`${dataUrl}`); 
-      } 
-    ); 
-
->>>>>>> 97e108036f9538192756c442b86cd3d8bc8b6a8d
 });
 
 app.get('/battle', (req, res) => {
