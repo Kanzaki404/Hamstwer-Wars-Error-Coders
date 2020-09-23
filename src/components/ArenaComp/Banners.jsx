@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import testImage from '../../assets/testPhotoGallery/hamster-26.jpg';
+import axios from 'axios';
 
 export const BannerWrapper = styled.div`
   margin: auto;
@@ -34,21 +34,6 @@ export const BannerWrapper = styled.div`
       margin: auto;
     }
 
-    .profileImage {
-      height: 170px;
-      width: 170px;
-      background-image: url(${testImage});
-      background-position: 50% 50%;
-      background-repeat: no-repeat;
-      background-size: cover;
-      border-radius: 5px;
-      margin-left: auto;
-      margin-right: auto;
-      border: 5px solid #000000;
-      box-sizing: border-box;
-      filter: drop-shadow(3px 3px 9px rgba(0, 0, 0, 0.7));
-      border-radius: 10px;
-    }
     .weakInfo {
       color: white;
     }
@@ -87,6 +72,22 @@ export const BannerWrapper = styled.div`
       text-align: center;
     }
   }
+`;
+
+const TeamImg = styled.div`
+  height: 170px;
+  width: 170px;
+  background-image: url(${({ image }) => (image !== null ? image : '')});
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 5px solid #000000;
+  box-sizing: border-box;
+  filter: drop-shadow(3px 3px 9px rgba(0, 0, 0, 0.7));
+  border-radius: 10px;
 `;
 
 const Button = styled.button`
@@ -128,22 +129,42 @@ export const BlueText = styled.h1`
   margin-top: 70px;
 `;
 
-export function TeamRed() {
+const baseUrl = 'http://localhost:5000/';
+
+function Getimg(setImageFromServer, team) {
+  axios
+    .get(`${baseUrl}hamstersPhotos`, { params: team })
+    .then((res) => {
+      setImageFromServer(res.data);
+    })
+    .catch((err) => console.log('ERROR ---> ' + err));
+}
+
+export function TeamRed({ redFighter }) {
+  const [imageFromServer, setImageFromServer] = useState('');
+
+  useEffect(() => {
+    Getimg(setImageFromServer, redFighter.imgName);
+  }, [redFighter]);
+
   return (
     <BannerWrapper>
       <div className="rectangle">
         <div className="dot">
-          <span className="age">2</span>
+          <span className="age">{redFighter.age}</span>
         </div>
-        <div className="profileImage"></div>
+        <TeamImg className="profileImage" image={imageFromServer}></TeamImg>
         <div className="weakInfo">
-          <p className="weakness">Weakness:</p>
-          <p>Morot</p>
+          <p className="weakness">
+            Weakness:&nbsp;
+            {redFighter.favFood}
+          </p>
+          <p>{redFighter.loves}</p>
         </div>
         <div className="statsInfo">
-          <p>Wins: 0</p>
-          <p>Defeats: 0</p>
-          <p>Games: 0</p>
+          <p>Wins: {redFighter.wins}</p>
+          <p>Defeats: {redFighter.defeats}</p>
+          <p>Games: {redFighter.games}</p>
         </div>
         <Button>Choose Team Red</Button>
       </div>
@@ -152,22 +173,31 @@ export function TeamRed() {
   );
 }
 
-export function TeamBlue() {
+export function TeamBlue({ blueFighter }) {
+  const [imageFromServer, setImageFromServer] = useState('');
+
+  useEffect(() => {
+    Getimg(setImageFromServer, blueFighter.imgName);
+  }, [blueFighter]);
+
   return (
     <BannerWrapper Blue>
       <div className="rectangle">
         <div className="dot">
-          <span className="age">2</span>
+          <span className="age">{blueFighter.age}</span>
         </div>
-        <div className="profileImage"></div>
+        <TeamImg className="profileImage" image={imageFromServer}></TeamImg>
         <div className="weakInfo">
-          <p className="weakness">Weakness:</p>
-          <p>Morot</p>
+          <p className="weakness">
+            Weakness:&nbsp;
+            {blueFighter.favFood}
+          </p>
+          <p>{blueFighter.loves}</p>
         </div>
         <div className="statsInfo">
-          <p>Wins: 0</p>
-          <p>Defeats: 0</p>
-          <p>Games: 0</p>
+          <p>Wins: {blueFighter.wins}</p>
+          <p>Defeats: {blueFighter.defeats}</p>
+          <p>Games: {blueFighter.games}</p>
         </div>
         <Button>Choose Team Blue</Button>
       </div>

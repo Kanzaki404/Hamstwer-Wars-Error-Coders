@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import background from '../assets/arena-background/arena.png';
 import styled from 'styled-components';
+import axios from 'axios';
 
 import {
   TeamRed,
@@ -20,7 +21,7 @@ const BackgroundWrapper = styled.div`
   flex-direction: row;
 `;
 
-const VSimg = styled.img`
+const VSimg = styled.div`
   margin: auto 0;
   /* color: white;
   font-family: Permanent Marker;
@@ -73,21 +74,70 @@ const FlagWrapperRight = styled.div`
 `;
 
 export default function Arena() {
+  const [hamsters, setHamsters] = useState([]);
+  const [loading, setloading] = useState(true);
+
+  useEffect(() => {
+    getHamsta(setHamsters);
+  }, []);
+
+  const baseUrl = 'http://localhost:5000/';
+
+  function getHamsta(setHamsters) {
+    axios
+      .get(`${baseUrl}battle`)
+      .then((res) => {
+        setHamsters(res.data);
+        setloading(false);
+      })
+      .catch((err) => console.log('ERROR ---> ' + err));
+  }
+  const def = [
+    {
+      _id: '',
+      id: 0,
+      name: '',
+      age: 0,
+      favFood: '',
+      loves: '',
+      imgName: '',
+      wins: 0,
+      defeats: 0,
+      games: 0,
+    },
+    {
+      _id: '',
+      id: 0,
+      name: '',
+      age: 0,
+      favFood: '',
+      loves: '',
+      imgName: '',
+      wins: 0,
+      defeats: 0,
+      games: 0,
+    },
+  ];
+  if (loading) {
+    return (
+      (<TeamRed redFighter={def[0]} />), (<TeamBlue blueFighter={def[1]} />)
+    );
+  }
   return (
     <BackgroundWrapper>
       <CardWrapper>
         <FlagWrapperLeft>
           <RedFlag />
-          <RedText>Sven</RedText>
+          <RedText>{hamsters[0].name}</RedText>
         </FlagWrapperLeft>
-        <TeamRed />
+        <TeamRed redFighter={hamsters[0]} />
       </CardWrapper>
       <VSimg></VSimg>
       <CardWrapper>
-        <TeamBlue />
+        <TeamBlue blueFighter={hamsters[1]} />
         <FlagWrapperRight>
           <BlueFlag />
-          <BlueText>Sixten</BlueText>
+          <BlueText>{hamsters[1].name}</BlueText>
         </FlagWrapperRight>
       </CardWrapper>
     </BackgroundWrapper>
