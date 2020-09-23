@@ -310,7 +310,7 @@ export default function Upload() {
     Hamster.age = parseInt(age);
     Hamster.favFood = weapon;
     Hamster.loves = love;
-    Hamster.ImgName = Image;
+    Hamster.imgName = Image;
     Hamster.wins = 0;
     Hamster.defeats = 0;
     Hamster.games = 0;
