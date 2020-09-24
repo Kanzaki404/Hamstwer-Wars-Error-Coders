@@ -38,7 +38,7 @@ const NabBar = styled.div`
   }
 
   .logo img {
-    alt:"text"
+    alt:"text";
     float: right;
   }
 
@@ -74,7 +74,7 @@ const NabBar = styled.div`
   }
 `;
 
-const FooterImage = styled.div`´
+const FooterImage = styled.div`
 position: absolute;
 width:100%;
 height: 35em;
