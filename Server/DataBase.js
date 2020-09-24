@@ -4,7 +4,7 @@ const url = 'mongodb+srv://AlexanderR:HamsterGoHam2020!@hamsterwars0.hblqj.gcp.m
 const dbName = 'HamsterGoHam';
 const collectionName = 'Hamsters';
 
-//functions to be called 
+//functions to be called
 function getAllHamsters(callback) {
 	get({}, callback)
 }
@@ -26,7 +26,7 @@ function get(filter, callback){
 		async (error, client) => {
 			if( error ) {
 				callback('"connection problem"');
-				return;  
+				return;
 			}
 			const col = client.db(dbName).collection(collectionName);
 			try {
@@ -42,20 +42,20 @@ function get(filter, callback){
 				client.close();
 			}
         }
-		
+
 	)
 }
 
 // function del(id, callback){
-	
-	
+
+
 //     MongoClient.connect(
 // 		url,
 // 		{ useUnifiedTopology: true },
 // 		async (error, client) => {
 // 			if( error ) {
 // 				callback('"connection problem"');
-// 				return;  
+// 				return;
 // 			}
 // 			const col = client.db(dbName).collection(collectionName);
 // 			try {
@@ -72,7 +72,7 @@ function get(filter, callback){
 // 				client.close();
 // 			}
 //         }
-		
+
 // 	)
 // }
 
@@ -95,13 +95,13 @@ function search(query, callback) {
 	// 	filter.sail = { $eq: query.sail }
 	// }
 	// if(query.madeafter){
-		
+
 	// 	filter.manifacturedYear  = { $gt: Number(query.madeafter) }
 	// }
 	// if(query.madebefore){
 	// 	filter.manifacturedYear  = { $lt: Number(query.madebefore) }
 	// }
-	
+
 
 	MongoClient.connect(
 		url,
@@ -116,7 +116,7 @@ function search(query, callback) {
 				console.log('what is the filter', filter)
 				const cursor = await col.find(filter);
 				const array = await cursor.toArray();
-				
+
 				callback(array);
 
 			} catch(error) {
@@ -130,36 +130,36 @@ function search(query, callback) {
 	)//connect - async
 }
 
-// function addShip(reqestsBody, callback) {
-// 	const doc = reqestsBody;
-// 	MongoClient.connect(
-// 		url,
-// 		{ useUnifiedTopology: true},
-// 		async (error, client) => {
-// 			if( error ) {
-// 				callback('"connection problem"');
-// 				return;  
-// 			}
-// 			const col = client.db(dbName).collection(collectionName);
-// 			try {
-// 				const result = await col.insertOne(doc);
-// 				callback({
-// 					result: result.result,
-// 					ops: result.ops
-// 				})
+function addHamster(requestsBody, callback) {
+	const doc = requestsBody;
+	MongoClient.connect(
+		url,
+		{ useUnifiedTopology: true},
+		async (error, client) => {
+			if( error ) {
+				callback('"connection problem"');
+				return;
+			}
+			const col = client.db(dbName).collection(collectionName);
+			try {
+				const result = await col.insertOne(doc);
+				callback({
+					result: result.result,
+					ops: result.ops
+				})
 
-// 			} catch(error) {
-// 				console.error('addHat error: ' + error.message);
-// 				callback('"ERROR!! Query error"');
+			} catch(error) {
+				console.error('addHamster error: ' + error.message);
+				callback('"ERROR!! Query error"');
 
-// 			} finally {
-// 				client.close();
-// 			}
-// 		}
-// 	)
-// }
+			} finally {
+				client.close();
+			}
+		}
+	)
+}
 
 
 module.exports = {
-	getAllHamsters, search
+	getAllHamsters, search, addHamster
 }

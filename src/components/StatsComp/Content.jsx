@@ -1,4 +1,4 @@
-import React, {useState, useEffect}from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import ContentItem from "./ContentItem";
 import axios from "axios";
@@ -42,7 +42,7 @@ const ContentWraper = styled.div`
 `;
 
 const Tags = styled.div`
-border-radius: 5px 5px 0px 0px;
+  border-radius: 5px 5px 0px 0px;
   background-color: #1c1c1c;
   color: white;
 
@@ -76,7 +76,7 @@ const ContentScroll = styled.div`
     /* background: #888;  */
     background: #1c1c1c;
   }
-  .elementsByColor,div ~div{
+  /* .elementsByColor,div ~div{
     
     background: white;
     color:black;
@@ -88,43 +88,51 @@ const ContentScroll = styled.div`
    
   }
  
+  } */
+
+  .elementsByColor,
+  div ~ div {
+    /* :first-child {
+      background: #1c1c1c;
+      color: white;
+    } */
+
+    :nth-child(odd) {
+      background: white;
+      color: black;
+    }
+    :nth-child(odd) {
+      background: #1c1c1c;
+      color: white;
+    }
   }
-  
 `;
 
 const baseUrl = "http://localhost:5000/";
-function getHamsta(setHamsters,mountedRef) {
+function getHamsta(setHamsters, mountedRef) {
   axios
     .get(`${baseUrl}hamsters`)
     .then((res) => {
-     
       setHamsters(res.data);
     })
     .catch((err) => console.log("ERROR ---> " + err));
 }
-export default function Content({ mode,newList }) {
+export default function Content({ mode, newList }) {
   const [hamsters, setHamsters] = useState([]);
-  
+
   useEffect(() => {
-   
     getHamsta(setHamsters);
-    
   }, []);
   useEffect(() => {
-   
-    if(newList !== 'remove' && newList.length <= 1){
-      setHamsters(newList)
-  
-    }else{
+    if (newList !== "remove" && newList.length <= 1) {
+      setHamsters(newList);
+    } else {
       getHamsta(setHamsters);
     }
   }, [newList]);
-  
 
   const HamsterElements = hamsters.map((e) => (
-
-      <ContentItem  className="elementsByColor" key={e._id} data={e}></ContentItem>
-    
+    <ContentItem className="elementsByColor" key={e._id} data={e}></ContentItem>
   ));
   return (
     <ContentWraper>
@@ -134,15 +142,11 @@ export default function Content({ mode,newList }) {
             <h1>Top 5</h1>
           </div>
 
-          <div className="second">
-           
-          </div>
+          <div className="second"></div>
           <div className="first">
             <h1>Bottom 5</h1>
           </div>
-          <div className="second">
-            
-          </div>
+          <div className="second"></div>
           <div className="first">
             <h1>Total Matches</h1>
             <p className="totalMatchNum">3426</p>
@@ -158,9 +162,7 @@ export default function Content({ mode,newList }) {
               <h4 id="sMar">Special ability:</h4>
             </div>
           </Tags>
-          <ContentScroll>
-           {HamsterElements}
-          </ContentScroll>
+          <ContentScroll>{HamsterElements}</ContentScroll>
         </div>
       )}
     </ContentWraper>
