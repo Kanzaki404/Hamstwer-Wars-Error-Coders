@@ -45,7 +45,7 @@ function Detail({onBack}) {
                   <br/>
 
                   <form onSubmit={handleSubmit(onSubmit)}>
-                      <label htmlFor="product">Size:</label><span></span>
+                      <label htmlFor="product" id="labForProduct">Size:</label><span></span>
                         <select name="itemSelector" id="item">
                           <option value="xSmall">Small</option>
                           <option value="small">Small</option>
@@ -77,7 +77,7 @@ function Detail({onBack}) {
         <div className="footer">
           <div onClick={onBack}>
             
-              <div className="abc"><img className="img" src={imageBackward} alt="noImg"/><h2 className="text">Shop More/Go Back</h2></div>  
+              <div className="back-page"><img className="img" src={imageBackward} alt="noImg"/><h2 className="text">Shop More/Go Back</h2></div>  
             
           </div>
         </div>   
