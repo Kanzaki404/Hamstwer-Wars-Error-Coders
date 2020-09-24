@@ -22,7 +22,9 @@ function getHamsta(setHamsters) {
   axios
     .get(`${baseUrl}hamsters`)
     .then((res) => {
+      console.log(res.data)
       setHamsters(res.data);
+      
     })
     .catch((err) => console.log("ERROR ---> " + err));
 }
@@ -31,6 +33,7 @@ export default function Gallery() {
 
   useEffect(() => {
     getHamsta(setHamsters);
+    
   }, []);
 
   const HamsterBanner = hamsters.map((e) => (
