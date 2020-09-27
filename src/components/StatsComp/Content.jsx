@@ -107,22 +107,28 @@ const ContentScroll = styled.div`
     }
   }
 `;
-
+//---------------------AXIOS API CALL------------------------------------------------------
 const baseUrl = "http://localhost:5000/";
-function getHamsta(setHamsters, mountedRef) {
+function getHamsta(setHamsters,TopHamsters) {
   axios
     .get(`${baseUrl}hamsters`)
     .then((res) => {
       setHamsters(res.data);
+     
     })
     .catch((err) => console.log("ERROR ---> " + err));
 }
+
+
+
 export default function Content({ mode, newList }) {
   const [hamsters, setHamsters] = useState([]);
-
+  //---------------------GET HAMSTERS------------------------------------------------------
   useEffect(() => {
     getHamsta(setHamsters);
   }, []);
+
+//---------------------GETTING NEW FILTERED LIST---------------------------------------------
   useEffect(() => {
     if (newList !== "remove" && newList.length <= 1) {
       setHamsters(newList);
@@ -130,10 +136,31 @@ export default function Content({ mode, newList }) {
       getHamsta(setHamsters);
     }
   }, [newList]);
-
+//---------------------ALL HAMSTERS------------------------------------------------------
   const HamsterElements = hamsters.map((e) => (
     <ContentItem className="elementsByColor" key={e._id} data={e}></ContentItem>
   ));
+  //---------------------TOP HAMSTERS------------------------------------------------------
+  const TopHamsters = [...hamsters]
+  TopHamsters.sort((a, b) => (a.wins > b.wins) ? -1 : 1)
+
+  const TopHam = TopHamsters.slice(0,5).map((e) => (
+    <ContentItem className="elementsByColor" key={e._id} data={e}></ContentItem>
+    ))
+  //---------------------BOTTOM HAMSTERS------------------------------------------------------
+  const BottomHamsters = [...hamsters]
+  BottomHamsters.sort((a, b) => (a.wins > b.wins) ? 1 : -1)
+
+  const BotHam = BottomHamsters.slice(0,5).map((e) => (
+    <ContentItem className="elementsByColor" key={e._id} data={e}></ContentItem>
+    ))
+  //---------------------TOTAL MATCHES------------------------------------------------------
+  let totalMatches = 0; 
+  hamsters.map((e)=>(
+    totalMatches += e.games/2
+  ));
+
+
   return (
     <ContentWraper>
       {mode ? (
@@ -142,14 +169,18 @@ export default function Content({ mode, newList }) {
             <h1>Top 5</h1>
           </div>
 
-          <div className="second"></div>
+          <div className="second">
+          {TopHam}
+          </div>
           <div className="first">
             <h1>Bottom 5</h1>
           </div>
-          <div className="second"></div>
+          <div className="second">
+          {BotHam}
+          </div>
           <div className="first">
             <h1>Total Matches</h1>
-            <p className="totalMatchNum">3426</p>
+            <p className="totalMatchNum">{totalMatches}</p>
           </div>
         </div>
       ) : (

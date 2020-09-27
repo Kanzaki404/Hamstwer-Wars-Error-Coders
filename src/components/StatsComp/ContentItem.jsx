@@ -55,7 +55,7 @@ export default function ContentItem({ data }) {
     datasets: [
       {
         label: "Nr of Wins",
-        data: [47, 32],
+        data: [0, 0],
         backgroundColor: [
           'rgba(45, 255, 251, 0.7)',
           'rgba(163, 163, 163, 0.7)',
