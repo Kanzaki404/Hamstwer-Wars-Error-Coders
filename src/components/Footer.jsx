@@ -1,21 +1,19 @@
 import React from "react";
 import styled from "styled-components";
-import hamsterbubble from "../assets/footer/hamster-bubble.png";
+import hamsterfooter from "../assets/footer/hamster-bubble.png";
 
-const FooterStyling = styled.footer`
+const FooterStyling = styled.div`
 
 .footer-image {
-  background-image: url('hamsterbubble');
-  background-attachment: relative;
-  background-repeat: no-repeat;
+  background-image:url(${hamsterfooter});
+
 }
 `;
 
 export default function Footer() {
     return (
       <FooterStyling>
-
-      <img className ="footer-image" alt ="default"></img>
+        <div className ="footer-image" alt ="default"></div>
       </FooterStyling>
     );
   }

@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import blood from "../assets/blood/blood-pic.jpg";
+import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
 const LandingPageStyle = styled.div`
   width: auto;
@@ -259,6 +260,7 @@ export default function LandingPage() {
         </button>
       </Link>
       <button className ="red-dot"></button>
+      <Footer></Footer>
     </LandingPageStyle>
   );
 }
