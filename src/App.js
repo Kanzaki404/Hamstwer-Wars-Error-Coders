@@ -20,7 +20,7 @@ function App() {
                 <Route path = '/upload' component={Upload} />
                 <Route path = '/merch' component={Merchandise} />
         </Switch>
-   
+
 
       </div>
     </Router>
