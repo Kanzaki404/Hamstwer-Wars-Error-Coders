@@ -76,26 +76,11 @@ const ContentScroll = styled.div`
     /* background: #888;  */
     background: #1c1c1c;
   }
-  /* .elementsByColor,div ~div{
-    
-    background: white;
-    color:black;
-   
-    :nth-child(even){
-   
-    background: #1c1c1c;
-    color:white;
-   
-  }
- 
-  } */
+
 
   .elementsByColor,
   div ~ div {
-    /* :first-child {
-      background: #1c1c1c;
-      color: white;
-    } */
+    
 
     :nth-child(odd) {
       background: white;
