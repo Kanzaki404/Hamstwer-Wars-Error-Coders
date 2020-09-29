@@ -1,13 +1,14 @@
-import React from "react";
+import React, {useEffect} from "react";
 import styled from "styled-components";
 import blood from "../assets/blood/blood-pic.jpg";
-import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
+import useSound from 'use-sound';
+import sovjetMarch from '../assets/music/C&C Red Alert 3 Theme - Soviet March.mp3';
 const LandingPageStyle = styled.div`
   width: auto;
-  height: 100vh;
-  background-color: #790000;
+  height: 60vh;
   text-align: center;
+  background-color: #6d0002;
 
   .info-text {
     display: flex;
@@ -33,7 +34,7 @@ const LandingPageStyle = styled.div`
     text-align: center;
     font-family: "Quicksand", sans-serif;
     color: white;
-    margin: 70px;
+    margin: 20px;
     letter-spacing: 1px;
     line-height: 38px;
     width: 700px;
@@ -45,7 +46,7 @@ const LandingPageStyle = styled.div`
     }
     .goham-text {
         text-align: center;
-        margin-bottom: -6px;
+        margin-bottom: 15px;
         animation: puff-in-center;
         animation-duration: 0.5s;
 
@@ -233,11 +234,31 @@ const LandingPageStyle = styled.div`
 
 `;
 
+const MusicWrapper = styled.div`
+
+`;
+
 export default function LandingPage() {
+  // const [play, { stop, isPlaying }] = useSound(sovjetMarch);
+  // const [play] = useSound(sovjetMarch);
+  //const [play, { stop, isPlaying }] = useSound(sovjetMarch);
+  const [play, { stop }] = useSound(sovjetMarch, { volume: 0.2 });
+
+  const [isHovering, setIsHovering] = React.useState(true);
+
+  
+  function playStop(){
+    if(isHovering){
+      play();
+    }else{
+      stop();
+    }
+  }
+ 
   return (
     <LandingPageStyle>
       <div className="info-text">
-        <p className="text">
+        <div className="text">
           <p className="welcome">Welcome <span className="small">to</span> <span className="darker">GoHam!</span></p>
 
         <p className="goham-text">
@@ -251,7 +272,7 @@ export default function LandingPage() {
           The most loved Warrior takes their <span>VICTORY</span>
           <br></br>
          </p>
-        </p>
+        </div>
       </div>
 
       <Link to="/arena">
@@ -259,8 +280,28 @@ export default function LandingPage() {
          <p className="battle">TO BATTLE!</p>
         </button>
       </Link>
-      <button className ="red-dot"></button>
-      <Footer></Footer>
+
+    <MusicWrapper>
+
+        <button
+         onClick={() => {
+          playStop();
+          setIsHovering(!isHovering);
+        }}
+        >
+          hello
+        </button>
+        <div className ="bg-music">
+        <audio src ="" loop ="">
+          <button className ="music-button">
+            <i className =""></i>
+            <i className =""></i>
+          </button>
+        </audio>
+        </div>
+
+
+    </MusicWrapper>
     </LandingPageStyle>
   );
 }
