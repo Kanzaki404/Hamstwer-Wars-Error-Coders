@@ -23,18 +23,24 @@ const ListItem = styled.div`
   }
   
   .mainInfo {
-    display: flex;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    justify-items: center;
     align-items: center;
-    margin-bottom: 5px;
-    margin-top: 5px;
   }
+
+  
   
 `;
 const ChartContainer = styled.div`
-  width: 400px;
-  height: 300px;
 
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  .chartContainer{
+    margin-bottom: 15px;
+  }
 `;
 
 const Profile = styled.div`
@@ -46,6 +52,7 @@ const Profile = styled.div`
     background-repeat: no-repeat;
     background-size: cover;
     border-radius: 50px;
+    margin-top: 10px;
 
 `;
 export default function ContentItem({ data }) {
@@ -99,7 +106,13 @@ export default function ContentItem({ data }) {
 
       {cardState1 ? (
         <ChartContainer className="testo">
+          <div className="chartContainer">
+
           <Doughnut   data={chartData}></Doughnut>
+          </div>
+          <div>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem similique doloremque assumenda nulla magnam quis aperiam animi sunt possimus exercitationem delectus id aut nisi, eveniet sequi blanditiis commodi adipisci dolore?</p>
+          </div>
         </ChartContainer>
       ) : (
         <div></div>
