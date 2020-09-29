@@ -124,13 +124,12 @@ function getHamsta(setHamsters,TopHamsters) {
 export default function Content({ mode, newList }) {
   const [hamsters, setHamsters] = useState([]);
   //---------------------GET HAMSTERS------------------------------------------------------
-  useEffect(() => {
-    getHamsta(setHamsters);
-  }, []);
+  
 
 //---------------------GETTING NEW FILTERED LIST---------------------------------------------
   useEffect(() => {
     if (newList !== "remove" && newList.length <= 1) {
+      
       setHamsters(newList);
     } else {
       getHamsta(setHamsters);

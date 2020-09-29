@@ -19,7 +19,7 @@ export default function Stats() {
         setSearchType(e)
         
         setSearchRes(t)
-       
+        console.log(t);
     }
     return (
         <StatsWrapper>

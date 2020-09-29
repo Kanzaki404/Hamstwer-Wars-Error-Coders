@@ -4,21 +4,13 @@ const url = 'mongodb+srv://AlexanderR:HamsterGoHam2020!@hamsterwars0.hblqj.gcp.m
 const dbName = 'HamsterGoHam';
 const collectionName = 'Hamsters';
 
-//functions to be called
+
 function getAllHamsters(callback) {
 	get({}, callback)
 }
 
 
-// function deleteBoat(_id,callback){
-// 	del(_id, callback)
-// }
 
-// function addBoat(reqestsBody,callback){
-// 	addShip(reqestsBody, callback)
-// }
-
-//the functions called above
 function get(filter, callback){
     MongoClient.connect(
 		url,
@@ -46,61 +38,31 @@ function get(filter, callback){
 	)
 }
 
-// function del(id, callback){
 
-
-//     MongoClient.connect(
-// 		url,
-// 		{ useUnifiedTopology: true },
-// 		async (error, client) => {
-// 			if( error ) {
-// 				callback('"connection problem"');
-// 				return;
-// 			}
-// 			const col = client.db(dbName).collection(collectionName);
-// 			try {
-// 				const result = await col.deleteOne( { "_id" : ObjectID(id) } );
-// 				callback({
-// 					result: result.result,
-// 					ops: result.ops
-// 				})
-// 			} catch(error) {
-// 				console.log('Query error: ' + error.message);
-// 				callback('"ERROR!! Query error"');
-
-// 			} finally {
-// 				client.close();
-// 			}
-//         }
-
-// 	)
-// }
 
 function search(query, callback) {
 	console.log(query)
 	const filter = {};
+	let sortFilter = {};
 	if( query.name) {
 		filter.name = { "$regex":query.name, $options: '-i'};
 	}
-	// if( query.order) {
-	// 	filter.order = { $query: {}, $orderby: { price : 1 } }
-	// }
-	// if( query.maxprice) {
-	// 	filter.price = {$lt: query.maxprice };
-	// }
-	// if(query.motorized === 'yes'){
-	// 	filter.motorized = { $eq: query.motorized }
-	// }
-	// if(query.sail === 'yes'){
-	// 	filter.sail = { $eq: query.sail }
-	// }
-	// if(query.madeafter){
-
-	// 	filter.manifacturedYear  = { $gt: Number(query.madeafter) }
-	// }
-	// if(query.madebefore){
-	// 	filter.manifacturedYear  = { $lt: Number(query.madebefore) }
-	// }
+	if(query.matchCount || query.winRate) {
+		let orderGames = null;
+		let orderWins = null;
+		if(query.matchCount === 'MM'){
+			orderGames = -1;	
+		}else{
+			orderGames = 1;
+		}
+		// if(query.winRate === 'HWR'){
+		// 	orderWins = -1
+		// }else{
+		// 	orderWins = 1
+		// } , defeats: orderWins
+		sortFilter = {games: orderGames}
+	}
+	
 
 
 	MongoClient.connect(
@@ -114,8 +76,11 @@ function search(query, callback) {
 			const col = client.db(dbName).collection(collectionName);
 			try {
 				console.log('what is the filter', filter)
-				const cursor = await col.find(filter);
+				
+				console.log(sortFilter);
+				const cursor = await col.find(filter).sort(sortFilter).limit(5);
 				const array = await cursor.toArray();
+				console.log('WHAT IS THE ARRRAAATYTTYY',array)
 
 				callback(array);
 
@@ -126,8 +91,8 @@ function search(query, callback) {
 			} finally {
 				client.close();
 			}
-		}// connect callback - async
-	)//connect - async
+		}
+	)
 }
 
 function addHamster(requestsBody, callback) {

@@ -120,14 +120,14 @@ export default function ListingMenu({ dataCallback }) {
       filter.name = inputName;
     }
     if (matchCount === "MM") {
-      filter.gamesMM = matchCount;
+      filter.matchCount = matchCount;
     } else {
-      filter.gamesLM = matchCount;
+      filter.matchCount = matchCount;
     }
     if (winRate === "HWR") {
-      filter.winsHWR = winRate;
+      filter.winRate = "HWR";
     } else {
-      filter.winsLWR = winRate;
+      filter.winRate = "LWR";
     }
     sendFileterToServer(filter, setFilterResult,clearInputs);
   }
