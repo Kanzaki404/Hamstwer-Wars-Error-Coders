@@ -36,7 +36,7 @@ const ContentWraper = styled.div`
     }
   }
   .second {
-    max-height: 750px;
+    min-height: 400px;
     width: 100%;
   }
 `;
