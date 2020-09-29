@@ -19,8 +19,14 @@ const GridItem = styled.div`
   border-radius: 4px;
 
   div:hover {
-    background-color: #790000;
+    cursor: pointer;
+    
   }
+
+  #item:hover{
+    text-decoration: underline;
+  }
+  
 `;
 
 const NabBar = styled.div`
@@ -38,18 +44,21 @@ const NabBar = styled.div`
   }
 
   .logo img {
-    alt:"text"
+    alt:"text";
     float: right;
   }
 
-  input {
-    width: 15%;
-    margin-left: 2.4%;
+
+  .SearchProduct{
     padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
+    box-sizing: border-box;
+    height: 3em;
+    margin-top: 30px;
+    outline: none;
     resize: vertical;
-    height: 2em;
+    border-radius: 4px;
+    margin-left: 2.4%;
+    border: 1px solid black;
   }
 
   ul li {
@@ -61,6 +70,7 @@ const NabBar = styled.div`
 
   ul li:hover {
     color: #790000;
+    
   }
 
   .navPosition {
@@ -74,8 +84,7 @@ const NabBar = styled.div`
   }
 `;
 
-const FooterImage = styled.div`´
-position: absolute;
+const FooterImage = styled.div`
 width:100%;
 height: 35em;
 left: 2px;
@@ -179,14 +188,15 @@ const Product = () => {
             />
             {/* <button className="but" onClick={handleClick}>Add to Shopping</button>   */}
           </div>
-        </GridItem>
-        <div>
-          <p>
+          <div>
+          <p id="item">
             {" "}
             {item.name} <br />
             Price: {item.price}
           </p>
         </div>
+        </GridItem>
+        
       </div>
     );
   });
