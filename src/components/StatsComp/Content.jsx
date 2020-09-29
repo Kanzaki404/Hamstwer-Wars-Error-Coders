@@ -125,11 +125,11 @@ export default function Content({ mode, newList }) {
   const [hamsters, setHamsters] = useState([]);
   //---------------------GET HAMSTERS------------------------------------------------------
   
-
+  //console.log('in Content',newList);
 //---------------------GETTING NEW FILTERED LIST---------------------------------------------
   useEffect(() => {
-    if (newList !== "remove" && newList.length <= 1) {
-      
+    if (newList !== "remove" && newList.length >= 1) {
+      console.log('Triggered');
       setHamsters(newList);
     } else {
       getHamsta(setHamsters);

@@ -55,12 +55,12 @@ function search(query, callback) {
 		}else{
 			orderGames = 1;
 		}
-		// if(query.winRate === 'HWR'){
-		// 	orderWins = -1
-		// }else{
-		// 	orderWins = 1
-		// } , defeats: orderWins
-		sortFilter = {games: orderGames}
+		if(query.winRate === 'HWR'){
+			orderWins = -1
+		}else{
+			orderWins = 1
+		} 
+		sortFilter = {games: orderGames,wins: orderWins}
 	}
 	
 
@@ -78,7 +78,7 @@ function search(query, callback) {
 				console.log('what is the filter', filter)
 				
 				console.log(sortFilter);
-				const cursor = await col.find(filter).sort(sortFilter).limit(5);
+				const cursor = await col.find(filter).sort(sortFilter);
 				const array = await cursor.toArray();
 				console.log('WHAT IS THE ARRRAAATYTTYY',array)
 

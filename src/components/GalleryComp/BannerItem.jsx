@@ -58,21 +58,22 @@ const ProfileImg = styled.div`
       
     
 `;
+const baseUrl = "http://localhost:5000/";
+function getImage(imgName,setImageFromServer){
+  axios
+  .get(`${baseUrl}hamstersPhotos`,{ params: imgName })
+  .then((res) => {
+    setImageFromServer(res.data)
+  })
+  .catch((err) => console.log("ERROR ---> " + err));
+}
 export default function BannerItem({ data }) {
- 
-  
-  const baseUrl = "http://localhost:5000/";
   const [imageFromServer, setImageFromServer] = useState('');
   
   useEffect(() => {
+    getImage(data.imgName,setImageFromServer)
     
-    axios
-    .get(`${baseUrl}hamstersPhotos`,{ params: data.imgName })
-    .then((res) => {
-      setImageFromServer(res.data)
-    })
-    .catch((err) => console.log("ERROR ---> " + err));
-  },[data])
+  },[data.imgName])
   return (
     <BannerWrapper>
       

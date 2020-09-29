@@ -236,7 +236,7 @@ export default function LandingPage() {
   return (
     <LandingPageStyle>
       <div className="info-text">
-        <p className="text">
+        <div className="text">
           <p className="welcome">Welcome <span className="small">to</span> <span className="darker">GoHam!</span></p>
 
         <p className="goham-text">
@@ -250,7 +250,7 @@ export default function LandingPage() {
           The most loved Warrior takes their <span>VICTORY</span>
           <br></br>
          </p>
-        </p>
+        </div>
       </div>
 
       <Link to="/arena">
