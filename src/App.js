@@ -7,7 +7,9 @@ import Stats from './Pages/Stats'
 import Upload from './Pages/Upload'
 import Gallery from './Pages/Gallery'
 import Merchandise from './Pages/Merchandise'
-import Footer from './components/Footer';
+// import Footer from './components/Footer';
+
+
 function App() {
   return (
     <Router>
@@ -21,8 +23,6 @@ function App() {
                 <Route path = '/upload' component={Upload} />
                 <Route path = '/merch' component={Merchandise} />
         </Switch>
-        <Footer/>
-
 
       </div>
     </Router>

@@ -3,22 +3,33 @@ import styled from "styled-components";
 import hamsterfooter from "../assets/footer/hamstergif.gif";
 
 const FooterStyling = styled.footer`
-  #footer-image {
+  background-color: #6d0002;
+  min-height: 500px;
+  padding-top: 50px;
+`;
+
+
+const FooterImage = styled.div `
+
+.footer-image {
     background-image: url(${hamsterfooter});
-    height: 1042px;
+    height: 700px;
+    width: 900px;
     background-position: right;
     background-repeat: no-repeat;
-    background-attachment: fixed;
-    z-index: 0;
     width: auto;
+    right: 0px;
+    bottom: 0px;
+    border: 1px solid #6d0002;
   }
 `;
 
 export default function Footer() {
     return (
-
       <FooterStyling>
-        <div id ="footer-image" alt ="default"></div>
+        <FooterImage>
+          <div className ="footer-image" alt ="default"></div>
+        </FooterImage>
       </FooterStyling>
     );
 }

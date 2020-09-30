@@ -1,12 +1,17 @@
-import React, {useEffect} from "react";
+import React from "react";
 import styled from "styled-components";
 import blood from "../assets/blood/blood-pic.jpg";
 import { Link } from "react-router-dom";
 import useSound from 'use-sound';
+// import play from "../assets/musicIcons/play.svg";
+// import pause from "../assets/musicIcons/pause.svg";
+import volume from "../assets/musicIcons/volume.svg";
+import mute from "../assets/musicIcons/mute.svg";
+import hamsterfooter from "../assets/footer/hamstergif.gif";
 import sovjetMarch from '../assets/music/C&C Red Alert 3 Theme - Soviet March.mp3';
 const LandingPageStyle = styled.div`
   width: auto;
-  height: 60vh;
+  height: 100vh;
   text-align: center;
   background-color: #6d0002;
 
@@ -16,7 +21,6 @@ const LandingPageStyle = styled.div`
   }
 
   .welcome {
-
     font-size: 40px;
     font-family: "Permanent Marker", cursive;
     margin-bottom: 64px;
@@ -56,7 +60,17 @@ const LandingPageStyle = styled.div`
         }
     }
   }
-
+  .warRat{
+    background-image: url(${hamsterfooter});
+    height: 200px;
+    width: 300px;
+    position: absolute;
+    top: 110px;
+    right: 0;
+    object-fit: contain;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
   .to-battle {
     font-family: "Permanent Marker", cursive;
     font-size: 28px;
@@ -82,24 +96,9 @@ const LandingPageStyle = styled.div`
       animation-iteration-count: infinite;
       margin-top: 24px;
     }
-
   }
 
-  .red-dot {
-    position: absolute;
-    display: flex;
-    border: none;
-    outline: none;
-    width: 70px;
-    height: 70px;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 50px;
-    background-color: #1c1c1c;
-    animation: fade-in;
-    animation-duration: 1.3s;
-    /* animation-iteration-count: infinite; */
-  }
+
   @keyframes vibrate-3 {
   0% {
     -webkit-transform: translate(0);
@@ -148,22 +147,7 @@ const LandingPageStyle = styled.div`
 
 }
 
-  @-webkit-keyframes fade-in {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-  @keyframes fade-in {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
+
 
   @-webkit-keyframes puff-in-center {
   0% {
@@ -231,10 +215,66 @@ const LandingPageStyle = styled.div`
   line-height: 25px;
 }
 }
-
 `;
 
 const MusicWrapper = styled.div`
+position: absolute;
+bottom: 0;
+left:0;
+/* .music-btn {
+  background-image: url(${mute});
+  background-color: #6d0002;
+  color: white;
+  margin: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 74px;
+  width: 76px;
+  border: none;
+  outline: none;
+  background-position: center;
+  cursor: pointer;
+} */
+
+`;
+const Volume = styled.button `
+  background-image: url(${volume});
+  background-color: #6d0002;
+  color: white;
+  margin: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 100px;
+  height: 74px;
+  width: 76px;
+  border: none;
+  outline: none;
+  background-position: center;
+  cursor: pointer;
+
+`;
+
+const Mute = styled.div `
+
+  background-image: url(${mute});
+  background-color: #6d0002;
+  color: white;
+  margin: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 100px;
+  height: 74px;
+  width: 76px;
+  border: none;
+  outline: none;
+  background-position: center;
+  cursor: pointer;
 
 `;
 
@@ -243,26 +283,25 @@ export default function LandingPage() {
   // const [play] = useSound(sovjetMarch);
   //const [play, { stop, isPlaying }] = useSound(sovjetMarch);
   const [play, { stop }] = useSound(sovjetMarch, { volume: 0.2 });
+  const [isPlaying, setisPlaying] = React.useState(true);
 
-  const [isHovering, setIsHovering] = React.useState(true);
-
-  
   function playStop(){
-    if(isHovering){
+    if(isPlaying){
       play();
     }else{
       stop();
     }
   }
- 
+
   return (
     <LandingPageStyle>
+      <div className="warRat"></div>
       <div className="info-text">
         <div className="text">
           <p className="welcome">Welcome <span className="small">to</span> <span className="darker">GoHam!</span></p>
 
         <p className="goham-text">
-          <span> GoHam</span> Arena hosts the <span>bloodiest</span>, most <span>intense</span> and <span>adorable</span> voting <span>Battles</span> in the Cosmos
+          <span> GoHam</span> Arena hosts the <span>bloodiest</span>, most <span>intense</span> and <span>adorable</span> voting <span>Battles</span> in the Cosmos!
 
           <br></br>
           In the early dawn of year 2020, GoHam was created for its purpose for bringing All hamster lovers together to witness the glory of you and other powerful Hamster Warriors in action!
@@ -275,30 +314,32 @@ export default function LandingPage() {
         </div>
       </div>
 
-      <Link to="/arena">
-        <button className="to-battle">
+      <Link to="/arena"  >
+        <button className="to-battle" onClick={() => {
+         playStop();
+         setisPlaying(!isPlaying);
+       }}>
          <p className="battle">TO BATTLE!</p>
         </button>
       </Link>
 
     <MusicWrapper>
-
-        <button
+      {!isPlaying ? <Volume className ="music-btn"
          onClick={() => {
           playStop();
-          setIsHovering(!isHovering);
+          setisPlaying(!isPlaying);
         }}
         >
-          hello
-        </button>
-        <div className ="bg-music">
-        <audio src ="" loop ="">
-          <button className ="music-button">
-            <i className =""></i>
-            <i className =""></i>
-          </button>
-        </audio>
-        </div>
+        </Volume>:
+
+        <Mute className ="music-btn"
+        onClick={() => {
+         playStop();
+         setisPlaying(!isPlaying);
+       }}
+       >
+       </Mute>
+        }
 
 
     </MusicWrapper>
