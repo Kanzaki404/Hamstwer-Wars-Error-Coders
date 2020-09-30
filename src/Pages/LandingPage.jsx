@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import styled from "styled-components";
-import blood from "../assets/blood/blood-pic.jpg";
+import blood from "../assets/blood/red stain 1.jpg";
 import blood2 from "../assets/blood/black-blood.jpg";
 import { Link } from "react-router-dom";
 import useSound from 'use-sound';
@@ -8,17 +8,18 @@ import volume from "../assets/musicIcons/volumevw.svg";
 import mute from "../assets/musicIcons/mutewv.svg";
 import hamsterfooter from "../assets/footer/hamster.png";
 import sovjetMarch from '../assets/music/C&C Red Alert 3 Theme - Soviet March.mp3'
-import img1 from '../assets/testPhotoGallery/red-bg.jpg';
-import img2 from '../assets/testPhotoGallery/hamster-switch.jpg';
+import img1 from '../assets/testPhotoGallery/gla-test1.png';
+import img2 from '../assets/testPhotoGallery/hamster-bloody.jpg';
 
 const LandingPageStyle = styled.div`
   width: auto;
-  height: 100vh;
+  height: 92vh;
   text-align: center;
   background-image: url(${({ hovering }) => hovering === false ? img1 : img2});
   background-repeat:no-repeat;
   background-size: cover;
   background-position: center;
+  background-attachment:fixed;
   overflow: auto;
   z-index: 0;
 
@@ -81,23 +82,22 @@ const LandingPageStyle = styled.div`
     background-repeat: no-repeat;
   } */
   .to-battle {
-    font-family: "Permanent Marker", cursive;
-    font-size: 28px;
+    font-family: 'Piedra', cursive;
+    background-image:url(${blood});
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-size: 33px;
     width: 307px;
     height: 87px;
     margin-left: auto;
     margin-right: auto;
     cursor: pointer;
-    background: #1c1c1c;
+    background: transparent;
     border-radius: 10px;
     color: white;
-    border: none;
+    border: 3px solid white;
     outline: none;
-    background-image:url(${blood});
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-
     :hover {
         animation: vibrate-3;
         animation-duration: 0.7s;
@@ -106,14 +106,23 @@ const LandingPageStyle = styled.div`
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
+        font-family: "Permanent Marker", cursive;
     }
     .battle {
-      font-family: "Permanent Marker", cursive;
       font-size: 28px;
+      font-weight: 400;
       margin-top: 24px;
     }
-
   }
+
+  @keyframes blinking {
+  0%{
+    color: white;
+  }
+  100%{
+    opacity: 0.9;
+  }
+}
 
   @keyframes vibrate-3 {
   0% {
@@ -162,9 +171,6 @@ const LandingPageStyle = styled.div`
   }
 
 }
-
-
-
   @-webkit-keyframes puff-in-center {
   0% {
     -webkit-transform: scale(2);
@@ -214,6 +220,13 @@ const LandingPageStyle = styled.div`
     }
 }
 
+@media (max-width: 456px) {
+
+  .goham-text {
+        font-size: 10px;
+    }
+}
+
 @media(max-width: 360px) {
 
   .welcome {
@@ -226,6 +239,12 @@ const LandingPageStyle = styled.div`
   .text {
       font-size: 10px;
       line-height: 25px;
+    }
+
+    .darker {
+      font-size: 32px;
+      font-weight: lighter;
+      font-family: "Permanent Marker",cursive;
     }
   }
 `;
@@ -328,19 +347,28 @@ const GoHamText = styled.div `
       }
     }
 
-@keyframes drop {
-  0% {
-    transform: translateY(0) scaleX(.85) rotate(45deg);
-    animation-timing-function: ease-out;
-  }
-  60% {
-    transform: translateY(120%) scaleX(.85) rotate(45deg);
-    animation-timing-function: ease-in;
-  }
-  80%, 100% {
-    transform: translateY(5vh) scaleX(.85) rotate(45deg);
-  }
-}
+    @media(max-width: 360px) {
+
+      .title {
+
+        font-size: 60px;
+      }
+
+    }
+
+      @keyframes drop {
+        0% {
+          transform: translateY(0) scaleX(.85) rotate(45deg);
+          animation-timing-function: ease-out;
+        }
+        60% {
+          transform: translateY(120%) scaleX(.85) rotate(45deg);
+          animation-timing-function: ease-in;
+        }
+        80%, 100% {
+          transform: translateY(5vh) scaleX(.85) rotate(45deg);
+        }
+      }
   `;
 
 
