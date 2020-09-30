@@ -1,14 +1,16 @@
 import React, {useState} from "react";
 import styled from "styled-components";
 import blood from "../assets/blood/blood-pic.jpg";
+import blood2 from "../assets/blood/black-blood.jpg";
 import { Link } from "react-router-dom";
 import useSound from 'use-sound';
 import volume from "../assets/musicIcons/volumevw.svg";
 import mute from "../assets/musicIcons/mutewv.svg";
 import hamsterfooter from "../assets/footer/hamster.png";
-import sovjetMarch from '../assets/music/C&C Red Alert 3 Theme - Soviet March.mp3';
-import img1 from '../assets/testPhotoGallery/red-bg.jpg'
-import img2 from '../assets/testPhotoGallery/hamster-bloody.jpg'
+import sovjetMarch from '../assets/music/C&C Red Alert 3 Theme - Soviet March.mp3'
+import img1 from '../assets/testPhotoGallery/red-bg.jpg';
+import img2 from '../assets/testPhotoGallery/hamster-switch.jpg';
+
 const LandingPageStyle = styled.div`
   width: auto;
   height: 100vh;
@@ -16,8 +18,9 @@ const LandingPageStyle = styled.div`
   background-image: url(${({ hovering }) => hovering === false ? img1 : img2});
   background-repeat:no-repeat;
   background-size: cover;
+  background-position: center;
   overflow: auto;
-
+  z-index: 0;
 
   .info-text {
     display: flex;
@@ -94,16 +97,22 @@ const LandingPageStyle = styled.div`
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+
+    :hover {
+        animation: vibrate-3;
+        animation-duration: 0.7s;
+        animation-iteration-count: infinite;
+        background-image:url(${blood2});
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
     .battle {
       font-family: "Permanent Marker", cursive;
       font-size: 28px;
       margin-top: 24px;
     }
-    .battle:hover {
-        animation: vibrate-3;
-        animation-duration: 0.7s;
-        animation-iteration-count: infinite;
-    }
+
   }
 
   @keyframes vibrate-3 {
