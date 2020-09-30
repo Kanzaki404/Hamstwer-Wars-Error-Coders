@@ -104,28 +104,33 @@ filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 
 const Product = () => {
   // const dispatch = useDispatch();
-  const productList = [
+  const [productList,setProductList]= useState([
     {
+      id:1,
       name: "Hamster1",
       price: 600,
-      im: require("../../assets/testPhotoGallery/hamster-26.jpg"),
+      im: require("../../assets/testPhotoGallery/shirt-front.png"),
     },
     {
+      id:2,
       name: "Hamster2",
       price: 600,
-      im: require("../../assets/testPhotoGallery/default-warrior.jpg"),
+      im: require("../../assets/testPhotoGallery/shirt-front.png"),
     },
     {
+      id:3,
       name: "Hamster3",
       price: 600,
-      im: require("../../assets/testPhotoGallery/hamster-26.jpg"),
+      im: require("../../assets/testPhotoGallery/shirt-front.png"),
     },
     {
+      id:4,
       name: "Hamster4",
       price: 600,
-      im: require("../../assets/testPhotoGallery/default-warrior.jpg"),
+      im: require("../../assets/testPhotoGallery/shirt-front.png"),
     },
     {
+      id:5,
       name: "Hamster5",
       price: 600,
       im: require("../../assets/testPhotoGallery/hamster-26.jpg"),
@@ -134,16 +139,28 @@ const Product = () => {
     // {name:'Hamster2', price:400,im:"../src/assets/testGallery/hamster-26.jpg"},
     // {name:'Hamster2', price:400,im:"../src/assets/testGallery/hamster-26.jpg"},
     // {name:'Hamster2', price:400,im:"../src/assets/testGallery/hamster-26.jpg"},
-  ];
+  ])
+
 
   // Prints out the objects that are searched for.
   const [sort, setSort] = useState("");
   const [elementPage, setelementPage] = useState(true);
   const [basketNumber, setBasketNumber]=useState(0)
 
+ 
+
   const addToBasket=()=>{
     setBasketNumber(basketNumber +1)
   }
+
+   const[itemSelected, setItemSelected]=useState({})
+  function selectedItem(item){
+    setelementPage(false)
+    setItemSelected(item)
+
+  }
+
+
   const data = productList.map((item) => {
     //const handleClick = () => dispatch(actions.addToCart(item))
     if (sort.length !== 0) {
@@ -153,7 +170,7 @@ const Product = () => {
       ) {
         return (
           <div  key={item.name}>
-            <GridItem onClick={()=>setelementPage(false)}>
+            <GridItem onClick={()=>selectedItem(item)}>
               <div >
                 <img   onClick={addToBasket} className="photo"   src={process.env.PUBLIC_URL + item.im} alt="sortedItem"/>
                 {/* <button className="but" onClick={handleClick}>Add to Shopping</button>   */}
@@ -175,18 +192,25 @@ const Product = () => {
     }
     //end of search print
 
+  
+
     //prints out all the available objects
     return (
       <div key={item.name}>
-        <GridItem onClick={()=>setelementPage(false)}>
+        <GridItem onClick={()=>selectedItem(item)}>
           <div>
             <img
               className="photo"
               onClick={addToBasket}
               src={process.env.PUBLIC_URL + item.im}
               alt="cc"
+              //value="ffff"
+              //onClick={clickHandeler.bind(this)}
+             
+              
+              
             />
-            {/* <button className="but" onClick={handleClick}>Add to Shopping</button>   */}
+             
           </div>
           <div>
           <p id="item">
@@ -234,7 +258,7 @@ const Product = () => {
           <div className="products">{data}</div>
         </div>
       ) : (
-        <Detail onBack={()=>setelementPage(true)}/>
+        <Detail onBack={()=>setelementPage(true)}  todos={itemSelected}/>
       )}
 
       {/* <div className="footer"></div> */}

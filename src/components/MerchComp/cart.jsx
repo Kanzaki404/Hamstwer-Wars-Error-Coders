@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import cart from "../../assets/logo/cart.png";
+//import imageSample1 from "../../assets/testPhotoGallery/shirt-front.png"
+
 import styled from "styled-components";
-import ReactDom from "react-dom";
+//import ReactDom from "react-dom";
 
 const ModalStyle = styled.div`
   position: fixed;
@@ -29,8 +31,8 @@ const ModalStyle = styled.div`
 
   .firstDivFrame {
     border-style: ridge;
-    overflow: scroll;
-    /* height:500px; */
+    overflow-y: scroll;
+    height:500px;
     /* Backpart */
   }
 
@@ -69,6 +71,28 @@ const ModalStyle = styled.div`
     margin-left: 100px;
   }
 
+  li{
+    list-style-type:none;
+    
+  }
+
+  li>button {
+    width: 40%;
+    height: 2rem;
+    border-radius: 4px;
+    background-color:	#F08080;
+    float:right;
+    margin-right:30px;
+    margin-top:50px;
+    color:white; 
+  
+  }
+
+  li>img{
+    height:100px;
+    width:100px
+  }
+
   button {
     width: 80%;
     height: 3rem;
@@ -93,22 +117,58 @@ const ModalStyle = styled.div`
   }
 `;
 
-function Cart({ open, onClose }) {
+function Cart({ open, onClose,cartItem, allItem}) {
+
+  // function deleteItem(id){
+  //   console.log(id)
+  // }
+const[idstate,setIdState]=useState(false)
+//setIdState([...idstate,cartItem])
+//console.log("sdsdss",state)
+function deleteItem(id){
+  console.log(id)
+  allItem.splice(allItem.findIndex(function(i){
+    return i.id===id
+  }),1)
+
+  setIdState(!idstate)
+  // const delItemId=cartItem.filter((item)=>{
+  //   console.log(item)
+  //   // return item.id !==id
+
+  // })
+
+  // setIdState({delItemId})
+
+ 
+}
+
+const selectedCartItem=allItem.map((e)=>(
+  <li key={e.id}><img src={e.im} alt="Tshirt"/><span/><button type="submit" onClick={()=>deleteItem(e.id)} 
+              >Remove{e.id}</button></li>
+              
+))
+
   if (!open) {
     return null;
   }
-  return ReactDom.createPortal(
-    <>
+   return (
+    <div>
       <ModalStyle>
         <div className="heading">
+          
           <img className="image" src={cart} alt="noImg"></img>
         </div>
         <div className="firstDiv">
           <h3>YOUR CART</h3>
 
           <div className="firstDivFrame">
-            cvknskfkskfn njskdjskkds sdsjdkjskdsk hjvhghgh hvjhju hvhjhjhjbh
-            ghgjhjbbjb hvjhvjvv hvjhvjvj ggugg hvhvvyvy kbkigig vhvvuvuv
+          
+            <ol>
+              {selectedCartItem}
+              
+            </ol>
+           
           </div>
         </div>
 
@@ -131,9 +191,9 @@ function Cart({ open, onClose }) {
           </div>
         </div>
       </ModalStyle>
-    </>,
-    document.getElementById("portal")
-  );
+    </div>
+   
+  )
 }
 
 export default Cart;
