@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import cart from "../../assets/logo/cart.png";
 //import imageSample1 from "../../assets/testPhotoGallery/shirt-front.png"
 
@@ -116,38 +116,54 @@ const ModalStyle = styled.div`
     }
   }
 `;
-
-function Cart({ open, onClose,cartItem, allItem}) {
-
-  // function deleteItem(id){
-  //   console.log(id)
-  // }
+let cartProducts = [];
+function Cart({ open, onClose,cartItem,allItem}) {
+ 
+  
+  
+//const [cartProducts, setcartProducts] = useState([])
 const[idstate,setIdState]=useState(false)
-//setIdState([...idstate,cartItem])
-//console.log("sdsdss",state)
+
+
+useEffect(() => {
+  // setProductList([...productList, todos]);
+  //setcartProducts([...cartProducts,JSON.parse(localStorage.getItem('productList'))])
+  cartProducts = []
+  if(localStorage.getItem('productList') !== null){
+  let temp = JSON.parse(localStorage.getItem('productList'))
+
+      for(let i=0; i< temp.length; i++){
+        cartProducts.push(temp[i]);
+      }
+    }
+  console.log(cartProducts)
+  
+ })
+   
 function deleteItem(id){
   console.log(id)
-  allItem.splice(allItem.findIndex(function(i){
+  cartProducts.splice(cartProducts.findIndex(function(i){
     return i.id===id
   }),1)
-
+  console.log('in',cartProducts)
+  localStorage.setItem('productList', JSON.stringify(cartProducts));
   setIdState(!idstate)
-  // const delItemId=cartItem.filter((item)=>{
-  //   console.log(item)
-  //   // return item.id !==id
-
-  // })
-
-  // setIdState({delItemId})
-
+ 
  
 }
 
-const selectedCartItem=allItem.map((e)=>(
-  <li key={e.id}><img src={e.im} alt="Tshirt"/><span/><button type="submit" onClick={()=>deleteItem(e.id)} 
-              >Remove{e.id}</button></li>
-              
-))
+  
+    const selectedCartItem=cartProducts.map((e)=>(
+    
+      <li key={e.id}><img src={e.im} alt="Tshirt"/><span/><button type="submit" onClick={()=>deleteItem(e.id)} 
+                  >Remove{e.id}</button></li>
+                  
+    ))
+  
+  
+   
+
+
 
   if (!open) {
     return null;
@@ -155,6 +171,7 @@ const selectedCartItem=allItem.map((e)=>(
    return (
     <div>
       <ModalStyle>
+     
         <div className="heading">
           
           <img className="image" src={cart} alt="noImg"></img>
@@ -163,7 +180,7 @@ const selectedCartItem=allItem.map((e)=>(
           <h3>YOUR CART</h3>
 
           <div className="firstDivFrame">
-          
+         
             <ol>
               {selectedCartItem}
               
@@ -187,6 +204,7 @@ const selectedCartItem=allItem.map((e)=>(
               <br />
               <br />
               <button onClick={onClose}>CheckOut</button>
+              
             </form>
           </div>
         </div>

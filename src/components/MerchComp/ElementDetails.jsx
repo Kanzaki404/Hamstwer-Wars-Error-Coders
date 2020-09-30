@@ -9,23 +9,43 @@ import './elementDetails.css'
 
 
 function Detail({onBack,todos}) {
-  const [productList, setProductList]= useState([])
+  //const [productList, setProductList]= useState([])
   const [isOpen, setIsOpen] = useState(false)
   const {register, handleSubmit}=useForm()
- 
+  var productList = [];
   
-  useEffect(() => {
-    setProductList([...productList, todos]);
-   
-  },[todos])
+  // useEffect(() => {
+   // setProductList([...productList, todos]);
+  //  productList.push(todos)
+  // },[todos])
     
     
-
+  
 
   function cartItem(){
+    if(localStorage.getItem('productList') !== null){
+     
+      let temp = JSON.parse(localStorage.getItem('productList'))
+      
+      for(let i=0; i< temp.length; i++){
+        
+          productList.push(temp[i]);
+        
+       
+      }
+      
+      productList.push(todos)
+      localStorage.setItem('productList', JSON.stringify(productList));
+    }else{
+      productList.push(todos)
+      localStorage.setItem('productList', JSON.stringify(productList))
+      
+    }
+  
+  
+  
     
-    localStorage.setItem(`${todos.id}`,JSON.stringify(productList))
-   
+    
       
     
     
