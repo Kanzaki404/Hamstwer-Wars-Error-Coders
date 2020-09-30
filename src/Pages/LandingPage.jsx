@@ -91,13 +91,14 @@ const LandingPageStyle = styled.div`
     .battle {
       font-family: "Permanent Marker", cursive;
       font-size: 28px;
-      animation: vibrate-3;
-      animation-duration: 0.7s;
-      animation-iteration-count: infinite;
       margin-top: 24px;
     }
+    .battle:hover {
+        animation: vibrate-3;
+        animation-duration: 0.7s;
+        animation-iteration-count: infinite;
+    }
   }
-
 
   @keyframes vibrate-3 {
   0% {
