@@ -3,6 +3,7 @@ import "./element.css";
 import styled from "styled-components";
 import shoppingLogo from "../../assets/logo/cart.png";
 import bloodPic from "../../assets/blood/transparent-blood.png";
+import BuyOrDie from "../../assets/marchFooter/Buyordie.svg"
 import Detail from "./ElementDetails";
 //import { render } from "@testing-library/react";
 // import { Nav, Navbar,Form,FormControl,Button} from "react-bootstrap";
@@ -15,18 +16,12 @@ const GridItem = styled.div`
   max-height: auto;
   margin-left: auto;
   margin-right: auto;
-
   border-radius: 4px;
 
   div:hover {
+    background-color: #790000;
     cursor: pointer;
-    
   }
-
-  #item:hover{
-    text-decoration: underline;
-  }
-  
 `;
 
 const NabBar = styled.div`
@@ -44,35 +39,34 @@ const NabBar = styled.div`
   }
 
   .logo img {
-    alt:"text";
+    alt:"text"
     float: right;
   }
 
-
-  .SearchProduct{
-    padding: 12px;
-    box-sizing: border-box;
-    height: 3em;
-    margin-top: 30px;
-    outline: none;
-    resize: vertical;
-    border-radius: 4px;
+  input {
+    width: 15%;
     margin-left: 2.4%;
-    border: 1px solid black;
+    margin-top: 26px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    resize: vertical;
+    height: 2em;
   }
 
   ul li {
     display: inline-block;
     padding: 10px;
     font-size: 20px;
-    font-family: raleway;
+    font-family: 'Quicksand', sans-serif;
   }
 
   ul li:hover {
-    color: #790000;
-    
+    border-bottom: 1px solid black;
   }
-
+  .right:hover {
+    border-bottom: none;
+  }
   .navPosition {
     margin: auto;
     width: 60%;
@@ -84,9 +78,10 @@ const NabBar = styled.div`
   }
 `;
 
-const FooterImage = styled.div`
+const FooterImage = styled.div`´
+position: absolute;
 width:100%;
-height: 35em;
+height: 20em;
 left: 2px;
 top: 2231px;
 
@@ -108,27 +103,27 @@ const Product = () => {
     {
       name: "Hamster1",
       price: 600,
-      im: require("../../assets/testPhotoGallery/hamster-26.jpg"),
+      im: require("../../assets/testPhotoGallery/shirt.svg"),
     },
     {
       name: "Hamster2",
       price: 600,
-      im: require("../../assets/testPhotoGallery/default-warrior.jpg"),
+      im: require("../../assets/testPhotoGallery/Backpart.svg"),
     },
     {
       name: "Hamster3",
       price: 600,
-      im: require("../../assets/testPhotoGallery/hamster-26.jpg"),
+      im: require("../../assets/testPhotoGallery/shirt.svg"),
     },
     {
       name: "Hamster4",
       price: 600,
-      im: require("../../assets/testPhotoGallery/default-warrior.jpg"),
+      im: require("../../assets/testPhotoGallery/Backpart.svg"),
     },
     {
       name: "Hamster5",
       price: 600,
-      im: require("../../assets/testPhotoGallery/hamster-26.jpg"),
+      im: require("../../assets/testPhotoGallery/shirt.svg"),
     },
     // {name:'Hamster2', price:400,im:"../src/assets/testGallery/hamster-26.jpg"},
     // {name:'Hamster2', price:400,im:"../src/assets/testGallery/hamster-26.jpg"},
@@ -143,6 +138,10 @@ const Product = () => {
 
   const addToBasket=()=>{
     setBasketNumber(basketNumber +1)
+  }
+  const addToDetails=(name)=>{
+   console.log("add to details");
+    //this.props.showItem(name);
   }
   const data = productList.map((item) => {
     //const handleClick = () => dispatch(actions.addToCart(item))
@@ -186,23 +185,22 @@ const Product = () => {
               src={process.env.PUBLIC_URL + item.im}
               alt="cc"
             />
-            {/* <button className="but" onClick={handleClick}>Add to Shopping</button>   */}
+            <button className="but" onClick={()=>addToDetails(item.name)}>Add to Shopping</button>  
           </div>
-          <div>
-          <p id="item">
+        </GridItem>
+        <div>
+          <p>
             {" "}
             {item.name} <br />
             Price: {item.price}
           </p>
         </div>
-        </GridItem>
-        
       </div>
     );
   });
   return (
     <div className="wrapper">
-      <h1 className="headLine">Wellcome To Our Webshop</h1>
+      <div className="headLine">Wellcome To Our WEBSHOP</div>
       <NabBar>
         <div className="container">
           <input
@@ -214,11 +212,10 @@ const Product = () => {
           />
           <nav className="navPosition">
             <ul>
-              <li></li>
-              <li>AllProducts</li>
-              <li>Tshort</li>
-              <li>Hoddies</li>
-              <li>Cup</li>
+              <li>All products</li>
+              <li>T-shirts</li>
+              <li>Hoodies</li>
+              <li>Cups</li>
               <li className="right">
                 <img  src={shoppingLogo} height="30" width="30" alt="logo" />{basketNumber}
               </li>
@@ -239,7 +236,7 @@ const Product = () => {
 
       {/* <div className="footer"></div> */}
       <FooterImage>
-        <img src={bloodPic} alt="footerImage"/>
+        <img className="footerPhoto" src={BuyOrDie} alt="footerImage"/>
       </FooterImage>
     </div>
   );

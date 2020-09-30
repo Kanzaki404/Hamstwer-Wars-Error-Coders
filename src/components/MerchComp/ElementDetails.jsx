@@ -35,8 +35,8 @@ function Detail({onBack}) {
               
              
             <div className="secondPart">
-                  <h6>17.99$=157 sek</h6>
-                  <p>To Battle Shirt-/GoHam</p>
+                  <h3>17.99$/157 sek</h3>
+                  <h4>To Battle Shirt-/GoHam</h4>
                 
                   <p>This shirt will pretty your enemies and bring<br/>harmony to your friends,wear it wisly hemsters</p>
                 
