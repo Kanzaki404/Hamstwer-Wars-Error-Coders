@@ -221,7 +221,7 @@ left:0;
 `;
 const Volume = styled.button `
   background-image: url(${volume});
-  background-color: #6d0002;
+  background-color: #790000;
   color: white;
   margin: 90px;
   margin-left: auto;
@@ -276,6 +276,7 @@ const GoHamText = styled.div `
       letter-spacing: -.12em;
       color: white;
       text-transform: uppercase;
+
       }
 
     .drop {
@@ -321,12 +322,9 @@ const GoHamText = styled.div `
     animation-timing-function: ease-in;
   }
   80%, 100% {
-    transform: translateY(60vh) scaleX(.85) rotate(45deg);
+    transform: translateY(5vh) scaleX(.85) rotate(45deg);
   }
 }
-
-
-
   `;
 
 
