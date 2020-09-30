@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 import blood from "../assets/blood/blood-pic.jpg";
 import { Link } from "react-router-dom";
@@ -7,11 +7,17 @@ import volume from "../assets/musicIcons/volumevw.svg";
 import mute from "../assets/musicIcons/mutewv.svg";
 import hamsterfooter from "../assets/footer/hamster.png";
 import sovjetMarch from '../assets/music/C&C Red Alert 3 Theme - Soviet March.mp3';
+import img1 from '../assets/testPhotoGallery/red-bg.jpg'
+import img2 from '../assets/testPhotoGallery/hamster-bloody.jpg'
 const LandingPageStyle = styled.div`
   width: auto;
   height: 100vh;
   text-align: center;
-  background-color: #790000;
+  background-image: url(${({ hovering }) => hovering === false ? img1 : img2});
+  background-repeat:no-repeat;
+  background-size: cover;
+  overflow: auto;
+
 
   .info-text {
     display: flex;
@@ -222,7 +228,7 @@ left:0;
 `;
 const Volume = styled.button `
   background-image: url(${volume});
-  background-color: #790000;
+  background-color: transparent;
   color: white;
   margin: 90px;
   margin-left: auto;
@@ -283,7 +289,7 @@ const GoHamText = styled.div `
     .drop {
       width: .2em; height: .2em;
       border-radius: 0 100% 100% 100%;
-      background-color: currentColor;
+      background-color: white;
       position: absolute;
       top: 72%;
       animation: drop 3s infinite both;
@@ -335,6 +341,7 @@ export default function LandingPage() {
   //const [play, { stop, isPlaying }] = useSound(sovjetMarch);
   const [play, { stop }] = useSound(sovjetMarch, { volume: 0.2 });
   const [isPlaying, setisPlaying] = React.useState(true);
+  const [hovering, setHovering] = useState(false)
 
   function playStop(){
     if(isPlaying){
@@ -345,9 +352,10 @@ export default function LandingPage() {
   }
 
   return (
-    <LandingPageStyle>
+    <LandingPageStyle hovering={hovering}>
 
       <div className="info-text">
+
         <div className="text">
         <GoHamText>
           <h1 className="title">
@@ -378,32 +386,46 @@ export default function LandingPage() {
 
 
       <Link to="/arena"  >
-        <button className="to-battle">
-         <p className="battle">TO BATTLE!</p>
-        </button>
-      </Link>
-
-
-    <MusicWrapper>
-      {!isPlaying ? <Volume className ="music-btn"
-         onClick={() => {
+        <button className="to-battle"
+        onMouseEnter={() => {
+          setHovering(true)
+          playStop();
+          setisPlaying(!isPlaying);
+        }}
+        onMouseLeave={() => {
+          setHovering(false);
           playStop();
           setisPlaying(!isPlaying);
         }}
         >
-        </Volume>:
+         <p className="battle"
+          onClick={() => {
+            playStop();
+            setisPlaying(!isPlaying);
+          }}
+         >TO BATTLE!</p>
+        </button>
+      </Link>
 
-        <Mute className ="music-btn"
-        onClick={() => {
-         playStop();
-         setisPlaying(!isPlaying);
-       }}
-       >
-       </Mute>
+
+      <MusicWrapper>
+        {!isPlaying ? <Volume className ="music-btn"
+          onClick={() => {
+            playStop();
+            setisPlaying(!isPlaying);
+          }}
+          >
+          </Volume>:
+
+          <Mute className ="music-btn"
+          onClick={() => {
+          playStop();
+          setisPlaying(!isPlaying);
+        }}
+        >
+        </Mute>
         }
-
-
-    </MusicWrapper>
+      </MusicWrapper>
     </LandingPageStyle>
   );
 }
