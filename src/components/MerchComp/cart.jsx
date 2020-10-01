@@ -7,6 +7,9 @@ import styled from "styled-components";
 
 const ModalStyle = styled.div`
   position: fixed;
+  font-family: 'Quicksand', sans-serif;
+  border: solid black 1px;
+  border-radius: 4px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -16,59 +19,57 @@ const ModalStyle = styled.div`
   height: 90vh;
 
   .heading {
-    background-color: rgb(226, 232, 238);
+    background-color: #F9F4F4;
     width: 100%;
     height: 100px;
     text-align: right;
   }
   .firstDiv {
-    width: 45%;
-
+    width: 400px;
     float: left;
-    margin-left: 5%;
-    margin-right: 2.5%;
+    margin-left: 100px;
+    
+    
   }
 
   .firstDivFrame {
-    border-style: ridge;
+    border: solid black 1px;
+    border-radius: 4px;
     overflow-y: scroll;
     height:500px;
     /* Backpart */
   }
 
-  .firstDivFrame:hover {
-    border-color: skyblue;
-  }
 
   .secondDiv {
-    width: 30%;
+    width: 400px;
 
     float: left;
-    margin-right: 15%;
-    margin-left: 2.5%;
+    
+    margin-left: 100px;
   }
 
   .secondDivFrame {
-    border-style: ridge;
+    border: solid black 1px;
+    border-radius: 4px;
     height: 500px;
 
     /* Backpart */
   }
 
-  .secondDivFrame:hover {
-    border-color: skyblue;
-  }
+
 
   h3:nth-child(1) {
-    text-align: left;
+    text-align: center;
   }
 
   h3:nth-child(2) {
-    text-align: left;
+    text-align: center;
   }
 
   form {
-    margin-left: 100px;
+    margin-top: 60px;
+    text-align: center;
   }
 
   li{
@@ -77,14 +78,17 @@ const ModalStyle = styled.div`
   }
 
   li>button {
-    width: 40%;
-    height: 2rem;
+    color: white;
+    width:100px ;
+    height:30px;
     border-radius: 4px;
-    background-color:	#F08080;
+    background-color:	#790000;
     float:right;
     margin-right:30px;
     margin-top:50px;
     color:white; 
+    border: none;
+    outline: none;
   
   }
 
@@ -94,10 +98,15 @@ const ModalStyle = styled.div`
   }
 
   button {
-    width: 80%;
-    height: 3rem;
-    border-radius: 4px;
-    background-color: springgreen;
+  color: white;
+  width:150px ;
+  height:50px;
+  border-radius: 4px;
+  background-color:#289825;
+  opacity: 0.8;
+  
+  border: none;
+  outline: none;
   }
 
   img {
@@ -195,11 +204,11 @@ function deleteItem(id){
           <div className="secondDivFrame">
             <form>
               <br />
-              <p>Subtotal:{4444}</p>
+              <p>Subtotal:{17.99}$</p>
               <br />
-              <p>Shipping:{555}</p>
+              <p>Shipping:{5}$</p>
               <br />
-              <p>TOTAL:{9999}</p>
+              <p>TOTAL:{22.99}$</p>
               <br />
               <br />
               <br />
