@@ -56,12 +56,16 @@ const SearchFields = styled.div`
       caret-color: #6d6d6d;
     }
   }
-
+  .deleteThis {
+      display:none;
+    }
   .InputField2 {
     display: flex;
     justify-content: left;
     padding-left: 40px;
     color: white;
+    
+   
     .firstRadio {
       margin-right: 260px;
     }
@@ -124,11 +128,11 @@ export default function ListingMenu({ dataCallback }) {
     } else {
       filter.matchCount = matchCount;
     }
-    if (winRate === "HWR") {
-      filter.winRate = "HWR";
-    } else {
-      filter.winRate = "LWR";
-    }
+    // if (winRate === "HWR") {
+    //   filter.winRate = "HWR";
+    // } else {
+    //   filter.winRate = "LWR";
+    // }
     sendFileterToServer(filter, setFilterResult,clearInputs);
   }
 
@@ -183,7 +187,7 @@ export default function ListingMenu({ dataCallback }) {
               ></input>
               <label htmlFor="LeastMatches">Least Matches</label>
             </div>
-            <div onChange={(e) => setWinRate(e.target.value)}>
+            <div className="deleteThis" onChange={(e) => setWinRate(e.target.value)}>
               <input
                 type="radio"
                 id="HighestWinRate"

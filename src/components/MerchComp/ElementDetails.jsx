@@ -1,23 +1,65 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import {useForm} from 'react-hook-form'
-//import image from './logo512.png';
-// import imageBackward from '../assets/logo/logo-backward.png'
-import Elements from './Elements'
+
 import Cart from './cart'
 import imageBackward from '../../assets/logo/logo-backward.png'
-import imageSample from '../../assets/logo/logo512.png'
+
 
 import './elementDetails.css'
 
-//import './App.css';
 
-function Detail({onBack}) {
+function Detail({onBack,todos}) {
+  //const [productList, setProductList]= useState([])
   const [isOpen, setIsOpen] = useState(false)
   const {register, handleSubmit}=useForm()
-  const onSubmit=(event) => {
-    console.log(event)
-  }
+  var productList = [];
+  
+  // useEffect(() => {
+   // setProductList([...productList, todos]);
+  //  productList.push(todos)
+  // },[todos])
+    
+    
+  
 
+  function cartItem(){
+    if(localStorage.getItem('productList') !== null){
+     
+      let temp = JSON.parse(localStorage.getItem('productList'))
+      
+      for(let i=0; i< temp.length; i++){
+        
+          productList.push(temp[i]);
+        
+       
+      }
+      
+      productList.push(todos)
+      localStorage.setItem('productList', JSON.stringify(productList));
+    }else{
+      productList.push(todos)
+      localStorage.setItem('productList', JSON.stringify(productList))
+      
+    }
+  
+  
+  
+    
+    
+      
+    
+    
+    
+    setIsOpen(true)
+   
+  }
+  
+  const onSubmit=(event) => {
+
+   
+    console.log(event.itemSelector)
+  }
+   
 
   return (
     <div className="App">
@@ -30,13 +72,13 @@ function Detail({onBack}) {
         <div className="mains">
           
             <div className="firstPart">
-            <img className="image" src={imageSample} alt="noImage"></img>
+             <div ><img  src={todos.im} alt="itemImage"></img></div> 
             </div>
               
              
             <div className="secondPart">
-                  <h6>17.99$=157 sek</h6>
-                  <p>To Battle Shirt-/GoHam</p>
+                  <h3 className="money">17.99$/157 sek</h3>
+                  <h4>To Battle Shirt-/GoHam</h4>
                 
                   <p>This shirt will pretty your enemies and bring<br/>harmony to your friends,wear it wisly hemsters</p>
                 
@@ -45,17 +87,19 @@ function Detail({onBack}) {
                   <br/>
 
                   <form onSubmit={handleSubmit(onSubmit)}>
-                      <label htmlFor="product" id="labForProduct">Size:</label><span></span>
-                        <select name="itemSelector" id="item">
-                          <option value="xSmall">Small</option>
+                      <label  id="labForProduct">Size:</label><span></span>
+                        <select name="itemSelector" id="item" ref={register}>
+                          <option value="xSmall">xSmall</option>
                           <option value="small">Small</option>
                           <option value="medium">Medium</option>
                           <option value="large">Large</option>
                           <option value="xlarge">XLarge</option>
                         </select>
+                        
                       <br/>
                       <br/>
-                      <input  ref={register} className="submit" type="submit" onClick={()=>setIsOpen(true)} value="Add To Cart" name="sub"/>  
+                      <input  ref={register} className="submit" type="submit" onClick={()=>cartItem()} value="Add To Cart" name="sub"/>  
+                      
                   </form>
                   
                   
@@ -66,7 +110,7 @@ function Detail({onBack}) {
         </div>
 
            
-        <Cart open={isOpen} onClose={()=>setIsOpen(false)}/>
+        <Cart open={isOpen} onClose={()=>setIsOpen(false)} cartItem={todos} allItem={productList} />
                  
 
   
@@ -90,7 +134,6 @@ function Detail({onBack}) {
 
 
  
-
 }
 
 

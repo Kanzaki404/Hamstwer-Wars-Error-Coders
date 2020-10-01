@@ -51,12 +51,12 @@ function search(query, callback) {
 		let orderGames = null;
 		let orderWins = null;
 		if(query.matchCount === 'MM'){
-			orderGames = -1;	
+			orderGames = 1;	
 		}else{
 			orderGames = 1;
 		}
 		if(query.winRate === 'HWR'){
-			orderWins = -1
+			orderWins = 1
 		}else{
 			orderWins = 1
 		} 
