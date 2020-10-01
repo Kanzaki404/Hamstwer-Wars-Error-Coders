@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Doughnut  } from "react-chartjs-2";
 import axios from 'axios'
 import defImage from '../../assets/testPhotoGallery/default-warrior.jpg'
-import bolt from '../../assets/testPhotoGallery/flash.png'
+
 const ListItem = styled.div`
   width: 100%;
   min-height: 75px;
