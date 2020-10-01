@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react';
+import React,{useState} from 'react';
 import {useForm} from 'react-hook-form'
 
 import Cart from './cart'
@@ -80,7 +80,7 @@ function Detail({onBack,todos}) {
                   <h3 className="money">17.99$/157 sek</h3>
                   <h4>To Battle Shirt-/GoHam</h4>
                 
-                  <p>This shirt will pretty your enemies and bring<br/>harmony to your friends,wear it wisly hemsters</p>
+                  <p>This shirt will bring fear to your enemies and bring <br/> harmony to your friends, wear it wisely hamster...</p>
                 
                   <p>GoHam embroided Shirt, made out of 100% bomull</p>
                   <br/>

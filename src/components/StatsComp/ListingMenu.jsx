@@ -97,7 +97,7 @@ export default function ListingMenu({ dataCallback }) {
   const [searchType, setSearchtype] = useState(true);
   const [inputName, setInputName] = useState("");
   const [matchCount, setMatchCount] = useState("");
-  const [winRate, setWinRate] = useState("");
+  //const [winRate, setWinRate] = useState("");
   const [filterResult, setFilterResult] = useState([]);
   function switchSearchType(type) {
     if (type !== "manual") {
@@ -115,7 +115,7 @@ export default function ListingMenu({ dataCallback }) {
   function clearInputs(){
     setInputName("")
     setMatchCount("")
-    setWinRate("")
+    //setWinRate("")
    
    }
   const filter = {};
@@ -187,7 +187,7 @@ export default function ListingMenu({ dataCallback }) {
               ></input>
               <label htmlFor="LeastMatches">Least Matches</label>
             </div>
-            <div className="deleteThis" onChange={(e) => setWinRate(e.target.value)}>
+            <div className="deleteThis">
               <input
                 type="radio"
                 id="HighestWinRate"

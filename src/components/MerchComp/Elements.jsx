@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./element.css";
 import styled from "styled-components";
 import shoppingLogo from "../../assets/logo/cart.png";
-import bloodPic from "../../assets/blood/transparent-blood.png";
+//import bloodPic from "../../assets/blood/transparent-blood.png";
 import BuyOrDie from "../../assets/marchFooter/Buyordie.svg"
 import Detail from "./ElementDetails";
 //import { render } from "@testing-library/react";
@@ -39,7 +39,7 @@ const NabBar = styled.div`
   }
 
   .logo img {
-    alt:"text"
+    alt:"text";
     float: right;
   }
 
@@ -78,7 +78,7 @@ const NabBar = styled.div`
   }
 `;
 
-const FooterImage = styled.div`´
+const FooterImage = styled.div`
 position: absolute;
 width:100%;
 height: 20em;
