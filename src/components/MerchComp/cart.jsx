@@ -109,8 +109,8 @@ const ModalStyle = styled.div`
   }
 
   img {
-    width: 35px;
-    height: 35px;
+    width: 30px;
+    height: 30px;
     margin-top: 15px;
     margin-right: 15px;
   }
@@ -143,6 +143,9 @@ const ModalStyle = styled.div`
   font-family: Helvetica Neue;
   font-weight: 900;
   font-style: normal;
+
+
+  
  
   }
   .btnDiv {
@@ -155,19 +158,19 @@ const ModalStyle = styled.div`
   margin: 0px 0px 0px 0px
   }
   .btnI{
-  margin-left: 0px;
-  margin-top: 25px;
-  color: #fff;
-  font-size: 1em;
-  background: rgba(0%,0%,0%,0.2);
-  border-radius: 100px;
-  border: 0px solid transparent;
-  border-width: 0px 0px 0px 0px;
-  padding: 5px 5px 5px 5px;
-  margin: -27px 0px 0px 115px;
-  position: static;
-  margin-right:50px;
-  box-shadow: inset 0px 1px 2px rgba(0,0,0,0.4),inset 0px -1px 0px rgba(255,255,255,.5);
+    color: #fff;
+    font-size: 1em;
+    background: rgba(0%,0%,0%,0.2);
+    border-radius: 100px;
+    border: 0px solid transparent;
+    border-width: 0px 0px 0px 0px;
+    padding: 5px 5px 5px 5px;
+    
+    position: absolute;
+    margin-right: 50px;
+    box-shadow: inset 0px 1px 2px rgba(0,0,0,0.4), inset 0px -1px 0px rgba(255,255,255,.5);
+    box-sizing: border-box;
+    margin: -24px 3px 0px 41px;
   }
   
  
