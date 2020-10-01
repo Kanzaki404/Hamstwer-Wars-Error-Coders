@@ -3,6 +3,7 @@ import {useForm} from 'react-hook-form'
 
 import Cart from './cart'
 import imageBackward from '../../assets/logo/logo-backward.png'
+import cartImage from '../../assets/logo/cart.png'
 
 
 import './elementDetails.css'
@@ -99,7 +100,7 @@ function Detail({onBack,todos}) {
                         
                       <br/>
                       <br/>
-                      <input  ref={register} className="submit" type="submit" onClick={()=>cartItem()} value="Add To Cart" name="sub"/>  
+                      <button  ref={register}  className="buttonStyle" type="submit" onClick={()=>cartItem()} value="" name="sub">Add To Cart<img  className="buttonStyleI" src={cartImage}></img></button>
                       
                   </form>
                   
