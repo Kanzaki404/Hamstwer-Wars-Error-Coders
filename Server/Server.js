@@ -4,10 +4,20 @@ const app = express();
 const port = process.env.PORT || 5000;
 const fileUpload = require('express-fileupload');
 const path = require('path');
-const { getAllHamsters, search, addHamster } = require('./database.js');
+const {
+  getAllHamsters,
+  search,
+  addHamster,
+  get,
+  matchResult,
+} = require('./database.js');
 const fs = require('fs');
 
 // Middleware
+var cors = require('cors');
+
+// Then use it before your routes are set up:
+app.use(cors());
 app.use(express.static(__dirname + '/../build'));
 // app.use(express.static('Server'))
 app.use(fileUpload());
@@ -65,12 +75,17 @@ app.get('/battle', (req, res) => {
   //   });
 });
 
-app.get('/result/:id', (req, res) => {
-  res.send('resutl');
-  //   console.log(req.body.params)
-  // 	addBoat(req.body.params, dataOrError => {
-  // 		res.send(dataOrError)
-  // 	})
+app.put('/result/:id', (req, res) => {
+  console.log('message:', req.params);
+  // res.send('resultorino');
+  matchResult(req.params, (dataOrError) => {
+    res.send(dataOrError);
+  });
+});
+app.get('/battle/:id1/:id2', (req, res) => {
+  get(req.params, (dataOrError) => {
+    res.send(dataOrError);
+  });
 });
 
 app.get('/stats', (req, res) => {
