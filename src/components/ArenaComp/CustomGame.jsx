@@ -155,6 +155,7 @@ const Arrow = styled.div`
 
   :hover {
     transform: scale(1.2);
+    filter: drop-shadow(0px 0px 5px black);
   }
 `;
 
@@ -163,6 +164,7 @@ const ArrowLeft = styled(Arrow)`
   transform: rotate(180deg);
   :hover {
     transform: rotate(180deg) scale(1.2);
+    filter: drop-shadow(0px 0px 5px black);
   }
 `;
 
@@ -179,6 +181,7 @@ const Arrow2 = styled.div`
 
   :hover {
     transform: scale(1.2);
+    filter: drop-shadow(0px 0px 5px black);
   }
 `;
 
@@ -187,6 +190,7 @@ const Arrow2Left = styled(Arrow2)`
   transform: rotate(180deg);
   :hover {
     transform: rotate(180deg) scale(1.2);
+    filter: drop-shadow(0px 0px 5px black);
   }
 `;
 const CardStats = styled.p`

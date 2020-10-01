@@ -1,10 +1,11 @@
-import React, { useState } from "react";
-import "./element.css";
-import styled from "styled-components";
-import shoppingLogo from "../../assets/logo/cart.png";
+import React, { useState } from 'react';
+import './element.css';
+import styled from 'styled-components';
+import shoppingLogo from '../../assets/logo/cart.png';
 //import bloodPic from "../../assets/blood/transparent-blood.png";
-import BuyOrDie from "../../assets/marchFooter/Buyordie.svg"
-import Detail from "./ElementDetails";
+import BuyOrDie from '../../assets/marchFooter/Buyordie.svg';
+import Detail from './ElementDetails';
+
 //import { render } from "@testing-library/react";
 // import { Nav, Navbar,Form,FormControl,Button} from "react-bootstrap";
 
@@ -39,7 +40,7 @@ const NabBar = styled.div`
   }
 
   .logo img {
-    alt:"text";
+    alt: 'text';
     float: right;
   }
 
@@ -63,6 +64,7 @@ const NabBar = styled.div`
 
   ul li:hover {
     border-bottom: 1px solid black;
+    cursor: pointer;
   }
   .right:hover {
     border-bottom: none;
@@ -79,19 +81,17 @@ const NabBar = styled.div`
 `;
 
 const FooterImage = styled.div`
-position: absolute;
-width:100%;
-height: 20em;
-left: 2px;
-top: 2231px;
+  position: absolute;
+  width: 100%;
+  height: 20em;
+  left: 2px;
+  top: 2231px;
+  background-color: #790000;
 
-background-color: #790000;
-
-
-//background: url(dfj6zi-78f902d0-0991-488f-a459-054aa1623c7c.png);
-border: 1px solid #000000;
-box-sizing: border-box;
-filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  //background: url(dfj6zi-78f902d0-0991-488f-a459-054aa1623c7c.png);
+  border: 1px solid #000000;
+  box-sizing: border-box;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 `;
 
 //import { useDispatch } from 'react-redux';
@@ -99,62 +99,57 @@ filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 
 const Product = () => {
   // const dispatch = useDispatch();
-  const [productList,setProductList]= useState([
+  const [productList, setProductList] = useState([
     {
-      id:1,
-      name: "Zigge",
+      id: 1,
+      name: 'Zigge',
       price: 600,
-      im: require("../../assets/testPhotoGallery/shirt.svg"),
+      im: require('../../assets/testPhotoGallery/shirt.svg'),
     },
     {
-      id:2,
-      name: "Sven",
+      id: 2,
+      name: 'Sven',
       price: 600,
-      im: require("../../assets/testPhotoGallery/Backpart.svg"),
+      im: require('../../assets/testPhotoGallery/Backpart.svg'),
     },
     {
-      id:3,
-      name: "Mårten",
+      id: 3,
+      name: 'Mårten',
       price: 600,
-      im: require("../../assets/testPhotoGallery/shirt.svg"),
+      im: require('../../assets/testPhotoGallery/shirt.svg'),
     },
     {
-      id:4,
-      name: "Frippe",
+      id: 4,
+      name: 'Frippe',
       price: 600,
-      im: require("../../assets/testPhotoGallery/Backpart.svg"),
+      im: require('../../assets/testPhotoGallery/Backpart.svg'),
     },
     {
-      id:5,
-      name: "Bengt",
+      id: 5,
+      name: 'Bengt',
       price: 600,
-      im: require("../../assets/testPhotoGallery/shirt.svg"),
+      im: require('../../assets/testPhotoGallery/shirt.svg'),
     },
     // {name:'Hamster2', price:400,im:"../src/assets/testGallery/hamster-26.jpg"},
     // {name:'Hamster2', price:400,im:"../src/assets/testGallery/hamster-26.jpg"},
     // {name:'Hamster2', price:400,im:"../src/assets/testGallery/hamster-26.jpg"},
     // {name:'Hamster2', price:400,im:"../src/assets/testGallery/hamster-26.jpg"},
-  ])
-
+  ]);
 
   // Prints out the objects that are searched for.
-  const [sort, setSort] = useState("");
+  const [sort, setSort] = useState('');
   const [elementPage, setelementPage] = useState(true);
-  const [basketNumber, setBasketNumber]=useState(0)
+  const [basketNumber, setBasketNumber] = useState(0);
 
- 
+  const addToBasket = () => {
+    setBasketNumber(basketNumber + 1);
+  };
 
-  const addToBasket=()=>{
-    setBasketNumber(basketNumber +1)
+  const [itemSelected, setItemSelected] = useState({});
+  function selectedItem(item) {
+    setelementPage(false);
+    setItemSelected(item);
   }
-
-   const[itemSelected, setItemSelected]=useState({})
-  function selectedItem(item){
-    setelementPage(false)
-    setItemSelected(item)
-
-  }
-
 
   const data = productList.map((item) => {
     //const handleClick = () => dispatch(actions.addToCart(item))
@@ -164,17 +159,21 @@ const Product = () => {
         item.price.toString().match(sort.toString())
       ) {
         return (
-          <div  key={item.name}>
-            <GridItem onClick={()=>selectedItem(item)}>
-              <div >
-                <img   onClick={addToBasket} className="photo"   src={process.env.PUBLIC_URL + item.im} alt="sortedItem"/>
+          <div key={item.name}>
+            <GridItem onClick={() => selectedItem(item)}>
+              <div>
+                <img
+                  onClick={addToBasket}
+                  className="photo"
+                  src={process.env.PUBLIC_URL + item.im}
+                  alt="sortedItem"
+                />
                 {/* <button className="but" onClick={handleClick}>Add to Shopping</button>   */}
-               
               </div>
             </GridItem>
             <div>
               <p>
-                {" "}
+                {' '}
                 {item.name} <br />
                 Price: {item.price}
               </p>
@@ -187,12 +186,10 @@ const Product = () => {
     }
     //end of search print
 
-  
-
     //prints out all the available objects
     return (
       <div key={item.name}>
-        <GridItem onClick={()=>selectedItem(item)}>
+        <GridItem onClick={() => selectedItem(item)}>
           <div>
             <img
               className="photo"
@@ -201,16 +198,12 @@ const Product = () => {
               alt="cc"
               //value="ffff"
               //onClick={clickHandeler.bind(this)}
-             
-              
-              
             />
-             
           </div>
         </GridItem>
         <div>
           <p>
-            {" "}
+            {' '}
             {item.name} <br />
             Price: {item.price}
           </p>
@@ -237,7 +230,8 @@ const Product = () => {
               <li>Hoodies</li>
               <li>Cups</li>
               <li className="right">
-                <img  src={shoppingLogo} height="30" width="30" alt="logo" />{basketNumber}
+                <img src={shoppingLogo} height="30" width="30" alt="logo" />
+                {basketNumber}
               </li>
             </ul>
           </nav>
@@ -251,12 +245,12 @@ const Product = () => {
           <div className="products">{data}</div>
         </div>
       ) : (
-        <Detail onBack={()=>setelementPage(true)}  todos={itemSelected}/>
+        <Detail onBack={() => setelementPage(true)} todos={itemSelected} />
       )}
 
       {/* <div className="footer"></div> */}
       <FooterImage>
-        <img className="footerPhoto" src={BuyOrDie} alt="footerImage"/>
+        <img className="footerPhoto" src={BuyOrDie} alt="footerImage" />
       </FooterImage>
     </div>
   );

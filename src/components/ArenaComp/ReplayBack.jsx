@@ -134,7 +134,7 @@ const Wrapper3 = styled(Wrapper)`
 const Wrapper4 = styled(Wrapper)`
   bottom: 0px;
   left: 445px;
-  background-color: rgb(185 185 185 / 90%);
+  background-color: rgb(255 253 197 / 90%);
 `;
 
 const Back = styled(BackBtn)`

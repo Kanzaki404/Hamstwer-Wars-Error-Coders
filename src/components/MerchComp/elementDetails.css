@@ -1,98 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
 
-.head{
+.head {
   width: 100%;
   height: 10em;
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: 'Quicksand', sans-serif;
 }
 
-
-.footer{
+.footer {
   border-top: solid black 1px;
   width: 100%;
   height: 10em;
-  background-color: #F9F4F4;
+  background-color: #f9f4f4;
   margin-top: 400px;
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: 'Quicksand', sans-serif;
 }
 
-.firstPart{
-width:50%;
-height:auto;
-float: left;
+.firstPart {
+  width: 50%;
+  height: auto;
+  float: left;
+  font-family: 'Quicksand', sans-serif;
 }
 
-
-
-
-.firstPart img { 
+.firstPart img {
   width: 200px;
   height: 200px;
   float: left;
   margin-left: 300px;
-  transition: 0.75s all ease-in-out; 
+  transition: 0.75s all ease-in-out;
   margin-top: 40px;
-
-  
-} 
- 
-.firstPart:hover img { 
-  transform: scale(1.5); 
-} 
-
-
-
-.secondPart{
-width:50%;
-height:auto;
-
-float: left;
-
 }
-.money{
+
+.firstPart:hover img {
+  transform: scale(1.5);
+}
+
+.secondPart {
+  width: 50%;
+  height: auto;
+  font-family: 'Quicksand', sans-serif;
+  float: left;
+}
+.money {
   margin-left: 130px;
+  font-family: 'Quicksand', sans-serif;
 }
 
-.secondPart input{
+.secondPart input {
   color: white;
-  width:250px ;
-  height:50px;
+  width: 250px;
+  height: 50px;
   border-radius: 4px;
-  background-color:#289825;
+  background-color: #289825;
   opacity: 0.8;
   margin-left: 100px;
   border: none;
   outline: none;
-  
+  font-family: 'Quicksand', sans-serif;
 }
 
-
-.secondPart p{
-margin-left: 0%;
+.secondPart p {
+  margin-left: 0%;
+  font-family: 'Quicksand', sans-serif;
 }
 
-#item{
-  width:28% ;
+#item {
+  width: 28%;
   height: 2em;
   margin-left: 85px;
-
 }
 
-#labForProduct{
+#labForProduct {
   width: 20%;
   margin-left: 0px;
 }
 
-
-
-
-.img{
- 
+.img {
   width: 25px;
   height: 25px;
   margin-top: 21px;
@@ -100,50 +91,51 @@ margin-left: 0%;
   display: flex;
   justify-content: center;
   align-items: center;
- 
 }
 
-
-.back-page{
+.back-page {
+  font-family: 'Quicksand', sans-serif;
   display: flex;
   flex-direction: row;
   place-content: center;
   cursor: pointer;
 }
 
-
-
-  .buttonStyle {
+.buttonStyle {
+  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   position: relative;
   cursor: pointer;
-  width:20em;
+  width: 20em;
   display: inline-block;
-  white-space: nowrap;
-  background: linear-gradient(180deg,#ce8 0%,#592 100%);
-  border-radius: 100px;
-  border: 0.5px solid #8c4;
+  /* white-space: nowrap; */
+  border: none;
+  /* background: linear-gradient(180deg, #ce8 0%, #592 100%); */
+  background-color: transparent;
+  border-radius: 10px;
+  border: 1px solid #8c4;
   border-width: 0.5px 0.5px 0.5px 0.5px;
   padding: 7px 40px 9px 15px;
-  box-shadow: inset 0px 1px 0px rgba(255,255,255,0.6),0px 1px 2px rgba(0,0,0,0.5);
-    color: #372;
+  /* box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.6),
+    0px 1px 2px rgba(0, 0, 0, 0.5); */
+  color: #372;
   font-size: 14px;
-  font-family: Helvetica Neue;
+  font-family: 'Quicksand', sans-serif;
   font-weight: 900;
   font-style: normal;
-  text-shadow: 0px 1px 0px rgba(255,255,255,0.5);
-  outline:none;
-  }
-  .buttonStyleDiv {
+  text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.5);
+  font-family: 'Quicksand', sans-serif;
+  outline: none;
+}
+.buttonStyleDiv {
   color: #372;
   font-size: 10px;
-  font-family: transcript;
-  font-weight: 200;
-  font-style: italic;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: bold;
   text-align: center;
-  margin: -3px 0px 0px 0px
-  }
-  .buttonStyleI{
+  margin: -3px 0px 0px 0px;
+}
+.buttonStyleI {
   width: 12px;
   height: 12px;
   color: #372;
@@ -156,6 +148,5 @@ margin-left: 0%;
   margin: 0px 0px 0px 0px;
   position: absolute;
   top: 0px;
-  right: 0px
-  }
- 
+  right: 0px;
+}
