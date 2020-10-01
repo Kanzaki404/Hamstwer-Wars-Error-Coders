@@ -215,7 +215,7 @@ function deleteItem(id){
   
     const selectedCartItem=cartProducts.map((e)=>(
     
-      <li key={e.id}><img src={e.im} alt="Tshirt"/><span/><button type="submit" onClick={()=>deleteItem(e.id)} 
+      <li key={e.id+Math.floor(Math.random() * 1000000)}><img src={e.im} alt="Tshirt"/><span/><button type="submit" onClick={()=>deleteItem(e.id)} 
                   >Remove{e.id}</button></li>
                   
     ))
