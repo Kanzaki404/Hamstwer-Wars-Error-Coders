@@ -31,11 +31,12 @@ float: left;
 
 
 .firstPart img { 
-  width: 150px;
-  height: 150px;
+  width: 200px;
+  height: 200px;
   float: left;
-  margin-left: 175px;
-  transition: 1.0s all ease-in-out; 
+  margin-left: 300px;
+  transition: 0.75s all ease-in-out; 
+  margin-top: 40px;
 
   
 } 
@@ -53,7 +54,7 @@ height:auto;
 float: left;
 
 }
-h3{
+.money{
   margin-left: 130px;
 }
 
@@ -70,10 +71,6 @@ h3{
   
 }
 
-
-.secondPart input:hover{
-  background-image: radial-gradient(circle, #007d6c, #008564, #008c56, #009342, #289825);
-}
 
 .secondPart p{
 margin-left: 0%;
@@ -113,3 +110,4 @@ margin-left: 0%;
   place-content: center;
   cursor: pointer;
 }
+

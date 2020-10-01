@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState,useEffect } from "react";
 import cart from "../../assets/logo/cart.png";
+//import imageSample1 from "../../assets/testPhotoGallery/shirt-front.png"
+
 import styled from "styled-components";
-import ReactDom from "react-dom";
+//import ReactDom from "react-dom";
 
 const ModalStyle = styled.div`
   position: fixed;
@@ -29,8 +31,8 @@ const ModalStyle = styled.div`
 
   .firstDivFrame {
     border-style: ridge;
-    overflow: scroll;
-    /* height:500px; */
+    overflow-y: scroll;
+    height:500px;
     /* Backpart */
   }
 
@@ -69,6 +71,28 @@ const ModalStyle = styled.div`
     margin-left: 100px;
   }
 
+  li{
+    list-style-type:none;
+    
+  }
+
+  li>button {
+    width: 40%;
+    height: 2rem;
+    border-radius: 4px;
+    background-color:	#F08080;
+    float:right;
+    margin-right:30px;
+    margin-top:50px;
+    color:white; 
+  
+  }
+
+  li>img{
+    height:100px;
+    width:100px
+  }
+
   button {
     width: 80%;
     height: 3rem;
@@ -92,23 +116,76 @@ const ModalStyle = styled.div`
     }
   }
 `;
+let cartProducts = [];
+function Cart({ open, onClose,cartItem,allItem}) {
+ 
+  
+  
+//const [cartProducts, setcartProducts] = useState([])
+const[idstate,setIdState]=useState(false)
 
-function Cart({ open, onClose }) {
+
+useEffect(() => {
+  // setProductList([...productList, todos]);
+  //setcartProducts([...cartProducts,JSON.parse(localStorage.getItem('productList'))])
+  cartProducts = []
+  if(localStorage.getItem('productList') !== null){
+  let temp = JSON.parse(localStorage.getItem('productList'))
+
+      for(let i=0; i< temp.length; i++){
+        cartProducts.push(temp[i]);
+      }
+    }
+  console.log(cartProducts)
+  
+ })
+   
+function deleteItem(id){
+  console.log(id)
+  cartProducts.splice(cartProducts.findIndex(function(i){
+    return i.id===id
+  }),1)
+  console.log('in',cartProducts)
+  localStorage.setItem('productList', JSON.stringify(cartProducts));
+  setIdState(!idstate)
+ 
+ 
+}
+
+  
+    const selectedCartItem=cartProducts.map((e)=>(
+    
+      <li key={e.id}><img src={e.im} alt="Tshirt"/><span/><button type="submit" onClick={()=>deleteItem(e.id)} 
+                  >Remove{e.id}</button></li>
+                  
+    ))
+  
+  
+   
+
+
+
   if (!open) {
     return null;
   }
-  return ReactDom.createPortal(
-    <>
+   return (
+    <div>
       <ModalStyle>
+     
         <div className="heading">
+          
           <img className="image" src={cart} alt="noImg"></img>
         </div>
         <div className="firstDiv">
           <h3>YOUR CART</h3>
 
           <div className="firstDivFrame">
-            cvknskfkskfn njskdjskkds sdsjdkjskdsk hjvhghgh hvjhju hvhjhjhjbh
-            ghgjhjbbjb hvjhvjvv hvjhvjvj ggugg hvhvvyvy kbkigig vhvvuvuv
+         
+            <ol>
+              {selectedCartItem}
+              
+            </ol>
+           
           </div>
         </div>
 
@@ -127,13 +204,14 @@ function Cart({ open, onClose }) {
               <br />
               <br />
               <button onClick={onClose}>CheckOut</button>
+              
             </form>
           </div>
         </div>
       </ModalStyle>
-    </>,
-    document.getElementById("portal")
-  );
+    </div>
+   
+  )
 }
 
 export default Cart;
