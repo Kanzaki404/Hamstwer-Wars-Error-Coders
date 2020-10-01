@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import "./element.css";
 import styled from "styled-components";
 import shoppingLogo from "../../assets/logo/cart.png";
-import bloodPic from "../../assets/blood/transparent-blood.png";
+//import bloodPic from "../../assets/blood/transparent-blood.png";
+import BuyOrDie from "../../assets/marchFooter/Buyordie.svg"
 import Detail from "./ElementDetails";
 //import { render } from "@testing-library/react";
 // import { Nav, Navbar,Form,FormControl,Button} from "react-bootstrap";
@@ -15,18 +16,12 @@ const GridItem = styled.div`
   max-height: auto;
   margin-left: auto;
   margin-right: auto;
-
   border-radius: 4px;
 
   div:hover {
+    background-color: #790000;
     cursor: pointer;
-    
   }
-
-  #item:hover{
-    text-decoration: underline;
-  }
-  
 `;
 
 const NabBar = styled.div`
@@ -48,31 +43,30 @@ const NabBar = styled.div`
     float: right;
   }
 
-
-  .SearchProduct{
-    padding: 12px;
-    box-sizing: border-box;
-    height: 3em;
-    margin-top: 30px;
-    outline: none;
-    resize: vertical;
-    border-radius: 4px;
+  input {
+    width: 15%;
     margin-left: 2.4%;
-    border: 1px solid black;
+    margin-top: 26px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    resize: vertical;
+    height: 2em;
   }
 
   ul li {
     display: inline-block;
     padding: 10px;
     font-size: 20px;
-    font-family: raleway;
+    font-family: 'Quicksand', sans-serif;
   }
 
   ul li:hover {
-    color: #790000;
-    
+    border-bottom: 1px solid black;
   }
-
+  .right:hover {
+    border-bottom: none;
+  }
   .navPosition {
     margin: auto;
     width: 60%;
@@ -85,8 +79,9 @@ const NabBar = styled.div`
 `;
 
 const FooterImage = styled.div`
+position: absolute;
 width:100%;
-height: 35em;
+height: 20em;
 left: 2px;
 top: 2231px;
 
@@ -104,46 +99,63 @@ filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 
 const Product = () => {
   // const dispatch = useDispatch();
-  const productList = [
+  const [productList,setProductList]= useState([
     {
-      name: "Hamster1",
+      id:1,
+      name: "Zigge",
       price: 600,
-      im: require("../../assets/testPhotoGallery/hamster-26.jpg"),
+      im: require("../../assets/testPhotoGallery/shirt.svg"),
     },
     {
-      name: "Hamster2",
+      id:2,
+      name: "Sven",
       price: 600,
-      im: require("../../assets/testPhotoGallery/default-warrior.jpg"),
+      im: require("../../assets/testPhotoGallery/Backpart.svg"),
     },
     {
-      name: "Hamster3",
+      id:3,
+      name: "Mårten",
       price: 600,
-      im: require("../../assets/testPhotoGallery/hamster-26.jpg"),
+      im: require("../../assets/testPhotoGallery/shirt.svg"),
     },
     {
-      name: "Hamster4",
+      id:4,
+      name: "Frippe",
       price: 600,
-      im: require("../../assets/testPhotoGallery/default-warrior.jpg"),
+      im: require("../../assets/testPhotoGallery/Backpart.svg"),
     },
     {
-      name: "Hamster5",
+      id:5,
+      name: "Bengt",
       price: 600,
-      im: require("../../assets/testPhotoGallery/hamster-26.jpg"),
+      im: require("../../assets/testPhotoGallery/shirt.svg"),
     },
     // {name:'Hamster2', price:400,im:"../src/assets/testGallery/hamster-26.jpg"},
     // {name:'Hamster2', price:400,im:"../src/assets/testGallery/hamster-26.jpg"},
     // {name:'Hamster2', price:400,im:"../src/assets/testGallery/hamster-26.jpg"},
     // {name:'Hamster2', price:400,im:"../src/assets/testGallery/hamster-26.jpg"},
-  ];
+  ])
+
 
   // Prints out the objects that are searched for.
   const [sort, setSort] = useState("");
   const [elementPage, setelementPage] = useState(true);
   const [basketNumber, setBasketNumber]=useState(0)
 
+ 
+
   const addToBasket=()=>{
     setBasketNumber(basketNumber +1)
   }
+
+   const[itemSelected, setItemSelected]=useState({})
+  function selectedItem(item){
+    setelementPage(false)
+    setItemSelected(item)
+
+  }
+
+
   const data = productList.map((item) => {
     //const handleClick = () => dispatch(actions.addToCart(item))
     if (sort.length !== 0) {
@@ -153,7 +165,7 @@ const Product = () => {
       ) {
         return (
           <div  key={item.name}>
-            <GridItem onClick={()=>setelementPage(false)}>
+            <GridItem onClick={()=>selectedItem(item)}>
               <div >
                 <img   onClick={addToBasket} className="photo"   src={process.env.PUBLIC_URL + item.im} alt="sortedItem"/>
                 {/* <button className="but" onClick={handleClick}>Add to Shopping</button>   */}
@@ -175,34 +187,40 @@ const Product = () => {
     }
     //end of search print
 
+  
+
     //prints out all the available objects
     return (
       <div key={item.name}>
-        <GridItem onClick={()=>setelementPage(false)}>
+        <GridItem onClick={()=>selectedItem(item)}>
           <div>
             <img
               className="photo"
               onClick={addToBasket}
               src={process.env.PUBLIC_URL + item.im}
               alt="cc"
+              //value="ffff"
+              //onClick={clickHandeler.bind(this)}
+             
+              
+              
             />
-            {/* <button className="but" onClick={handleClick}>Add to Shopping</button>   */}
+             
           </div>
-          <div>
-          <p id="item">
+        </GridItem>
+        <div>
+          <p>
             {" "}
             {item.name} <br />
             Price: {item.price}
           </p>
         </div>
-        </GridItem>
-        
       </div>
     );
   });
   return (
     <div className="wrapper">
-      <h1 className="headLine">Wellcome To Our Webshop</h1>
+      <div className="headLine">Wellcome To Our WEBSHOP</div>
       <NabBar>
         <div className="container">
           <input
@@ -214,11 +232,10 @@ const Product = () => {
           />
           <nav className="navPosition">
             <ul>
-              <li></li>
-              <li>AllProducts</li>
-              <li>Tshort</li>
-              <li>Hoddies</li>
-              <li>Cup</li>
+              <li>All products</li>
+              <li>T-shirts</li>
+              <li>Hoodies</li>
+              <li>Cups</li>
               <li className="right">
                 <img  src={shoppingLogo} height="30" width="30" alt="logo" />{basketNumber}
               </li>
@@ -234,12 +251,12 @@ const Product = () => {
           <div className="products">{data}</div>
         </div>
       ) : (
-        <Detail onBack={()=>setelementPage(true)}/>
+        <Detail onBack={()=>setelementPage(true)}  todos={itemSelected}/>
       )}
 
       {/* <div className="footer"></div> */}
       <FooterImage>
-        <img src={bloodPic} alt="footerImage"/>
+        <img className="footerPhoto" src={BuyOrDie} alt="footerImage"/>
       </FooterImage>
     </div>
   );

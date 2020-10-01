@@ -56,12 +56,16 @@ const SearchFields = styled.div`
       caret-color: #6d6d6d;
     }
   }
-
+  .deleteThis {
+      display:none;
+    }
   .InputField2 {
     display: flex;
     justify-content: left;
     padding-left: 40px;
     color: white;
+    
+   
     .firstRadio {
       margin-right: 260px;
     }
@@ -93,7 +97,7 @@ export default function ListingMenu({ dataCallback }) {
   const [searchType, setSearchtype] = useState(true);
   const [inputName, setInputName] = useState("");
   const [matchCount, setMatchCount] = useState("");
-  const [winRate, setWinRate] = useState("");
+  //const [winRate, setWinRate] = useState("");
   const [filterResult, setFilterResult] = useState([]);
   function switchSearchType(type) {
     if (type !== "manual") {
@@ -111,7 +115,7 @@ export default function ListingMenu({ dataCallback }) {
   function clearInputs(){
     setInputName("")
     setMatchCount("")
-    setWinRate("")
+    //setWinRate("")
    
    }
   const filter = {};
@@ -120,15 +124,15 @@ export default function ListingMenu({ dataCallback }) {
       filter.name = inputName;
     }
     if (matchCount === "MM") {
-      filter.gamesMM = matchCount;
+      filter.matchCount = matchCount;
     } else {
-      filter.gamesLM = matchCount;
+      filter.matchCount = matchCount;
     }
-    if (winRate === "HWR") {
-      filter.winsHWR = winRate;
-    } else {
-      filter.winsLWR = winRate;
-    }
+    // if (winRate === "HWR") {
+    //   filter.winRate = "HWR";
+    // } else {
+    //   filter.winRate = "LWR";
+    // }
     sendFileterToServer(filter, setFilterResult,clearInputs);
   }
 
@@ -183,7 +187,7 @@ export default function ListingMenu({ dataCallback }) {
               ></input>
               <label htmlFor="LeastMatches">Least Matches</label>
             </div>
-            <div onChange={(e) => setWinRate(e.target.value)}>
+            <div className="deleteThis">
               <input
                 type="radio"
                 id="HighestWinRate"

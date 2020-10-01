@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+
 
 .itemSearchContainer{
   
-    border:10px solid #EFEFEF;
-    background-color: #EFEFEF;
+  text-align: center;  
+  font-family: 'Quicksand', sans-serif;
     /* margin-left: 40px;
     margin-right: 40px; */
     height: auto;
@@ -74,7 +76,7 @@
   }
 
   .photo {
-  margin-left: 10px;
+  
   margin-bottom: 10px;
   margin-top:10px;
   height: 300px;
@@ -85,10 +87,19 @@
 
   .headLine {
     text-align: center;
-   
+    font-size: 2em;
+    background-color: #F9F4F4;
+    padding: 1cm;
   }
 
+  hr{
+    margin-bottom: 0px;
+  }
   
+  .footerPhoto{
+    width: 85%;
+    height: 300px;
+  }
 
   
 
@@ -123,6 +134,7 @@
       bottom: 8px;
       right: 50px;
     }
+    
   }
   @media (max-width: 480px) {
     .products{

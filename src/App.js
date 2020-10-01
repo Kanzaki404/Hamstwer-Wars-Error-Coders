@@ -7,21 +7,23 @@ import Stats from './Pages/Stats'
 import Upload from './Pages/Upload'
 import Gallery from './Pages/Gallery'
 import Merchandise from './Pages/Merchandise'
+// import Footer from './components/Footer';
+
+
 function App() {
   return (
-    <Router>
-      <div className="App" >
-        <Nav/>
-        <Switch >
-                <Route path = '/' exact  component={LandingPage}  />
-                <Route path = '/arena' component={Arena} />
-                <Route path = '/gallery' component={Gallery} />
-                <Route path = '/stats' component={Stats} />
-                <Route path = '/upload' component={Upload} />
-                <Route path = '/merch' component={Merchandise} />
-        </Switch>
-   
 
+    <Router>
+      <div className="App">
+        <Nav />
+        <Switch>
+          <Route path="/" exact component={LandingPage} />
+          <Route path="/arena" component={Arena} />
+          <Route path="/gallery" component={Gallery} />
+          <Route path="/stats" component={Stats} />
+          <Route path="/upload" component={Upload} />
+          <Route path="/merch" component={Merchandise} />
+        </Switch>
       </div>
     </Router>
   );

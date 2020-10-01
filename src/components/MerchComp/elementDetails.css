@@ -2,17 +2,23 @@
 .head{
   width: 100%;
   height: 10em;
-  background-color: lightgrey;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 
 .footer{
+  border-top: solid black 1px;
   width: 100%;
   height: 10em;
-  background-color: lightgrey;
+  background-color: #F9F4F4;
   margin-top: 400px;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .firstPart{
@@ -25,18 +31,18 @@ float: left;
 
 
 .firstPart img { 
-  width: 150px;
-  height: 150px;
+  width: 200px;
+  height: 200px;
   float: left;
-  margin-top: 200px;
-  margin-left: 100px;
-  transition: 1.0s all ease-in-out; 
+  margin-left: 300px;
+  transition: 0.75s all ease-in-out; 
+  margin-top: 40px;
 
   
 } 
  
 .firstPart:hover img { 
-  transform: scale(2.2); 
+  transform: scale(1.5); 
 } 
 
 
@@ -48,12 +54,21 @@ height:auto;
 float: left;
 
 }
+.money{
+  margin-left: 130px;
+}
 
 .secondPart input{
-  width:50% ;
-  height:3em;
+  color: white;
+  width:250px ;
+  height:50px;
   border-radius: 4px;
-  background-color:lightgreen;
+  background-color:#289825;
+  opacity: 0.8;
+  margin-left: 100px;
+  border: none;
+  outline: none;
+  
 }
 
 
@@ -64,6 +79,8 @@ margin-left: 0%;
 #item{
   width:28% ;
   height: 2em;
+  margin-left: 85px;
+
 }
 
 #labForProduct{
@@ -80,7 +97,9 @@ margin-left: 0%;
   height: 25px;
   margin-top: 21px;
   margin-right: 5px;
- 
+  display: flex;
+  justify-content: center;
+  align-items: center;
  
 }
 
@@ -91,3 +110,52 @@ margin-left: 0%;
   place-content: center;
   cursor: pointer;
 }
+
+
+
+  .buttonStyle {
+  backface-visibility: hidden;
+  position: relative;
+  cursor: pointer;
+  width:20em;
+  display: inline-block;
+  white-space: nowrap;
+  background: linear-gradient(180deg,#ce8 0%,#592 100%);
+  border-radius: 100px;
+  border: 0.5px solid #8c4;
+  border-width: 0.5px 0.5px 0.5px 0.5px;
+  padding: 7px 40px 9px 15px;
+  box-shadow: inset 0px 1px 0px rgba(255,255,255,0.6),0px 1px 2px rgba(0,0,0,0.5);
+    color: #372;
+  font-size: 14px;
+  font-family: Helvetica Neue;
+  font-weight: 900;
+  font-style: normal;
+  text-shadow: 0px 1px 0px rgba(255,255,255,0.5);
+  outline:none;
+  }
+  .buttonStyleDiv {
+  color: #372;
+  font-size: 10px;
+  font-family: transcript;
+  font-weight: 200;
+  font-style: italic;
+  text-align: center;
+  margin: -3px 0px 0px 0px
+  }
+  .buttonStyleI{
+  width: 12px;
+  height: 12px;
+  color: #372;
+  font-size: 1.1em;
+  background: #fff;
+  border-radius: 100px;
+  border: 3px solid #371;
+  border-width: 3px 3px 3px 3px;
+  padding: 7px 7px 7px 7px;
+  margin: 0px 0px 0px 0px;
+  position: absolute;
+  top: 0px;
+  right: 0px
+  }
+ 
