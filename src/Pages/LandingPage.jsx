@@ -13,7 +13,7 @@ import img2 from '../assets/testPhotoGallery/hamster-bloody.jpg';
 
 const LandingPageStyle = styled.div`
   width: auto;
-  height: 92vh;
+  height: 91vh;
   text-align: center;
   background-image: url(${({ hovering }) => hovering === false ? img1 : img2});
   background-repeat:no-repeat;
@@ -379,6 +379,7 @@ export default function LandingPage() {
   const [play, { stop }] = useSound(sovjetMarch, { volume: 0.2 });
   const [isPlaying, setisPlaying] = React.useState(true);
   const [hovering, setHovering] = useState(false)
+  // const [hasPlayed, setPlayed] = React.useState(true);
 
   function playStop(){
     if(isPlaying){
@@ -386,6 +387,10 @@ export default function LandingPage() {
     }else{
       stop();
     }
+  }
+
+  function resetMusic() {
+      stop();
   }
 
   return (
@@ -448,6 +453,7 @@ export default function LandingPage() {
       <MusicWrapper>
         {!isPlaying ? <Volume className ="music-btn"
           onClick={() => {
+            resetMusic();
             playStop();
             setisPlaying(!isPlaying);
           }}
@@ -456,6 +462,7 @@ export default function LandingPage() {
 
           <Mute className ="music-btn"
           onClick={() => {
+          resetMusic();
           playStop();
           setisPlaying(!isPlaying);
         }}
