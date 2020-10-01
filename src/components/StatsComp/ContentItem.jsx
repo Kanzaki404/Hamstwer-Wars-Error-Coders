@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Doughnut  } from "react-chartjs-2";
 import axios from 'axios'
 import defImage from '../../assets/testPhotoGallery/default-warrior.jpg'
-
+import bolt from '../../assets/testPhotoGallery/flash.png'
 const ListItem = styled.div`
   width: 100%;
   min-height: 75px;
@@ -55,6 +55,8 @@ const Profile = styled.div`
     margin-top: 10px;
 
 `;
+
+
 export default function ContentItem({ data }) {
   const [cardState1, setCardState1] = useState(false);
   const [imageFromServer, setImageFromServer] = useState('');
@@ -111,7 +113,8 @@ export default function ContentItem({ data }) {
           <Doughnut   data={chartData}></Doughnut>
           </div>
           <div>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem similique doloremque assumenda nulla magnam quis aperiam animi sunt possimus exercitationem delectus id aut nisi, eveniet sequi blanditiis commodi adipisci dolore?</p>
+           <p>Loves :</p> 
+           <p>{data.loves}</p>
           </div>
         </ChartContainer>
       ) : (
