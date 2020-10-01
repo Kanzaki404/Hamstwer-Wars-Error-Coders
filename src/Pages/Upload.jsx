@@ -1,13 +1,21 @@
 import React, { useState, useEffect} from "react";
 import styled from "styled-components";
 import axios from 'axios';
+import arenaBg from "../assets/testPhotoGallery/room.jpg"
+
 
 const UploadPageStyle = styled.div`
   width: auto;
-  height: 100vh;
-  background-color: #790000;
+  height: 91vh;
   text-align: center;
   color: white;
+  background-image: url(${arenaBg});
+  background-repeat:no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment:fixed;
+  overflow: auto;
+  z-index: 0;
 
   .content {
     display: block;
@@ -20,10 +28,16 @@ const UploadPageStyle = styled.div`
   }
 
   h2 {
-    font-family: "Quicksand", sans-serif;
+    font-family: "Quicksand",sans-serif;
     margin: auto;
+    margin-bottom: -22px;
     text-align: center;
+    font-size: 31px;
     padding: 63px;
+    -webkit-animation: puff-in-center;
+    animation: puff-in-center;
+    -webkit-animation-duration: 0.5s;
+    animation-duration: 0.5s;
   }
 
   .inputfile {
@@ -82,7 +96,7 @@ const UploadPageStyle = styled.div`
   }
 
   .image-display {
-    background-color: #790000;
+    background-color: transparent;
     height: 261px;
     width: 455px;
     display: block;
@@ -174,6 +188,39 @@ const UploadPageStyle = styled.div`
 
     }
   }
+
+  @-webkit-keyframes puff-in-center {
+  0% {
+    -webkit-transform: scale(2);
+            transform: scale(2);
+    -webkit-filter: blur(4px);
+            filter: blur(4px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    -webkit-filter: blur(0px);
+            filter: blur(0px);
+    opacity: 1;
+  }
+}
+@keyframes puff-in-center {
+  0% {
+    -webkit-transform: scale(2);
+            transform: scale(2);
+    -webkit-filter: blur(4px);
+            filter: blur(4px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    -webkit-filter: blur(0px);
+            filter: blur(0px);
+    opacity: 1;
+  }
+}
 
 `;
 
