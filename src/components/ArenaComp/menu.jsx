@@ -6,7 +6,7 @@ const Button = styled.button`
   background-color: #1c1c1c;
   width: 300px;
   height: 70px;
-  border-bottom: 5px inset #487635;
+  border-bottom: 5px inset rgb(255 165 0);
   border-radius: 20px;
   display: flex;
   margin: auto;
@@ -29,12 +29,11 @@ const Button = styled.button`
   }
 
   :hover {
-    background-color: white;
     transform: scale(1.2);
     color: aliceblue;
-    border: 5px outset #487635;
+    border: 5px outset rgb(255 165 0);
     text-shadow: 0 0 130px #fff, 0 0 4px #000000, 0 0 40px #ffbc00,
-      0 0 50px #62ff00, 0 0 60px #00ffb8, 0 0 70px #00ff66, 0 0 80px #e4ff00;
+      0 0 50px #ff0000, 0 0 60px #ff9900, 0 0 70px #ffbc00, 0 0 80px #ffb100;
   }
   :hover:nth-child(3) {
     transform: scale(1.2);

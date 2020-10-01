@@ -7,33 +7,24 @@ const TimerStyle = styled.div`
     color: aliceblue;
 
     animation: fighttext 1s ease-in-out infinite;
-    /* animation-delay: -0.4s; */
+    /* animation-delay: 2s; */
 
     @keyframes fighttext {
       0% {
-        opacity: 0;
-        transform: scale(3);
-      }
-      5% {
-        opacity: 1;
-        transform: scale(3);
-      }
-      50% {
+        transform: scale(0.3);
       }
       80% {
-        opacity: 1;
-        transform: scale(1);
       }
+
       100% {
-        opacity: 0;
-        transform: scale(1);
+        transform: scale(2);
       }
     }
   }
 
-  /* h1 span {
-    font-family: fantasy;
-  } */
+  h1 span {
+    color: white;
+  }
 `;
 
 const CountDown = () => {
@@ -57,7 +48,7 @@ const CountDown = () => {
     setIsActive(false);
     setSeconds('');
     if (fight) {
-      return setfight('Fight!');
+      return setfight('FIGHT!');
     }
   }, [isActive, seconds]);
 
@@ -65,7 +56,7 @@ const CountDown = () => {
     <TimerStyle className="time">
       <h1>
         {seconds}
-        {fight}
+        <span>{fight}</span>
       </h1>
     </TimerStyle>
   );

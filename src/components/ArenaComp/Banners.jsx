@@ -13,7 +13,7 @@ export const BannerWrapper = styled.div`
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
 
-  filter: brightness(1.2);
+  filter: brightness(1);
 
   @keyframes fadeInRightBig {
     0% {

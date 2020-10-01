@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import background from '../assets/arena-background/colosseum.jpg';
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import axios from 'axios';
 import logo from '../assets/logo/logoHamster.png';
 
@@ -10,6 +10,7 @@ import {
   ReplayBack,
   ReplayBackWinRed,
   ReplayBackWinBlue,
+  ReplayBackCustom,
 } from '../components/ArenaComp/ReplayBack';
 import Menu from '../components/ArenaComp/menu';
 import Clouds from '../components/ArenaComp/Clouds';
@@ -28,6 +29,12 @@ import swordsImg from '../assets/arena-background/Swords.png';
 import WinImg from '../assets/arena-background/WinnerText.png';
 import WinBannerRed from '../assets/arena-background/winBannerRed.png';
 import WinBannerBlue from '../assets/arena-background/winBannerBlue.png';
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    overflow: hidden;
+  }
+`;
 
 const BackgroundWrapper = styled.div`
   background: url(${background});
@@ -538,10 +545,44 @@ const WinIcon = styled.div`
   }
 `;
 
+const GameText = styled.h1`
+  filter: drop-shadow(-4px 2px 8px black);
+  font-family: 'Piedra', cursive;
+  font-weight: bolder;
+  color: white;
+  position: absolute;
+  font-size: 50px;
+  margin: 0px 0 40px 40px;
+  bottom: 0;
+
+  animation: fader 5s ease-in-out;
+
+  @keyframes fader {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+`;
+
+const CustomText = styled(GameText)`
+  margin: 0px 0 40px 30px;
+`;
+const CustomText2 = styled(CustomText)`
+  bottom: 115px;
+  left: 320px;
+  font-size: 70px;
+`;
+
+const ModeDiv = styled.div``;
+
 const WinnerWrapper = styled(CardWrapper)``;
 
 export default function Arena() {
   const [hamsters, setHamsters] = useState([]);
+  const [CustomHamsters, setCustomHamsters] = useState([]);
   const [loading, setloading] = useState(true);
   const [red, setred] = useState(false);
   const [blue, setblue] = useState(false);
@@ -549,14 +590,22 @@ export default function Arena() {
   const [battle, setbattle] = useState(false);
   const [clean, setclean] = useState(false);
   const [customgame, setcustomgame] = useState(false);
+  const [customgamebattle, setcustomgamebattle] = useState(false);
+  const [customduo, setcustomduo] = useState([]);
+  const [redcustom, setredcustom] = useState(false);
+  const [bluecustom, setbluecustom] = useState(false);
 
   useEffect(() => {
     getHamsta(setHamsters);
+    AllHamsters(setCustomHamsters);
+    setredcustom(false);
+    setbluecustom(false);
     setred(false);
     setblue(false);
     setclean(false);
     setbattle(false);
     setcustomgame(false);
+    setcustomgamebattle(false);
     setmenu(true);
   }, []);
 
@@ -572,12 +621,79 @@ export default function Arena() {
       .catch((err) => console.log('ERROR ---> ' + err));
   }
 
+  function AllHamsters(setCustomHamsters) {
+    axios
+      .get(`${baseUrl}hamsters`)
+      .then((res) => {
+        console.log(res.data);
+        setCustomHamsters(res.data);
+      })
+      .catch((err) => console.log('ERROR ---> ' + err));
+  }
+
+  function Callback(e) {
+    axios
+      .get(`${baseUrl}battle/${e[0]}/${e[1]}`)
+      .then((res) => {
+        console.log(res.data);
+        setcustomduo(res.data);
+      })
+      .catch((err) => console.log('ERROR ---> ' + err));
+
+    // setcustomduo(e);
+  }
+
+  function SendWinner() {
+    let winner = {};
+
+    if (red) {
+      winner.red = hamsters[0].id;
+      winner.blue = hamsters[1].id;
+    }
+    if (blue) {
+      winner.blue = hamsters[0].id;
+      winner.red = hamsters[1].id;
+    }
+    let datatosend = JSON.stringify(winner);
+
+    axios
+      .put(`${baseUrl}result/${datatosend}`)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => console.log('ERROR ---> ' + err));
+  }
+
+  function SendCustomWinner() {
+    let winner = {};
+
+    if (redcustom) {
+      winner.red = customduo[0].id;
+      winner.blue = customduo[1].id;
+    }
+    if (bluecustom) {
+      winner.blue = customduo[0].id;
+      winner.red = customduo[1].id;
+    }
+    let datatosend = JSON.stringify(winner);
+
+    axios
+      .put(`${baseUrl}result/${datatosend}`)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => console.log('ERROR ---> ' + err));
+  }
+
   function mainmenu() {
     setred(false);
     setblue(false);
     setclean(false);
     setbattle(false);
+    setcustomgamebattle(false);
     setcustomgame(false);
+    setredcustom(false);
+    setbluecustom(false);
     setmenu(true);
   }
 
@@ -586,6 +702,9 @@ export default function Arena() {
     setred(false);
     setblue(false);
     setbattle(false);
+    setcustomgamebattle(false);
+    setredcustom(false);
+    setbluecustom(false);
     setTimeout(() => {
       getHamsta(setHamsters);
       setclean(false);
@@ -610,10 +729,45 @@ export default function Arena() {
     setblue(false);
     setclean(false);
     setbattle(false);
-    setTimeout(() => {
-      getHamsta(setHamsters);
-    }, 3900);
+    setTimeout(() => {}, 3800);
     setcustomgame(true);
+  }
+
+  function CustomBattle() {
+    setred(false);
+    setblue(false);
+    setbattle(false);
+    setcustomgame(false);
+    setmenu(false);
+    setclean(true);
+    setTimeout(() => {
+      setclean(false);
+    }, 3800);
+    setcustomgamebattle(true);
+  }
+
+  function CustomWinRed() {
+    setbluecustom(false);
+    setred(false);
+    setblue(false);
+    setclean(false);
+    setbattle(false);
+    setcustomgame(false);
+    setcustomgamebattle(false);
+    setmenu(false);
+    setredcustom(true);
+  }
+
+  function CustomWinBlue() {
+    setredcustom(false);
+    setred(false);
+    setblue(false);
+    setclean(false);
+    setbattle(false);
+    setcustomgame(false);
+    setcustomgamebattle(false);
+    setmenu(false);
+    setbluecustom(true);
   }
 
   if (loading) {
@@ -633,7 +787,8 @@ export default function Arena() {
   }
   if (clean) {
     return (
-      <BackgroundWrapper>
+      <BackgroundWrapper style={{ transition: '0s' }}>
+        <GlobalStyle />
         <Clouds />
         <Moon />
         <Book>
@@ -649,6 +804,7 @@ export default function Arena() {
   if (menu) {
     return (
       <BackgroundWrapper>
+        <GlobalStyle />
         <Clouds />
 
         <Book>
@@ -669,11 +825,19 @@ export default function Arena() {
   if (customgame) {
     return (
       <BackgroundWrapper>
+        <GlobalStyle />
         <Clouds />
 
         <Book>
           <ConstantSpin style={{ margin: 'auto' }}>
-            <CustomMode mainmenu={() => mainmenu()} />
+            <CustomMode
+              Callback={(e) => Callback(e)}
+              CustomHamsters={CustomHamsters}
+              mainmenu={() => mainmenu()}
+              CustomBattle={() => CustomBattle()}
+            />
+
+            <CustomText2>Custom Game</CustomText2>
           </ConstantSpin>
         </Book>
         <Moon />
@@ -681,9 +845,58 @@ export default function Arena() {
     );
   }
 
-  if (red) {
+  if (customgamebattle) {
     return (
       <BackgroundWrapper>
+        <GlobalStyle />
+        <Clouds />
+
+        <Book>
+          <CardWrapper>
+            <ConstantSpin>
+              <FlagWrapperLeft>
+                <RedFlag />
+                <RedText>{customduo[1].name}</RedText>
+              </FlagWrapperLeft>
+              <TeamRed
+                chooseRed={() => CustomWinRed()}
+                redFighter={customduo[1]}
+              />
+            </ConstantSpin>
+          </CardWrapper>
+          <ConstantSpin>
+            <div className="rotate">
+              <VSimg />
+              <ReplayBackCustom
+                mainmenu={() => mainmenu()}
+                CustomGame={() => CustomGame()}
+              />
+              <CustomText>Custom Game</CustomText>
+            </div>
+          </ConstantSpin>
+          <CardWrapper Blue>
+            <ConstantSpin>
+              <TeamBlue
+                chooseBlue={() => CustomWinBlue()}
+                blueFighter={customduo[0]}
+              />
+              <FlagWrapperRight>
+                <BlueFlag />
+                <BlueText>{customduo[0].name}</BlueText>
+              </FlagWrapperRight>
+            </ConstantSpin>
+          </CardWrapper>
+        </Book>
+        <Moon />
+      </BackgroundWrapper>
+    );
+  }
+
+  if (red) {
+    SendWinner();
+    return (
+      <BackgroundWrapper>
+        <GlobalStyle />
         <Clouds />
 
         <Book>
@@ -715,9 +928,47 @@ export default function Arena() {
       </BackgroundWrapper>
     );
   }
-  if (blue) {
+  if (redcustom) {
+    SendCustomWinner();
     return (
       <BackgroundWrapper>
+        <GlobalStyle />
+        <Clouds />
+
+        <Book>
+          <WinnerWrapper>
+            <ConstantSpin>
+              <WinText />
+              <div className="red-winner">
+                <RedWinner redFighter={customduo[1]} />
+              </div>
+              <WinTextWrapper Red>
+                <div className="winner-text">
+                  <RedText>{customduo[1].name}</RedText>
+                </div>
+              </WinTextWrapper>
+              {/* <FlagWrapperLeft>
+                <RedFlag />
+                
+              </FlagWrapperLeft> */}
+              {/* <WinIcon /> */}
+              <ReplayBackWinRed
+                mainmenu={() => mainmenu()}
+                replay={() => CustomGame()}
+                className="win-menu"
+              />
+            </ConstantSpin>
+          </WinnerWrapper>
+        </Book>
+        <Moon />
+      </BackgroundWrapper>
+    );
+  }
+  if (blue) {
+    SendWinner();
+    return (
+      <BackgroundWrapper>
+        <GlobalStyle />
         <Clouds />
 
         <Book>
@@ -749,9 +1000,46 @@ export default function Arena() {
       </BackgroundWrapper>
     );
   }
+  if (bluecustom) {
+    SendCustomWinner();
+    return (
+      <BackgroundWrapper>
+        <GlobalStyle />
+        <Clouds />
+
+        <Book>
+          <WinnerWrapper>
+            <ConstantSpin>
+              <WinText />
+              <div className="red-winner">
+                <BlueWinner blueFighter={customduo[0]} />
+              </div>
+              <BlueWrapper>
+                <div className="winner-text">
+                  <RedText>{customduo[0].name}</RedText>
+                </div>
+              </BlueWrapper>
+              {/* <FlagWrapperLeft>
+                <RedFlag />
+                
+              </FlagWrapperLeft> */}
+              {/* <WinIcon /> */}
+              <ReplayBackWinBlue
+                mainmenu={() => mainmenu()}
+                replay={() => CustomGame()}
+                className="win-menu"
+              />
+            </ConstantSpin>
+          </WinnerWrapper>
+        </Book>
+        <Moon />
+      </BackgroundWrapper>
+    );
+  }
   if (battle) {
     return (
       <BackgroundWrapper>
+        <GlobalStyle />
         <Clouds />
 
         <Book>
@@ -771,6 +1059,7 @@ export default function Arena() {
             <div className="rotate">
               <VSimg />
               <ReplayBack mainmenu={() => mainmenu()} replay={() => replay()} />
+              <GameText>Quick Game</GameText>
             </div>
           </ConstantSpin>
           <CardWrapper Blue>

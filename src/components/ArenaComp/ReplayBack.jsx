@@ -133,7 +133,8 @@ const Wrapper3 = styled(Wrapper)`
 
 const Wrapper4 = styled(Wrapper)`
   bottom: 0px;
-  left: 20vw;
+  left: 445px;
+  background-color: rgb(185 185 185 / 90%);
 `;
 
 const Back = styled(BackBtn)`
@@ -190,15 +191,37 @@ export function ReplayBackWinBlue({ mainmenu, replay }) {
     </Wrapper3>
   );
 }
-export function MiniMenu({ mainmenu, replay }) {
+export function MiniMenu({ mainmenu, CustomBattle, Callback, customfight }) {
+  console.log(customfight);
+
   return (
     <Wrapper4>
-      <PlayButton onClick={replay}>
+      <PlayButton
+        onClick={() => {
+          CustomBattle();
+          Callback(customfight);
+        }}
+      >
         <img src={playbtn} />
       </PlayButton>
       <Back onClick={mainmenu}>
         <img src={back} />
       </Back>
     </Wrapper4>
+  );
+}
+
+export function ReplayBackCustom({ CustomGame, mainmenu }) {
+  // console.log(customfight);
+
+  return (
+    <Wrapper>
+      <RefreshBtn onClick={CustomGame}>
+        <img src={refresh} />
+      </RefreshBtn>
+      <Back onClick={mainmenu}>
+        <img src={back} />
+      </Back>
+    </Wrapper>
   );
 }
